@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package reservaciones;
 
-/**
- *
- * @author kenlu
- */
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+
 public class Login_view extends javax.swing.JFrame {
 
     /**
@@ -29,18 +25,18 @@ public class Login_view extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btn_registrar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btn_info = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btn_olvidarContra = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -53,18 +49,18 @@ public class Login_view extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(148, 176, 218));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Registrarse");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
+        btn_registrar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btn_registrar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_registrar.setText("Registrarse");
+        jPanel1.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Inicio de sesion");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 50));
+        btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
+        jPanel1.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 88));
 
@@ -87,25 +83,25 @@ public class Login_view extends javax.swing.JFrame {
         jTextField2.setBorder(null);
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 120, 30));
 
-        jButton1.setBackground(new java.awt.Color(148, 176, 218));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Ingresar");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, 50));
+        btn_ingresar.setBackground(new java.awt.Color(148, 176, 218));
+        btn_ingresar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        btn_ingresar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_ingresar.setText("Ingresar");
+        jPanel2.add(btn_ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, 50));
 
-        jButton2.setBackground(new java.awt.Color(255, 217, 172));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Salir");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 90, 40));
+        btn_salir.setBackground(new java.awt.Color(255, 217, 172));
+        btn_salir.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btn_salir.setForeground(new java.awt.Color(0, 0, 0));
+        btn_salir.setText("Salir");
+        jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 90, 40));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Developed by Freylolo y su gente");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Olvide mi contraseña");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, -1));
+        btn_olvidarContra.setForeground(new java.awt.Color(0, 0, 0));
+        btn_olvidarContra.setText("Olvide mi contraseña");
+        jPanel2.add(btn_olvidarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 380, 410));
 
@@ -155,16 +151,16 @@ public class Login_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btn_info;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JLabel btn_olvidarContra;
+    private javax.swing.JLabel btn_registrar;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -172,4 +168,59 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    public JLabel getBtn_info() {
+        return btn_info;
+    }
+
+    public void setBtn_info(JLabel btn_info) {
+        this.btn_info = btn_info;
+    }
+
+    public JButton getBtn_ingresar() {
+        return btn_ingresar;
+    }
+
+    public void setBtn_ingresar(JButton btn_ingresar) {
+        this.btn_ingresar = btn_ingresar;
+    }
+
+    public JLabel getBtn_olvidarContra() {
+        return btn_olvidarContra;
+    }
+
+    public void setBtn_olvidarContra(JLabel btn_olvidarContra) {
+        this.btn_olvidarContra = btn_olvidarContra;
+    }
+
+    public JLabel getBtn_registrar() {
+        return btn_registrar;
+    }
+
+    public void setBtn_registrar(JLabel btn_registrar) {
+        this.btn_registrar = btn_registrar;
+    }
+
+    public JButton getBtn_salir() {
+        return btn_salir;
+    }
+
+    public void setBtn_salir(JButton btn_salir) {
+        this.btn_salir = btn_salir;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
