@@ -12,6 +12,8 @@ public class Login_view extends javax.swing.JFrame {
      */
     public Login_view() {
         initComponents();
+        setLocationRelativeTo(null);
+        
     }
 
 
@@ -40,6 +42,7 @@ public class Login_view extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(148, 176, 218));
@@ -48,6 +51,7 @@ public class Login_view extends javax.swing.JFrame {
         btn_registrarView.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btn_registrarView.setForeground(new java.awt.Color(0, 0, 0));
         btn_registrarView.setText("Registrarse");
+        btn_registrarView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btn_registrarView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
