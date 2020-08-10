@@ -10,21 +10,21 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import Vistas.Login_view;
-import Vistas.Register_view;
+import Vistas.SignUp_view;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login_control {
 
     private Login_view login;
-    private Register_view register;
+    private SignUp_view register;
     private ForgotPassword forgot;
 
     public Login_view getLogin() {
         return login;
     }
 
-    public Login_control(Login_view login, Register_view register, ForgotPassword forgot) {
+    public Login_control(Login_view login, SignUp_view register, ForgotPassword forgot) {
         this.login = login;
         this.register = register;
         this.forgot = forgot;
