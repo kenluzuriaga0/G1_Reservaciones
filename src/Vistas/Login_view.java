@@ -1,12 +1,16 @@
 
 package Vistas;
 
+import Controlador.Login_control;
+import Vistas.MotionPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 public class Login_view extends javax.swing.JFrame {
-
+    Login_control control;
     /**
      * Creates new form Login_view
      */
@@ -24,7 +28,7 @@ public class Login_view extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        motionPanel = new MotionPanel(this);
         btn_registrarView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_info = new javax.swing.JLabel();
@@ -48,24 +52,24 @@ public class Login_view extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(148, 176, 218));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        motionPanel.setBackground(new java.awt.Color(148, 176, 218));
+        motionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_registrarView.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btn_registrarView.setForeground(new java.awt.Color(0, 0, 0));
         btn_registrarView.setText("Registrarse");
         btn_registrarView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btn_registrarView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
+        motionPanel.add(btn_registrarView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Inicio de sesion");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        motionPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
-        jPanel1.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
+        motionPanel.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 88));
+        getContentPane().add(motionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 88));
 
         jPanel2.setBackground(new java.awt.Color(227, 226, 226));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,11 +168,11 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel motionPanel;
     private javax.swing.JPasswordField txt_campoPassword;
     private javax.swing.JTextField txt_campoUser;
     // End of variables declaration//GEN-END:variables
@@ -211,6 +215,22 @@ public class Login_view extends javax.swing.JFrame {
 
     public void setBtn_salir(JButton btn_salir) {
         this.btn_salir = btn_salir;
+    }
+
+    public JPasswordField getTxt_campoPassword() {
+        return txt_campoPassword;
+    }
+
+    public void setTxt_campoPassword(JPasswordField txt_campoPassword) {
+        this.txt_campoPassword = txt_campoPassword;
+    }
+
+    public JTextField getTxt_campoUser() {
+        return txt_campoUser;
+    }
+
+    public void setTxt_campoUser(JTextField txt_campoUser) {
+        this.txt_campoUser = txt_campoUser;
     }
 
 
