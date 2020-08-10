@@ -60,7 +60,7 @@ public class Login_control {
     class Flujo_login extends MouseAdapter {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
 
             Object fuente = e.getSource();
             if (fuente == login.getBtn_salir()) {                        //BOTON SALIR

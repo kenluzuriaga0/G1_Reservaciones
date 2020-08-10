@@ -22,6 +22,7 @@ public class Register_view extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         motionPanel = new MotionPanel(this);
         btn_InicioView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -44,8 +45,6 @@ public class Register_view extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-
-        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,13 +96,17 @@ public class Register_view extends javax.swing.JFrame {
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 130, 30));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 20));
 
+        jRadioButton1.setBackground(new java.awt.Color(227, 226, 226));
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("Femenino");
         jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
+        jRadioButton2.setBackground(new java.awt.Color(227, 226, 226));
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Masculino");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jTextField5.setBackground(new java.awt.Color(227, 226, 226));
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -188,6 +191,7 @@ public class Register_view extends javax.swing.JFrame {
     private javax.swing.JLabel btn_backToLogin;
     private javax.swing.JLabel btn_info;
     private javax.swing.JButton btn_ingresar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
