@@ -20,14 +20,11 @@ public class Login_control {
     private SignUp_view register;
     private ForgotPassword forgot;
 
-    public Login_view getLogin() {
-        return login;
-    }
 
-    public Login_control(Login_view login, SignUp_view register, ForgotPassword forgot) {
+    public Login_control(Login_view login) {
+
         this.login = login;
-        this.register = register;
-        this.forgot = forgot;
+
         initListener();
         login.setVisible(true);
     }
@@ -37,9 +34,7 @@ public class Login_control {
         //FLUJO DE VENTANAS
         login.getBtn_registrarView().addMouseListener(new Flujo_login());
         login.getBtn_salir().addMouseListener(new Flujo_login());
-        register.getBtn_backToLogin().addMouseListener(new Flujo_login());
         login.getBtn_info().addMouseListener(new Flujo_login());
-        register.getBtn_info().addMouseListener(new Flujo_login());
         forgot.getBtn_info().addMouseListener(new Flujo_login());
         forgot.getBtn_backToLogin().addMouseListener(new Flujo_login());
         login.getBtn_olvidarContra().addMouseListener(new Flujo_login());
@@ -47,12 +42,49 @@ public class Login_control {
         //PLACEHOLDER EN INPUTS
         login.getTxt_campoUser().addFocusListener(new PlaceHolder_Login());
         login.getTxt_campoPassword().addFocusListener(new PlaceHolder_Login());
-        register.getTxt_nombres().addFocusListener(new PlaceHolder_Login());
-        register.getTxt_apellidos().addFocusListener(new PlaceHolder_Login());
-        register.getTxt_email().addFocusListener(new PlaceHolder_Login());
-        register.getTxt_password().addFocusListener(new PlaceHolder_Login());
-        register.getTxt_passwordConfirm().addFocusListener(new PlaceHolder_Login());
         forgot.getTxt_campoEmail().addFocusListener(new PlaceHolder_Login());
+    }
+
+    protected void quitar_PlaceHolder(String placeholder, JTextField campo) {
+
+        if (campo.getText().equals(placeholder)) {
+            campo.setText("");
+            campo.setForeground(Color.black);
+        }
+
+    }
+
+    protected void poner_PlaceHolder(String placeholder, JTextField campo) {
+
+        if (campo.getText().equals("")) {
+            campo.setText(placeholder);
+            campo.setForeground(new Color(102, 102, 102));
+
+        }
+
+    }
+
+    protected void quitar_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
+        String palabra = "";
+        palabra = palabra.valueOf(campo.getPassword());
+        if (palabra.equals(placeholder)) {
+            campo.setText("");
+            campo.setForeground(Color.black);
+            campo.setEchoChar('*'); //cambia la mascara
+        }
+
+    }
+
+    protected void poner_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
+
+        String palabra = "";
+        palabra = palabra.valueOf(campo.getPassword());
+        if (palabra.equals("")) {
+            campo.setText(placeholder);
+            campo.setForeground(new Color(102, 102, 102));
+            campo.setEchoChar((char) 0); //cambia la mascara
+        }
+
     }
 
     private void printInfo() {
@@ -113,48 +145,6 @@ public class Login_control {
 
         Object foco;
 
-        private void quitar_PlaceHolder(String placeholder, JTextField campo) {
-
-            if (campo.getText().equals(placeholder)) {
-                campo.setText("");
-                campo.setForeground(Color.black);
-            }
-
-        }
-
-        private void poner_PlaceHolder(String placeholder, JTextField campo) {
-
-            if (campo.getText().equals("")) {
-                campo.setText(placeholder);
-                campo.setForeground(new Color(102, 102, 102));
-
-            }
-
-        }
-
-        private void quitar_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
-            String palabra = "";
-            palabra = palabra.valueOf(campo.getPassword());
-            if (palabra.equals(placeholder)) {
-                campo.setText("");
-                campo.setForeground(Color.black);
-                campo.setEchoChar('*'); //cambia la mascara
-            }
-
-        }
-
-        private void poner_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
-
-            String palabra = "";
-            palabra = palabra.valueOf(campo.getPassword());
-            if (palabra.equals("")) {
-                campo.setText(placeholder);
-                campo.setForeground(new Color(102, 102, 102));
-                campo.setEchoChar((char) 0); //cambia la mascara
-            }
-
-        }
-
         @Override
         public void focusGained(FocusEvent e) {
 
@@ -179,11 +169,11 @@ public class Login_control {
 
                 quitar_PlaceHolder("Email", register.getTxt_email());
 
-            }else if (foco == register.getTxt_password()) {
+            } else if (foco == register.getTxt_password()) {
 
                 quitar_PlaceHolder_Mascara("Contraseña", register.getTxt_password());
 
-            }else if (foco == register.getTxt_passwordConfirm()) {
+            } else if (foco == register.getTxt_passwordConfirm()) {
 
                 quitar_PlaceHolder_Mascara("Repetir Contraseña", register.getTxt_passwordConfirm());
 
