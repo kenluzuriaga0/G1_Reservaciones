@@ -11,6 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import Vistas.Login_view;
 import Vistas.Register_view;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Login_control {
 
@@ -45,6 +47,12 @@ public class Login_control {
         //PLACEHOLDER EN INPUTS
         login.getTxt_campoUser().addFocusListener(new PlaceHolder_Login());
         login.getTxt_campoPassword().addFocusListener(new PlaceHolder_Login());
+        register.getTxt_nombres().addFocusListener(new PlaceHolder_Login());
+        register.getTxt_apellidos().addFocusListener(new PlaceHolder_Login());
+        register.getTxt_email().addFocusListener(new PlaceHolder_Login());
+        register.getTxt_password().addFocusListener(new PlaceHolder_Login());
+        register.getTxt_passwordConfirm().addFocusListener(new PlaceHolder_Login());
+        forgot.getTxt_campoEmail().addFocusListener(new PlaceHolder_Login());
     }
 
     private void printInfo() {
@@ -103,9 +111,49 @@ public class Login_control {
 
     public class PlaceHolder_Login implements FocusListener {
 
-        String user;
-        char[] password;
         Object foco;
+
+        private void quitar_PlaceHolder(String placeholder, JTextField campo) {
+
+            if (campo.getText().equals(placeholder)) {
+                campo.setText("");
+                campo.setForeground(Color.black);
+            }
+
+        }
+
+        private void poner_PlaceHolder(String placeholder, JTextField campo) {
+
+            if (campo.getText().equals("")) {
+                campo.setText(placeholder);
+                campo.setForeground(new Color(102, 102, 102));
+
+            }
+
+        }
+
+        private void quitar_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
+            String palabra = "";
+            palabra = palabra.valueOf(campo.getPassword());
+            if (palabra.equals(placeholder)) {
+                campo.setText("");
+                campo.setForeground(Color.black);
+                campo.setEchoChar('*'); //cambia la mascara
+            }
+
+        }
+
+        private void poner_PlaceHolder_Mascara(String placeholder, JPasswordField campo) {
+
+            String palabra = "";
+            palabra = palabra.valueOf(campo.getPassword());
+            if (palabra.equals("")) {
+                campo.setText(placeholder);
+                campo.setForeground(new Color(102, 102, 102));
+                campo.setEchoChar((char) 0); //cambia la mascara
+            }
+
+        }
 
         @Override
         public void focusGained(FocusEvent e) {
@@ -113,23 +161,36 @@ public class Login_control {
             foco = e.getSource();
 
             if (foco == login.getTxt_campoUser()) {
-                user = login.getTxt_campoUser().getText();
 
-                if (user.equals("Usuario")) {
-                    login.getTxt_campoUser().setText("");
-                    login.getTxt_campoUser().setForeground(Color.black);
+                quitar_PlaceHolder("Usuario", login.getTxt_campoUser());
 
-                }
             } else if (foco == login.getTxt_campoPassword()) {
 
-                password = login.getTxt_campoPassword().getPassword();
-                String palabra = "";
-                palabra = palabra.valueOf(password);
-                if (palabra.equals("Contraseña")) {
-                    login.getTxt_campoPassword().setText("");
-                    login.getTxt_campoPassword().setForeground(Color.black);
-                    login.getTxt_campoPassword().setEchoChar('*'); //cambia la mascara
-                }
+                quitar_PlaceHolder_Mascara("Contraseña", login.getTxt_campoPassword());
+            } else if (foco == register.getTxt_nombres()) {
+
+                quitar_PlaceHolder("Nombres", register.getTxt_nombres());
+
+            } else if (foco == register.getTxt_apellidos()) {
+
+                quitar_PlaceHolder("Apellidos", register.getTxt_apellidos());
+
+            } else if (foco == register.getTxt_email()) {
+
+                quitar_PlaceHolder("Email", register.getTxt_email());
+
+            }else if (foco == register.getTxt_password()) {
+
+                quitar_PlaceHolder_Mascara("Contraseña", register.getTxt_password());
+
+            }else if (foco == register.getTxt_passwordConfirm()) {
+
+                quitar_PlaceHolder_Mascara("Repetir Contraseña", register.getTxt_passwordConfirm());
+
+            } else if (foco == forgot.getTxt_campoEmail()) {
+
+                quitar_PlaceHolder("Email", forgot.getTxt_campoEmail());
+
             }
         }
 
@@ -138,23 +199,34 @@ public class Login_control {
             foco = e.getSource();
             if (foco == login.getTxt_campoUser()) {
 
-                user = login.getTxt_campoUser().getText();
-
-                if (user.equals("")) {
-                    login.getTxt_campoUser().setText("Usuario");
-                    login.getTxt_campoUser().setForeground(new Color(102, 102, 102));
-
-                }
+                poner_PlaceHolder("Usuario", login.getTxt_campoUser());
             } else if (foco == login.getTxt_campoPassword()) {
 
-                password = login.getTxt_campoPassword().getPassword();
-                String palabra = "";
-                palabra = palabra.valueOf(password);
-                if (palabra.equals("")) {
-                    login.getTxt_campoPassword().setText("Contraseña");
-                    login.getTxt_campoPassword().setForeground(new Color(102, 102, 102));
-                    login.getTxt_campoPassword().setEchoChar((char)0); //cambia la mascara
-                }
+                poner_PlaceHolder_Mascara("Contraseña", login.getTxt_campoPassword());
+            } else if (foco == register.getTxt_nombres()) {
+
+                poner_PlaceHolder("Nombres", register.getTxt_nombres());
+
+            } else if (foco == register.getTxt_apellidos()) {
+
+                poner_PlaceHolder("Apellidos", register.getTxt_apellidos());
+
+            } else if (foco == register.getTxt_email()) {
+
+                poner_PlaceHolder("Email", register.getTxt_email());
+
+            } else if (foco == register.getTxt_password()) {
+
+                poner_PlaceHolder_Mascara("Contraseña", register.getTxt_password());
+
+            } else if (foco == register.getTxt_passwordConfirm()) {
+
+                poner_PlaceHolder_Mascara("Repetir Contraseña", register.getTxt_passwordConfirm());
+
+            } else if (foco == forgot.getTxt_campoEmail()) {
+
+                poner_PlaceHolder("Email", forgot.getTxt_campoEmail());
+
             }
         }
 

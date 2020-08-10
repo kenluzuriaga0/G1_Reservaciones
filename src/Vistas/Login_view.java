@@ -69,6 +69,8 @@ public class Login_view extends javax.swing.JFrame {
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
         motionPanel.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
         motionPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
+
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         motionPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 100, 10));
 
         getContentPane().add(motionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 88));
@@ -95,7 +97,7 @@ public class Login_view extends javax.swing.JFrame {
         btn_salir.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btn_salir.setForeground(new java.awt.Color(0, 0, 0));
         btn_salir.setText("Salir");
-        jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 90, 40));
+        jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 90, 40));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Developed by Freylolo y su gente");
