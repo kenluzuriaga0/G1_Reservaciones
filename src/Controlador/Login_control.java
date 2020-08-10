@@ -1,5 +1,6 @@
 package Controlador;
 
+import Vistas.ForgotPassword;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -10,23 +11,21 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import Vistas.Login_view;
 import Vistas.Register_view;
-import java.awt.Point;
-import java.awt.event.MouseMotionAdapter;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Login_control {
 
     private Login_view login;
     private Register_view register;
+    private ForgotPassword forgot;
 
     public Login_view getLogin() {
         return login;
     }
 
-    public Login_control(Login_view login, Register_view register) {
+    public Login_control(Login_view login, Register_view register, ForgotPassword forgot) {
         this.login = login;
         this.register = register;
+        this.forgot = forgot;
         initListener();
         login.setVisible(true);
     }
@@ -39,6 +38,9 @@ public class Login_control {
         register.getBtn_backToLogin().addMouseListener(new Flujo_login());
         login.getBtn_info().addMouseListener(new Flujo_login());
         register.getBtn_info().addMouseListener(new Flujo_login());
+        forgot.getBtn_info().addMouseListener(new Flujo_login());
+        forgot.getBtn_backToLogin().addMouseListener(new Flujo_login());
+        login.getBtn_olvidarContra().addMouseListener(new Flujo_login());
 
         //PLACEHOLDER EN INPUTS
     }
@@ -63,27 +65,35 @@ public class Login_control {
         public void mousePressed(MouseEvent e) {
 
             Object fuente = e.getSource();
-            if (fuente == login.getBtn_salir()) {                        //BOTON SALIR
+            if (fuente == login.getBtn_salir()) {                                    //BOTON SALIR
 
                 System.exit(0);
 
-            } else if (fuente == login.getBtn_registrarView()) {        //CAMBIAR VENTANA A REGISTRAR
+            } else if (fuente == login.getBtn_registrarView()) {                     //CAMBIAR VENTANA A REGISTRAR
 
                 login.dispose();
 
                 register.setVisible(true);
 
-            } else if (fuente == register.getBtn_backToLogin()) {       //REGRESAR AL LOGIN
+            } else if (fuente == login.getBtn_olvidarContra()) {                      //CAMBIAR VENTANA A RESTABLECER CONTRASEÑA
+                login.dispose();
+                forgot.setVisible(true);
+
+            } else if (fuente == register.getBtn_backToLogin() || fuente == forgot.getBtn_backToLogin()) {  //REGRESAR AL LOGIN
                 register.dispose();
+                forgot.dispose();
 
                 login.setVisible(true);
 
-            } else if (fuente == login.getBtn_info() || fuente == register.getBtn_info()) {     //BOTON INFO
+            } else if (fuente == login.getBtn_info() || fuente == register.getBtn_info()
+                    || fuente == forgot.getBtn_info()) {                                //BOTON INFO
 
                 printInfo();
             }
+
             login.setLocationRelativeTo(null);
             register.setLocationRelativeTo(null);
+            forgot.setLocationRelativeTo(null);
 
         }
 
@@ -93,7 +103,7 @@ public class Login_control {
 
         @Override
         public void focusGained(FocusEvent e) {
-
+            
         }
 
         @Override

@@ -24,7 +24,6 @@ public class Register_view extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         motionPanel = new MotionPanel(this);
-        btn_InicioView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_info = new javax.swing.JLabel();
         btn_backToLogin = new javax.swing.JLabel();
@@ -37,12 +36,12 @@ public class Register_view extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField5 = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField6 = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
+        txt_password = new javax.swing.JPasswordField();
+        txt_passwordConfirm = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -53,11 +52,6 @@ public class Register_view extends javax.swing.JFrame {
 
         motionPanel.setBackground(new java.awt.Color(148, 176, 218));
         motionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_InicioView.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        btn_InicioView.setForeground(new java.awt.Color(0, 0, 0));
-        btn_InicioView.setText("Iniciar sesion");
-        motionPanel.add(btn_InicioView, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -82,7 +76,7 @@ public class Register_view extends javax.swing.JFrame {
         btn_ingresar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         btn_ingresar.setForeground(new java.awt.Color(0, 0, 0));
         btn_ingresar.setText("Registrarse");
-        jPanel2.add(btn_ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 160, 50));
+        jPanel2.add(btn_ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 280, 160, 50));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Developed by Freylolo y su gente");
@@ -107,21 +101,7 @@ public class Register_view extends javax.swing.JFrame {
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Masculino");
         jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
-
-        jTextField5.setBackground(new java.awt.Color(227, 226, 226));
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField5.setText("Contraseña");
-        jTextField5.setBorder(null);
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 160, 30));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 160, 20));
-
-        jTextField6.setBackground(new java.awt.Color(227, 226, 226));
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField6.setText("Repetir Contraseña");
-        jTextField6.setBorder(null);
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 180, 30));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 160, 20));
 
         jTextField7.setBackground(new java.awt.Color(227, 226, 226));
@@ -137,6 +117,21 @@ public class Register_view extends javax.swing.JFrame {
         jTextField8.setText("Apellidos");
         jTextField8.setBorder(null);
         jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 130, 30));
+
+        txt_password.setBackground(new java.awt.Color(227, 226, 226));
+        txt_password.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_password.setForeground(new java.awt.Color(102, 102, 102));
+        txt_password.setText("xxxxxx");
+        txt_password.setBorder(null);
+        txt_password.setEchoChar((char)0);
+        jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 160, 30));
+
+        txt_passwordConfirm.setBackground(new java.awt.Color(227, 226, 226));
+        txt_passwordConfirm.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_passwordConfirm.setForeground(new java.awt.Color(102, 102, 102));
+        txt_passwordConfirm.setText("xxxxxx");
+        txt_passwordConfirm.setBorder(null);
+        jPanel2.add(txt_passwordConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 222, 160, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 380, 410));
 
@@ -187,7 +182,6 @@ public class Register_view extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btn_InicioView;
     private javax.swing.JLabel btn_backToLogin;
     private javax.swing.JLabel btn_info;
     private javax.swing.JButton btn_ingresar;
@@ -206,20 +200,13 @@ public class Register_view extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel motionPanel;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JPasswordField txt_passwordConfirm;
     // End of variables declaration//GEN-END:variables
 
-    public JLabel getBtn_InicioView() {
-        return btn_InicioView;
-    }
-
-    public void setBtn_InicioView(JLabel btn_InicioView) {
-        this.btn_InicioView = btn_InicioView;
-    }
 
     public JLabel getBtn_backToLogin() {
         return btn_backToLogin;
