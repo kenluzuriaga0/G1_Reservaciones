@@ -43,6 +43,8 @@ public class Login_control {
         login.getBtn_olvidarContra().addMouseListener(new Flujo_login());
 
         //PLACEHOLDER EN INPUTS
+        login.getTxt_campoUser().addFocusListener(new PlaceHolder_Login());
+        login.getTxt_campoPassword().addFocusListener(new PlaceHolder_Login());
     }
 
     private void printInfo() {
@@ -101,14 +103,59 @@ public class Login_control {
 
     public class PlaceHolder_Login implements FocusListener {
 
+        String user;
+        char[] password;
+        Object foco;
+
         @Override
         public void focusGained(FocusEvent e) {
-            
+
+            foco = e.getSource();
+
+            if (foco == login.getTxt_campoUser()) {
+                user = login.getTxt_campoUser().getText();
+
+                if (user.equals("Usuario")) {
+                    login.getTxt_campoUser().setText("");
+                    login.getTxt_campoUser().setForeground(Color.black);
+
+                }
+            } else if (foco == login.getTxt_campoPassword()) {
+
+                password = login.getTxt_campoPassword().getPassword();
+                String palabra = "";
+                palabra = palabra.valueOf(password);
+                if (palabra.equals("Contraseña")) {
+                    login.getTxt_campoPassword().setText("");
+                    login.getTxt_campoPassword().setForeground(Color.black);
+                    login.getTxt_campoPassword().setEchoChar('*'); //cambia la mascara
+                }
+            }
         }
 
         @Override
         public void focusLost(FocusEvent e) {
+            foco = e.getSource();
+            if (foco == login.getTxt_campoUser()) {
 
+                user = login.getTxt_campoUser().getText();
+
+                if (user.equals("")) {
+                    login.getTxt_campoUser().setText("Usuario");
+                    login.getTxt_campoUser().setForeground(new Color(102, 102, 102));
+
+                }
+            } else if (foco == login.getTxt_campoPassword()) {
+
+                password = login.getTxt_campoPassword().getPassword();
+                String palabra = "";
+                palabra = palabra.valueOf(password);
+                if (palabra.equals("")) {
+                    login.getTxt_campoPassword().setText("Contraseña");
+                    login.getTxt_campoPassword().setForeground(new Color(102, 102, 102));
+                    login.getTxt_campoPassword().setEchoChar((char)0); //cambia la mascara
+                }
+            }
         }
 
     }

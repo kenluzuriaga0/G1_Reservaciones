@@ -32,6 +32,8 @@ public class Login_view extends javax.swing.JFrame {
         btn_registrarView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_info = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         txt_campoUser = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -66,6 +68,8 @@ public class Login_view extends javax.swing.JFrame {
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
         motionPanel.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
+        motionPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
+        motionPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 100, 10));
 
         getContentPane().add(motionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 88));
 
@@ -171,6 +175,8 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel motionPanel;
     private javax.swing.JPasswordField txt_campoPassword;
