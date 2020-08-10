@@ -1,8 +1,7 @@
 
-package reservaciones;
+package Vistas;
 
 import Controlador.*;
-import reservaciones.*;
 
 public class Reservaciones {
 

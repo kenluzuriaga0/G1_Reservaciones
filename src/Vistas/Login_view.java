@@ -1,5 +1,5 @@
 
-package reservaciones;
+package Vistas;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,7 +13,9 @@ public class Login_view extends javax.swing.JFrame {
     public Login_view() {
         initComponents();
         setLocationRelativeTo(null);
+
         
+//        txt_campoPassword.setEchoChar((char)0);
     }
 
 
@@ -27,14 +29,15 @@ public class Login_view extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_info = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_campoUser = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
         btn_ingresar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btn_olvidarContra = new javax.swing.JLabel();
+        txt_campoPassword = new javax.swing.JPasswordField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -67,21 +70,14 @@ public class Login_view extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(227, 226, 226));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(227, 226, 226));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Usuario");
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 110, 30));
+        txt_campoUser.setBackground(new java.awt.Color(227, 226, 226));
+        txt_campoUser.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        txt_campoUser.setForeground(new java.awt.Color(102, 102, 102));
+        txt_campoUser.setText("Usuario");
+        txt_campoUser.setBorder(null);
+        jPanel2.add(txt_campoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 210, 30));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 210, 20));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 210, 20));
-
-        jTextField2.setBackground(new java.awt.Color(227, 226, 226));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setText("Contraseña");
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 120, 30));
 
         btn_ingresar.setBackground(new java.awt.Color(148, 176, 218));
         btn_ingresar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -103,6 +99,15 @@ public class Login_view extends javax.swing.JFrame {
         btn_olvidarContra.setText("Olvide mi contraseña");
         jPanel2.add(btn_olvidarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, -1));
 
+        txt_campoPassword.setBackground(new java.awt.Color(227, 226, 226));
+        txt_campoPassword.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        txt_campoPassword.setForeground(new java.awt.Color(102, 102, 102));
+        txt_campoPassword.setText("Contraseña");
+        txt_campoPassword.setBorder(null);
+        txt_campoPassword.setEchoChar((char) 0);
+        jPanel2.add(txt_campoPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 200, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 0, 10));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 380, 410));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_food 2.png"))); // NOI18N
@@ -116,37 +121,37 @@ public class Login_view extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
  
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login_view().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Login_view().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_info;
@@ -164,7 +169,8 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField txt_campoPassword;
+    private javax.swing.JTextField txt_campoUser;
     // End of variables declaration//GEN-END:variables
 
     public JLabel getBtn_info() {

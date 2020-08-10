@@ -1,14 +1,15 @@
 package Controlador;
 
 import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
-import reservaciones.Login_view;
-import reservaciones.Register_view;
+import Vistas.Login_view;
+import Vistas.Register_view;
 
 public class Login_control {
 
@@ -24,21 +25,28 @@ public class Login_control {
 
     private void initListener() {
 
+        //FLUJO DE VENTANAS
         login.getBtn_registrarView().addMouseListener(new Flujo_login());
         login.getBtn_salir().addMouseListener(new Flujo_login());
         register.getBtn_backToLogin().addMouseListener(new Flujo_login());
         login.getBtn_info().addMouseListener(new Flujo_login());
         register.getBtn_info().addMouseListener(new Flujo_login());
+        
+        //PLACEHOLDER EN INPUTS
+      
 
     }
 
     private void printInfo() {
 
         String[] nombres = {"Ken Luzuriaga", "Luis Rodriguez", "Nicole Vera", "Freya Lopez", "Anthony Galarza"};
-        UIManager UI = new UIManager();
+        
+        UIManager UI = new UIManager();   //Edita JOptionPane
         UI.put("OptionPane.background", new ColorUIResource(29, 53, 87));
         UI.put("Panel.background", new ColorUIResource(29, 53, 87));
         UI.put("OptionPane.messageForeground", Color.WHITE);
+        
+        
         JOptionPane.showMessageDialog(null, nombres, "About", JOptionPane.INFORMATION_MESSAGE);
 
     }
@@ -49,27 +57,43 @@ public class Login_control {
         public void mouseClicked(MouseEvent e) {
 
             Object fuente = e.getSource();
-            if (fuente == login.getBtn_salir()) {
+            if (fuente == login.getBtn_salir()) {       //BOTON SALIR
 
                 System.exit(0);
 
-            } else if (fuente == login.getBtn_registrarView()) {
+            } else if (fuente == login.getBtn_registrarView()) {        //CAMBIAR VENTANA A REGISTRAR
 
                 login.dispose();
 
                 register.setVisible(true);
 
-            } else if (fuente == register.getBtn_backToLogin()) {
+            } else if (fuente == register.getBtn_backToLogin()) {       //REGRESAR AL LOGIN
                 register.dispose();
                 login.setVisible(true);
 
-            } else if (fuente == login.getBtn_info() || fuente == register.getBtn_info()) {
+            } else if (fuente == login.getBtn_info() || fuente == register.getBtn_info()) {     //BOTON INFO
 
                 printInfo();
             }
 
         }
 
+    }
+    
+    class PlaceHolder_Login implements FocusListener{
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+
+        }
+        
+        
+        
     }
 
 }
