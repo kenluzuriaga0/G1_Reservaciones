@@ -9,12 +9,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class ForgotPassword extends javax.swing.JFrame {
+public class ForgotPassword_view extends javax.swing.JFrame {
    
     /**
      * Creates new form Login_view
      */
-    public ForgotPassword() {
+    public ForgotPassword_view() {
         initComponents();
         setLocationRelativeTo(null);
 
@@ -69,7 +69,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txt_campoEmail.setBackground(new java.awt.Color(227, 226, 226));
-        txt_campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        txt_campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_campoEmail.setForeground(new java.awt.Color(102, 102, 102));
         txt_campoEmail.setText("Email");
         txt_campoEmail.setBorder(null);

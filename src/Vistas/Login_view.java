@@ -16,7 +16,7 @@ public class Login_view extends javax.swing.JFrame {
      */
     public Login_view() {
         initComponents();
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
 
         
 //        txt_campoPassword.setEchoChar((char)0);

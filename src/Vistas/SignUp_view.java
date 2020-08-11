@@ -86,11 +86,11 @@ public class SignUp_view extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         txt_email.setBackground(new java.awt.Color(227, 226, 226));
-        txt_email.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_email.setForeground(new java.awt.Color(102, 102, 102));
         txt_email.setText("Email");
         txt_email.setBorder(null);
-        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 130, 30));
+        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 210, 30));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 20));
 
         radio_f.setBackground(new java.awt.Color(227, 226, 226));
@@ -108,21 +108,21 @@ public class SignUp_view extends javax.swing.JFrame {
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 160, 20));
 
         txt_nombres.setBackground(new java.awt.Color(227, 226, 226));
-        txt_nombres.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_nombres.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_nombres.setForeground(new java.awt.Color(102, 102, 102));
         txt_nombres.setText("Nombres");
         txt_nombres.setBorder(null);
         jPanel2.add(txt_nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 30));
 
         txt_apellidos.setBackground(new java.awt.Color(227, 226, 226));
-        txt_apellidos.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_apellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_apellidos.setForeground(new java.awt.Color(102, 102, 102));
         txt_apellidos.setText("Apellidos");
         txt_apellidos.setBorder(null);
         jPanel2.add(txt_apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 130, 30));
 
         txt_password.setBackground(new java.awt.Color(227, 226, 226));
-        txt_password.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_password.setForeground(new java.awt.Color(102, 102, 102));
         txt_password.setText("Contraseña");
         txt_password.setBorder(null);
@@ -130,7 +130,7 @@ public class SignUp_view extends javax.swing.JFrame {
         jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 160, 30));
 
         txt_passwordConfirm.setBackground(new java.awt.Color(227, 226, 226));
-        txt_passwordConfirm.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_passwordConfirm.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_passwordConfirm.setForeground(new java.awt.Color(102, 102, 102));
         txt_passwordConfirm.setText("Repetir Contraseña");
         txt_passwordConfirm.setBorder(null);
