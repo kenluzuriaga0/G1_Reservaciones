@@ -1,11 +1,12 @@
-
 package Vistas;
 
+import Vistas_clases.PlaceHolder;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 
 public class SignUp_view extends javax.swing.JFrame {
 
@@ -15,9 +16,17 @@ public class SignUp_view extends javax.swing.JFrame {
     public SignUp_view() {
         initComponents();
         setLocationRelativeTo(null);
-        
+        //PLACEHOLDER EN INPUTS
+        txt_nombres.addFocusListener(new PlaceHolder_SignUp());
+        txt_apellidos.addFocusListener(new PlaceHolder_SignUp());
+        txt_email.addFocusListener(new PlaceHolder_SignUp());
+        txt_password.addFocusListener(new PlaceHolder_SignUp());
+        txt_passwordConfirm.addFocusListener(new PlaceHolder_SignUp());
     }
-
+    
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,6 +71,7 @@ public class SignUp_view extends javax.swing.JFrame {
         motionPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 60));
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
+        btn_info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         motionPanel.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
 
         btn_backToLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
@@ -90,7 +100,7 @@ public class SignUp_view extends javax.swing.JFrame {
         txt_email.setForeground(new java.awt.Color(102, 102, 102));
         txt_email.setText("Email");
         txt_email.setBorder(null);
-        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 210, 30));
+        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 220, 30));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 20));
 
         radio_f.setBackground(new java.awt.Color(227, 226, 226));
@@ -112,14 +122,14 @@ public class SignUp_view extends javax.swing.JFrame {
         txt_nombres.setForeground(new java.awt.Color(102, 102, 102));
         txt_nombres.setText("Nombres");
         txt_nombres.setBorder(null);
-        jPanel2.add(txt_nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 30));
+        jPanel2.add(txt_nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 150, 30));
 
         txt_apellidos.setBackground(new java.awt.Color(227, 226, 226));
         txt_apellidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_apellidos.setForeground(new java.awt.Color(102, 102, 102));
         txt_apellidos.setText("Apellidos");
         txt_apellidos.setBorder(null);
-        jPanel2.add(txt_apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 130, 30));
+        jPanel2.add(txt_apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 140, 30));
 
         txt_password.setBackground(new java.awt.Color(227, 226, 226));
         txt_password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -213,17 +223,65 @@ public class SignUp_view extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_passwordConfirm;
     // End of variables declaration//GEN-END:variables
 
+    private class PlaceHolder_SignUp implements FocusListener {
+
+        Object foco;
+
+        @Override
+        public void focusGained(FocusEvent e) {
+
+            foco = e.getSource();
+
+            if (foco == txt_nombres) {
+
+                PlaceHolder.quitar_PlaceHolder("Nombres", txt_nombres);
+
+            } else if (foco == txt_apellidos) {
+
+                PlaceHolder.quitar_PlaceHolder("Apellidos", txt_apellidos);
+            } else if (foco == txt_email) {
+
+                PlaceHolder.quitar_PlaceHolder("Email", txt_email);
+            } else if (foco == txt_password) {
+
+                PlaceHolder.quitar_PlaceHolder("Contraseña", txt_password);
+            } else if (foco == txt_passwordConfirm) {
+
+                PlaceHolder.quitar_PlaceHolder("Repetir Contraseña", txt_passwordConfirm);
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            foco = e.getSource();
+           if (foco == txt_nombres) {
+
+                PlaceHolder.poner_PlaceHolder("Nombres", txt_nombres);
+
+            } else if (foco == txt_apellidos) {
+
+                PlaceHolder.poner_PlaceHolder("Apellidos", txt_apellidos);
+            } else if (foco == txt_email) {
+
+                PlaceHolder.poner_PlaceHolder("Email", txt_email);
+            } else if (foco == txt_password) {
+
+                PlaceHolder.poner_PlaceHolder("Contraseña", txt_password);
+            } else if (foco == txt_passwordConfirm) {
+
+                PlaceHolder.poner_PlaceHolder("Repetir Contraseña", txt_passwordConfirm);
+            }
+
+        }
+    }
 
     public JLabel getBtn_backToLogin() {
         return btn_backToLogin;
     }
 
-
-
     public JLabel getBtn_info() {
         return btn_info;
     }
-
 
     public JButton getBtn_ingresar() {
         return btn_registrar;
@@ -268,24 +326,5 @@ public class SignUp_view extends javax.swing.JFrame {
     public void setTxt_passwordConfirm(JPasswordField txt_passwordConfirm) {
         this.txt_passwordConfirm = txt_passwordConfirm;
     }
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -1,26 +1,37 @@
-
 package Vistas;
 
 import Controlador.Login_control;
 import Vistas.MotionPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-
+import javax.swing.border.LineBorder;
+import Vistas_clases.PlaceHolder;
 public class Login_view extends javax.swing.JFrame {
+
     Login_control control;
-    /**
-     * Creates new form Login_view
-     */
+
     public Login_view() {
         initComponents();
         this.setLocationRelativeTo(null);
+        initListener();
 
-        
-//        txt_campoPassword.setEchoChar((char)0);
     }
+
+    public void initListener() {
+
+        txt_campoUser.addFocusListener(new PlaceHolder_Login());
+        txt_campoPassword.addFocusListener(new PlaceHolder_Login());
+        
+    }
+
+    //Clase ára poner PLACEHOLDER con Focus-----------------------------
+    
 
 
     @SuppressWarnings("unchecked")
@@ -67,6 +78,7 @@ public class Login_view extends javax.swing.JFrame {
         motionPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/info.png"))); // NOI18N
+        btn_info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         motionPanel.add(btn_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, 50));
         motionPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
@@ -91,6 +103,15 @@ public class Login_view extends javax.swing.JFrame {
         btn_ingresar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         btn_ingresar.setForeground(new java.awt.Color(0, 0, 0));
         btn_ingresar.setText("Ingresar");
+        btn_ingresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_ingresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_ingresarMouseExited(evt);
+            }
+        });
         jPanel2.add(btn_ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 160, 50));
 
         btn_salir.setBackground(new java.awt.Color(255, 217, 172));
@@ -107,6 +128,14 @@ public class Login_view extends javax.swing.JFrame {
         btn_olvidarContra.setForeground(new java.awt.Color(0, 0, 0));
         btn_olvidarContra.setText("Olvide mi contraseña");
         btn_olvidarContra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_olvidarContra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_olvidarContraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_olvidarContraMouseExited(evt);
+            }
+        });
         jPanel2.add(btn_olvidarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 150, 30));
 
         txt_campoPassword.setBackground(new java.awt.Color(227, 226, 226));
@@ -130,38 +159,24 @@ public class Login_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Login_view().setVisible(true);
-//            }
-//        });
-//    }
+    private void btn_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseEntered
+        btn_ingresar.setBackground(new Color(148, 152, 229));
+        btn_ingresar.setBorder(new LineBorder(new Color(148, 152, 229)));
+    }//GEN-LAST:event_btn_ingresarMouseEntered
+
+    private void btn_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseExited
+        btn_ingresar.setBackground(new Color(148, 176, 218));
+        btn_ingresar.setBorder(new LineBorder(new Color(48, 176, 218)));
+    }//GEN-LAST:event_btn_ingresarMouseExited
+
+    private void btn_olvidarContraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseEntered
+        btn_olvidarContra.setFont(new Font(btn_olvidarContra.getFont().getFontName(), Font.BOLD, 14));
+    }//GEN-LAST:event_btn_olvidarContraMouseEntered
+
+    private void btn_olvidarContraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseExited
+        btn_olvidarContra.setFont(new Font(btn_olvidarContra.getFont().getFontName(), 0, 14));
+    }//GEN-LAST:event_btn_olvidarContraMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_info;
@@ -184,7 +199,41 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_campoPassword;
     private javax.swing.JTextField txt_campoUser;
     // End of variables declaration//GEN-END:variables
+    
+    private class PlaceHolder_Login implements FocusListener {
+       
+        
+        Object foco;
+        
+        @Override
+        public void focusGained(FocusEvent e) {
 
+            foco = e.getSource();
+
+            if (foco == txt_campoUser) {
+
+                PlaceHolder.quitar_PlaceHolder("Usuario", txt_campoUser);
+
+            } else if (foco == txt_campoPassword) {
+
+                PlaceHolder.quitar_PlaceHolder("Contraseña", txt_campoPassword);
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            foco = e.getSource();
+            if (foco == txt_campoUser) {
+
+                PlaceHolder.poner_PlaceHolder("Usuario", txt_campoUser);
+
+            } else if (foco == txt_campoPassword) {
+
+                PlaceHolder.poner_PlaceHolder("Contraseña", txt_campoPassword);
+            }
+
+        }
+    }
     public JLabel getBtn_info() {
         return btn_info;
     }
@@ -240,19 +289,5 @@ public class Login_view extends javax.swing.JFrame {
     public void setTxt_campoUser(JTextField txt_campoUser) {
         this.txt_campoUser = txt_campoUser;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

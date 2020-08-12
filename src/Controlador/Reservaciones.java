@@ -1,7 +1,8 @@
 
-package Vistas;
+package Controlador;
 
 import Controlador.*;
+import Vistas.Login_view;
 
 public class Reservaciones {
 

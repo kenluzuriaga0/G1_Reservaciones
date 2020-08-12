@@ -1,16 +1,17 @@
-
 package Vistas;
 
+import Vistas_clases.*;
 import Controlador.Login_control;
 import Vistas.MotionPanel;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
 public class ForgotPassword_view extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form Login_view
      */
@@ -18,10 +19,8 @@ public class ForgotPassword_view extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 
-        
-//        txt_campoPassword.setEchoChar((char)0);
+        txt_campoEmail.addFocusListener(new PlaceHolder_Login());
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,38 +108,7 @@ public class ForgotPassword_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Login_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Login_view().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_backToLogin;
@@ -159,6 +127,31 @@ public class ForgotPassword_view extends javax.swing.JFrame {
     private javax.swing.JPanel motionPanel;
     private javax.swing.JTextField txt_campoEmail;
     // End of variables declaration//GEN-END:variables
+class PlaceHolder_Login implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            Object foco = e.getSource();
+
+            if (foco == txt_campoEmail) {
+
+                PlaceHolder.quitar_PlaceHolder("Email", txt_campoEmail);
+
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Object foco = e.getSource();
+
+            if (foco == txt_campoEmail) {
+
+                PlaceHolder.poner_PlaceHolder("Email", txt_campoEmail);
+
+            }
+        }
+
+    }
 
     public JLabel getBtn_backToLogin() {
         return btn_backToLogin;
@@ -179,20 +172,5 @@ public class ForgotPassword_view extends javax.swing.JFrame {
     public JTextField getTxt_campoEmail() {
         return txt_campoEmail;
     }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

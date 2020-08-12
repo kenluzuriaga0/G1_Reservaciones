@@ -1,6 +1,6 @@
 package Controlador;
 
-import Controlador.Login_control.PlaceHolder_Login;
+
 import Vistas.*;
 import java.awt.event.*;
 
@@ -23,8 +23,7 @@ public class ForgotPassword_control {
         forgot.getBtn_info().addMouseListener(new Flujo_login());
         forgot.getBtn_backToLogin().addMouseListener(new Flujo_login());
 
-        //PLACEHOLDER EN INPUTS
-        forgot.getTxt_campoEmail().addFocusListener(new PlaceHolder_Login());
+ 
     }
 
     public class Flujo_login extends MouseAdapter {
@@ -49,32 +48,5 @@ public class ForgotPassword_control {
 
     }
 
-    class PlaceHolder_Login implements FocusListener {
-
-        Login_control.PlaceHolder_Login place = new Login_control().new PlaceHolder_Login();
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            Object foco = e.getSource();
-
-            if (foco == forgot.getTxt_campoEmail()) {
-
-                place.quitar_PlaceHolder("Email", forgot.getTxt_campoEmail());
-
-            }
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            Object foco = e.getSource();
-
-            if (foco == forgot.getTxt_campoEmail()) {
-
-                place.poner_PlaceHolder("Email", forgot.getTxt_campoEmail());
-
-            }
-        }
     
-
-}
 }
