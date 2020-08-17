@@ -1,6 +1,7 @@
 package Controlador;
 
 import Vistas.ForgotPassword_view;
+import Vistas.Home_view;
 import java.awt.Color;
 
 import java.awt.event.MouseAdapter;
@@ -11,7 +12,6 @@ import javax.swing.plaf.ColorUIResource;
 import Vistas.Login_view;
 import Vistas.SignUp_view;
 
-
 public class Login_control {
 
     private Login_view login;
@@ -19,6 +19,9 @@ public class Login_control {
     private SignUp_control register_con;
     private ForgotPassword_view forgot;
     private ForgotPassword_control forgot_con;
+
+    private Home_control home_con;
+    private Home_view home;
 
     public Login_control(Login_view login) {
 
@@ -40,6 +43,8 @@ public class Login_control {
         login.getBtn_info().addMouseListener(new Flujo_login());
         login.getBtn_olvidarContra().addMouseListener(new Flujo_login());
 
+        login.getBtn_ingresar().addMouseListener(new Flujo_login());
+
     }
 
     public void printInfo() {
@@ -55,7 +60,7 @@ public class Login_control {
 
     }
 
-   //MOUSE FLUJO DE VENTANAS************************************************
+    //MOUSE FLUJO DE VENTANAS************************************************
     class Flujo_login extends MouseAdapter {
 
         @Override
@@ -82,6 +87,12 @@ public class Login_control {
             } else if (fuente == login.getBtn_info()) {                                //BOTON INFO
 
                 printInfo();
+            } else if (fuente == login.getBtn_ingresar()) {
+                login.dispose();
+                home = new Home_view();
+                home_con = new Home_control(home);
+                home.setVisible(true);
+
             }
 
             login.setLocationRelativeTo(null);
@@ -89,6 +100,5 @@ public class Login_control {
         }
 
     }
-
 
 }
