@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
-import Vistas.MotionPanel;
+import Vistas_clases.MotionPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
@@ -12,6 +12,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import Vistas_clases.PlaceHolder;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
 public class Login_view extends javax.swing.JFrame {
 
     Login_control control;
@@ -27,13 +30,10 @@ public class Login_view extends javax.swing.JFrame {
 
         txt_campoUser.addFocusListener(new PlaceHolder_Login());
         txt_campoPassword.addFocusListener(new PlaceHolder_Login());
-        
+
     }
 
-    //Clase ára poner PLACEHOLDER con Focus-----------------------------
     
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -170,11 +170,23 @@ public class Login_view extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingresarMouseExited
 
     private void btn_olvidarContraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseEntered
-        btn_olvidarContra.setFont(new Font(btn_olvidarContra.getFont().getFontName(), Font.BOLD, 14));
+        Font formato = btn_olvidarContra.getFont();
+        Map atributos = formato.getAttributes();
+        
+        
+        atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE_ON);
+        this.btn_olvidarContra.setFont(formato.deriveFont(atributos));
     }//GEN-LAST:event_btn_olvidarContraMouseEntered
 
     private void btn_olvidarContraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseExited
-        btn_olvidarContra.setFont(new Font(btn_olvidarContra.getFont().getFontName(), 0, 14));
+        
+        Font formato = btn_olvidarContra.getFont();
+        Map atributos = formato.getAttributes();
+        
+        
+        atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE);
+        this.btn_olvidarContra.setFont(formato.deriveFont(atributos));
+        System.out.println("hola");
     }//GEN-LAST:event_btn_olvidarContraMouseExited
 
 
@@ -199,12 +211,13 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_campoPassword;
     private javax.swing.JTextField txt_campoUser;
     // End of variables declaration//GEN-END:variables
-    
+
+
+//Clase ára poner PLACEHOLDER con Focus-----------------------------
     private class PlaceHolder_Login implements FocusListener {
-       
-        
+
         Object foco;
-        
+
         @Override
         public void focusGained(FocusEvent e) {
 
@@ -234,6 +247,12 @@ public class Login_view extends javax.swing.JFrame {
 
         }
     }
+
+    
+    
+    
+    
+    //METODOS GETTERS & SETTERS -----------------------------------------
     public JLabel getBtn_info() {
         return btn_info;
     }

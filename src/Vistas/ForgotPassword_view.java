@@ -2,7 +2,7 @@ package Vistas;
 
 import Vistas_clases.*;
 import Controlador.Login_control;
-import Vistas.MotionPanel;
+import Vistas_clases.MotionPanel;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;

@@ -1,5 +1,6 @@
 package Vistas;
 
+import Vistas_clases.MotionPanel;
 import Vistas_clases.PlaceHolder;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
