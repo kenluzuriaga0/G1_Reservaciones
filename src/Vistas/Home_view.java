@@ -6,6 +6,10 @@
 package Vistas;
 
 import Vistas_clases.MotionPanel;
+import java.awt.CardLayout;
+import java.awt.Label;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -13,12 +17,16 @@ import Vistas_clases.MotionPanel;
  */
 public class Home_view extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Home
-     */
+    ConsultarMenu_view panel1 = new ConsultarMenu_view();
+    Reserva_view panel2 = new Reserva_view();
+    CardLayout vista;
+
     public Home_view() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        vista = (CardLayout) contenedor_main.getLayout();
+
     }
 
     /**
@@ -44,7 +52,8 @@ public class Home_view extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        contenedor_main = new javax.swing.JPanel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -107,19 +116,35 @@ public class Home_view extends javax.swing.JFrame {
         boton_grupo.add(jToggleButton1);
         jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton1.setText("Reserva Tu Mesa ¡YA!");
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reserve.png"))); // NOI18N
+        jToggleButton1.setText("Reserva Tu Mesa ¡YA! ");
+        jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setBackground(new java.awt.Color(112, 193, 179));
         boton_grupo.add(jToggleButton2);
         jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reseña.png"))); // NOI18N
         jToggleButton2.setText("Reseñas");
+        jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jToggleButton3.setBackground(new java.awt.Color(112, 193, 179));
         boton_grupo.add(jToggleButton3);
         jToggleButton3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jToggleButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/meun.png"))); // NOI18N
         jToggleButton3.setText("Consultar Menu");
+        jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,9 +167,9 @@ public class Home_view extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addGap(79, 79, 79)
+                .addComponent(jToggleButton3)
+                .addGap(84, 84, 84)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -210,15 +235,21 @@ public class Home_view extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 200, 90, -1));
 
-        jLabel2.setBackground(new java.awt.Color(171, 171, 171));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 820, 440));
+        contenedor_main.setLayout(new java.awt.CardLayout());
+
+        fondo.setBackground(new java.awt.Color(171, 171, 171));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
+        fondo.setText("Consulta nuestro Menú Aqui");
+        fondo.setOpaque(true);
+        contenedor_main.add(fondo, "card2");
+
+        getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 820, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseClicked
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btn_cerrarMouseClicked
 
     private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
@@ -226,13 +257,30 @@ public class Home_view extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        contenedor_main.add(panel1,"menu");
+        vista.show(contenedor_main, "menu");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        contenedor_main.add(panel2,"reserva");
+        vista.show(contenedor_main, "reserva");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+
+
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
     private javax.swing.JLabel btn_cerrar;
     private javax.swing.JLabel btn_minimizar;
+    private javax.swing.JPanel contenedor_main;
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
