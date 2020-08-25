@@ -69,12 +69,12 @@ public class Reserva_view extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 310, 130));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBackground(new java.awt.Color(29, 53, 87));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Llene los campos para realizar la reserva de mesa");
         jLabel1.setOpaque(true);
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 430, 40));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 420, 40));
 
         jLabel3.setBackground(new java.awt.Color(29, 53, 87));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
