@@ -23,6 +23,8 @@ public class Login_view extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         initListener();
+        
+       
 
     }
 
@@ -180,13 +182,13 @@ public class Login_view extends javax.swing.JFrame {
 
     private void btn_olvidarContraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseExited
         
-        Font formato = btn_olvidarContra.getFont();
-        Map atributos = formato.getAttributes();
+        Font formato = btn_olvidarContra.getFont();  //obtiene la fuente
+        Map atributos = formato.getAttributes(); //guarda en un Map todos los atributos del label
         
         
-        atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE);
-        this.btn_olvidarContra.setFont(formato.deriveFont(atributos));
-        System.out.println("hola");
+        atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE); //ambia los atributos
+        this.btn_olvidarContra.setFont(formato.deriveFont(atributos));  //setea los atributos 
+       
     }//GEN-LAST:event_btn_olvidarContraMouseExited
 
 

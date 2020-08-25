@@ -11,6 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import Vistas.Login_view;
 import Vistas.SignUp_view;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login_control {
 
@@ -45,18 +47,52 @@ public class Login_control {
 
         login.getBtn_ingresar().addMouseListener(new Flujo_login());
 
+        login.getTxt_campoPassword().addKeyListener(new KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                entrar_Enter(evt);
+            }
+
+        });
+
+    }
+
+    private void entrar_Enter(KeyEvent ev) {
+        int letra = ev.getKeyCode();
+        
+        if(letra == KeyEvent.VK_ENTER){
+            ingresar();
+        }
+        
+        
     }
 
     public void printInfo() {
 
         String[] nombres = {"Ken Luzuriaga", "Luis Rodriguez", "Nicole Vera", "Freya Lopez", "Anthony Galarza"};
 
+        //Cambio el color del JOptionPane
         UIManager UI = new UIManager();   //Edita JOptionPane
         UI.put("OptionPane.background", new ColorUIResource(29, 53, 87));
         UI.put("Panel.background", new ColorUIResource(29, 53, 87));
         UI.put("OptionPane.messageForeground", Color.WHITE);
 
-        JOptionPane.showMessageDialog(null, nombres, "About", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, nombres, "About GRUPO1", JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    private void ingresar() {
+
+        String user = login.getTxt_campoUser().getText();
+        String password = String.valueOf(login.getTxt_campoPassword().getPassword());
+
+        if (user.equals("admin") && password.equals("admin1")) {
+            login.dispose();
+            home = new Home_view();
+            home_con = new Home_control(home);
+            home.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos incorrectos", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 
@@ -83,15 +119,14 @@ public class Login_control {
                 forgot = new ForgotPassword_view();
                 forgot_con = new ForgotPassword_control(forgot);
                 forgot.setVisible(true);
-
             } else if (fuente == login.getBtn_info()) {                                //BOTON INFO
 
                 printInfo();
-            } else if (fuente == login.getBtn_ingresar()) {
-                login.dispose();
-                home = new Home_view();
-                home_con = new Home_control(home);
-                home.setVisible(true);
+            } else if (fuente == login.getBtn_ingresar()) {                         //BOTON INGRESAR!!!
+
+                ingresar();
+
+            } else if (true) {
 
             }
 
