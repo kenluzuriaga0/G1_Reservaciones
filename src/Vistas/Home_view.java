@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
 import Vistas_clases.MotionPanel;
@@ -13,7 +8,7 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author kenlu
+ * @author yitsu
  */
 public class Home_view extends javax.swing.JFrame {
 
