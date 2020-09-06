@@ -1,9 +1,11 @@
 package Controlador;
 
+import Modelo.Usuario;
 import Vistas.Login_view;
 import Vistas.SignUp_view;
-import Vistas_clases.PlaceHolder;
+import Dao.Usuario_dao;
 import java.awt.event.*;
+import javax.swing.JOptionPane;
 
 public class SignUp_control {
 
@@ -27,13 +29,36 @@ public class SignUp_control {
 
     }
 
-    
-    
-    
-    
-    
-    
-    
+    private void registrarUsuario() {
+
+        Usuario user = new Usuario();
+
+        String nombre = register.getTxt_nombres().getText();
+        String apellido = register.getTxt_apellidos().getText();
+        String email = register.getTxt_email().getText();
+
+        String pass = String.valueOf(register.getTxt_password().getPassword());
+        String passConf = String.valueOf(register.getTxt_passwordConfirm().getPassword());
+
+        if (pass.equals(passConf)) {
+            user.setPassword(pass);
+            user.setNombre(nombre);
+            user.setApellido(apellido);
+            user.setEmail(email);
+            user.setId_rol(1);
+            user.setEstado('A');
+            user.setUsername(user.getNombre().charAt(0) + user.getApellido().substring(1));
+        } else {
+            JOptionPane.showMessageDialog(null, "La contraseña no coincide");
+        }
+        if (Usuario_dao.registrar(user)) {
+            JOptionPane.showMessageDialog(null, "USER NAME: "+ user.getNombre().charAt(0) + user.getApellido());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al registrar");
+        }
+    }
+
     public class Flujo extends MouseAdapter {
 
         @Override
@@ -54,7 +79,7 @@ public class SignUp_control {
                 login_con.printInfo();
 
             } else if (fuente == register.getBtn_ingresar()) {
-
+                registrarUsuario();
             }
 
         }
