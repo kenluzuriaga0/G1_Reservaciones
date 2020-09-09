@@ -14,7 +14,9 @@ public class Usuario {
     private String email;
     private String telefono;
     private char estado;
+    private char sexo;
     private int id_rol;
+    
 
     public int getId() {
         return id;
@@ -86,6 +88,14 @@ public class Usuario {
 
     public void setId_rol(int id_rol) {
         this.id_rol = id_rol;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
     }
     
     

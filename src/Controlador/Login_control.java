@@ -1,11 +1,11 @@
 package Controlador;
 
+import Dao.Usuario_dao;
+import Modelo.Usuario;
 import Vistas.ForgotPassword_view;
 import Vistas.Home_view;
 import java.awt.Color;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
@@ -58,42 +58,27 @@ public class Login_control {
 
     private void entrar_Enter(KeyEvent ev) {
         int letra = ev.getKeyCode();
-        
-        if(letra == KeyEvent.VK_ENTER){
+
+        if (letra == KeyEvent.VK_ENTER) {
             ingresar();
         }
-        
-        
-    }
-
-    public void printInfo() {
-
-        String[] nombres = {"Ken Luzuriaga", "Luis Rodriguez", "Nicole Vera", "Freya Lopez", "Anthony Galarza"};
-
-        //Cambio el color del JOptionPane
-        UIManager UI = new UIManager();   //Edita JOptionPane
-        UI.put("OptionPane.background", new ColorUIResource(29, 53, 87));
-        UI.put("Panel.background", new ColorUIResource(29, 53, 87));
-        UI.put("OptionPane.messageForeground", Color.WHITE);
-
-        JOptionPane.showMessageDialog(null, nombres, "About GRUPO1", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
     private void ingresar() {
 
-        String user = login.getTxt_campoUser().getText();
-        String password = String.valueOf(login.getTxt_campoPassword().getPassword());
-
-        if (user.equals("admin") && password.equals("admin1")) {
+        Usuario user_login = new Usuario();
+        user_login.setUsername(login.getTxt_campoUser().getText());
+        user_login.setPassword(String.valueOf(login.getTxt_campoPassword().getPassword()));
+        if (Usuario_dao.ingresar(user_login)) {
             login.dispose();
             home = new Home_view();
             home_con = new Home_control(home);
             home.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Campos incorrectos", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
-        }
 
+        }
     }
 
     //MOUSE FLUJO DE VENTANAS************************************************
@@ -133,6 +118,21 @@ public class Login_control {
             login.setLocationRelativeTo(null);
 
         }
+
+    }
+    //TERMINA CLASE PARA FLUJO**************************************************
+
+    public void printInfo() {
+
+        String[] nombres = {"Ken Luzuriaga", "Luis Rodriguez", "Nicole Vera", "Freya Lopez", "Anthony Galarza"};
+
+        //Cambio el color del JOptionPane
+        UIManager UI = new UIManager();   //Edita JOptionPane
+        UI.put("OptionPane.background", new ColorUIResource(29, 53, 87));
+        UI.put("Panel.background", new ColorUIResource(29, 53, 87));
+        UI.put("OptionPane.messageForeground", Color.WHITE);
+
+        JOptionPane.showMessageDialog(null, nombres, "About GRUPO1", JOptionPane.INFORMATION_MESSAGE);
 
     }
 

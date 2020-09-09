@@ -32,10 +32,17 @@ public class SignUp_control {
     private void registrarUsuario() {
 
         Usuario user = new Usuario();
-
+        char sexo='x';
         String nombre = register.getTxt_nombres().getText();
         String apellido = register.getTxt_apellidos().getText();
         String email = register.getTxt_email().getText();
+        if (register.getRadio_m().isSelected()) {
+            System.out.println("elegiste masculino");
+            sexo = 'M';
+        } else if (register.getRadio_f().isSelected()) {
+            System.out.println("femeninaaa");
+            sexo =  'F';
+        }
 
         String pass = String.valueOf(register.getTxt_password().getPassword());
         String passConf = String.valueOf(register.getTxt_passwordConfirm().getPassword());
@@ -45,14 +52,16 @@ public class SignUp_control {
             user.setNombre(nombre);
             user.setApellido(apellido);
             user.setEmail(email);
-            user.setId_rol(1);
+            user.setId_rol(2);
             user.setEstado('A');
-            user.setUsername(user.getNombre().charAt(0) + user.getApellido().substring(1));
+            user.setSexo(sexo);
+            user.setUsername(user.getNombre().charAt(0) + user.getApellido());
         } else {
             JOptionPane.showMessageDialog(null, "La contraseña no coincide");
         }
         if (Usuario_dao.registrar(user)) {
-            JOptionPane.showMessageDialog(null, "USER NAME: "+ user.getNombre().charAt(0) + user.getApellido());
+
+            JOptionPane.showMessageDialog(null, "USER NAME: " + user.getNombre().charAt(0) + user.getApellido());
 
         } else {
             JOptionPane.showMessageDialog(null, "Error al registrar");
