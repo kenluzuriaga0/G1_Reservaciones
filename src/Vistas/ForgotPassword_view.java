@@ -3,8 +3,10 @@ package Vistas;
 import Vistas_clases.*;
 import Controlador.Login_control;
 import Vistas_clases.MotionPanel;
+import java.awt.Desktop;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.net.URI;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -83,6 +85,13 @@ public class ForgotPassword_view extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Developed by Freylolo y su gente");
+        jLabel7.setToolTipText("minspam_00 ");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 0, 10));
 
@@ -108,6 +117,20 @@ public class ForgotPassword_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI("https://www.instagram.com/minspam_00/"));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fallo Hipervinculo");
+        }
+
+    }//GEN-LAST:event_jLabel7MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

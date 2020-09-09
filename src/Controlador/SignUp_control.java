@@ -14,7 +14,6 @@ public class SignUp_control {
     private Login_control login_con;
 
     public SignUp_control(SignUp_view register) {
-        //    super();
         this.register = register;
         initListener();
     }
@@ -36,6 +35,7 @@ public class SignUp_control {
         String nombre = register.getTxt_nombres().getText();
         String apellido = register.getTxt_apellidos().getText();
         String email = register.getTxt_email().getText();
+        
         if (register.getRadio_m().isSelected()) {
             System.out.println("elegiste masculino");
             sexo = 'M';

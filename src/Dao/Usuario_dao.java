@@ -33,6 +33,7 @@ public class Usuario_dao {
 
             ps.executeUpdate();
 
+            ps.close();
             return true;
 
         } catch (SQLException ex) {
@@ -62,21 +63,22 @@ public class Usuario_dao {
                     user.setUsername(rs.getString(2));
                     user.setPassword(rs.getString(3));
                     user.setId_rol(rs.getInt(4));
-
+                    ps.close();
                     return true;
-                    
+
                 } else {
+                    ps.close();
                     return false;
                 }
             } else {
+                ps.close();
                 return false;
             }
-          
+
         } catch (SQLException ex) {
             System.out.println("Ohtia chaval, fallo de SELECT");
             return false;
         }
-        
 
     }
 

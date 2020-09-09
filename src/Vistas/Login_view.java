@@ -12,7 +12,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import Vistas_clases.PlaceHolder;
+import java.awt.Desktop;
 import java.awt.font.TextAttribute;
+import java.net.URI;
 import java.util.Map;
 
 public class Login_view extends javax.swing.JFrame {
@@ -124,6 +126,13 @@ public class Login_view extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Developed by Freylolo y su gente");
+        jLabel7.setToolTipText("minspam_00");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         btn_olvidarContra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -161,20 +170,20 @@ public class Login_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //HOVER de boton
     private void btn_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseEntered
         btn_ingresar.setBackground(new Color(148, 152, 229));
         btn_ingresar.setBorder(new LineBorder(new Color(148, 152, 229)));
     }//GEN-LAST:event_btn_ingresarMouseEntered
-
+    //HOVER de boton
     private void btn_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseExited
         btn_ingresar.setBackground(new Color(148, 176, 218));
         btn_ingresar.setBorder(new LineBorder(new Color(48, 176, 218)));
     }//GEN-LAST:event_btn_ingresarMouseExited
-
+    //subrayado
     private void btn_olvidarContraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_olvidarContraMouseEntered
         Font formato = btn_olvidarContra.getFont();
-        Map atributos = formato.getAttributes();
-        
+        Map atributos = formato.getAttributes();  
         
         atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE_ON);
         this.btn_olvidarContra.setFont(formato.deriveFont(atributos));
@@ -185,11 +194,24 @@ public class Login_view extends javax.swing.JFrame {
         Font formato = btn_olvidarContra.getFont();  //obtiene la fuente
         Map atributos = formato.getAttributes(); //guarda en un Map todos los atributos del label
         
-        
         atributos.put(TextAttribute.UNDERLINE,TextAttribute.UNDERLINE); //ambia los atributos
         this.btn_olvidarContra.setFont(formato.deriveFont(atributos));  //setea los atributos 
        
     }//GEN-LAST:event_btn_olvidarContraMouseExited
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+
+        try{
+            if(Desktop.isDesktopSupported()){
+                Desktop desktop = Desktop.getDesktop();
+                if(desktop.isSupported(Desktop.Action.BROWSE)){
+                    desktop.browse(new URI("https://www.instagram.com/minspam_00/"));
+                }
+            }
+        }catch(Exception ex){
+            System.out.println("Fallo Hipervinculo");
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
