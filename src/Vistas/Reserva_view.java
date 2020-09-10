@@ -154,7 +154,7 @@ public class Reserva_view extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(29, 53, 87));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Detalle");
+        jLabel2.setText("Motivo");
         jLabel2.setOpaque(true);
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 60, 20));
 

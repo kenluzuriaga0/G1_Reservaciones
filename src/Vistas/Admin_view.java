@@ -8,12 +8,12 @@ import javax.swing.SwingUtilities;
  *
  * @author kenlu
  */
-public class HomeAdmin_view extends javax.swing.JFrame {
+public class Admin_view extends javax.swing.JFrame {
 
     ConsultarMenu_view panel1 = new ConsultarMenu_view();
     Reserva_view panel2 = new Reserva_view();
 
-    public HomeAdmin_view() {
+    public Admin_view() {
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -44,8 +44,19 @@ public class HomeAdmin_view extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         jTextField1.setText("jTextField1");
 
@@ -108,23 +119,23 @@ public class HomeAdmin_view extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Reportes");
+        jLabel1.setText("Administracion");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(458, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(370, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 340, 340))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(114, 114, 114))
+                .addGap(113, 113, 113))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 990, 80));
@@ -160,101 +171,76 @@ public class HomeAdmin_view extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, 50, 530));
 
         contenedor_main.setBackground(new java.awt.Color(227, 226, 226));
+        contenedor_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        contenedor_main.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 118, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        contenedor_main.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 45, 77, 40));
 
-        jButton1.setText("Consultar Mesas");
+        jButton1.setText("Definir Dia");
+        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 417, 201, 49));
 
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        contenedor_main.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 139, 118, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        contenedor_main.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 121, 77, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Desde");
+        jLabel4.setText("Dia Inicio");
+        contenedor_main.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 22, 76, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Hasta");
+        jLabel5.setText("Hora Inicio");
+        contenedor_main.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 107, 77, -1));
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Num", "Cliente", "Fecha", "Hora", "Estado", "Participantes", "Motivo"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        contenedor_main.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 77, 40));
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-        }
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        contenedor_main.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 118, -1));
 
-        javax.swing.GroupLayout contenedor_mainLayout = new javax.swing.GroupLayout(contenedor_main);
-        contenedor_main.setLayout(contenedor_mainLayout);
-        contenedor_mainLayout.setHorizontalGroup(
-            contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedor_mainLayout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor_mainLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(288, 288, 288))
-            .addComponent(jScrollPane1)
-            .addGroup(contenedor_mainLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        contenedor_mainLayout.setVerticalGroup(
-            contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedor_mainLayout.createSequentialGroup()
-                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenedor_mainLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor_mainLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(80, 80, 80)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Dia Fin");
+        contenedor_main.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 22, 55, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Hora Fin");
+        contenedor_main.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 77, -1));
+
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        contenedor_main.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 118, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        contenedor_main.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 77, 40));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Numero Mesas Libres");
+        contenedor_main.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 201, -1));
+
+        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        contenedor_main.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 76, 23));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Numero Mesas Disponibles");
+        contenedor_main.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 231, 204, -1));
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel13.setText("## Mesas Libres");
+        contenedor_main.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 140, -1));
+        contenedor_main.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 199, 890, 10));
+        contenedor_main.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 890, 10));
+        contenedor_main.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 315, 890, 10));
 
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 890, 520));
 
@@ -278,19 +264,30 @@ public class HomeAdmin_view extends javax.swing.JFrame {
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

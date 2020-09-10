@@ -68,6 +68,7 @@ public class Login_control {
     private void ingresar() {
 
         Usuario user_login = new Usuario();
+        
         user_login.setUsername(login.getTxt_campoUser().getText());
         user_login.setPassword(String.valueOf(login.getTxt_campoPassword().getPassword()));
         if (Usuario_dao.ingresar(user_login)) {
