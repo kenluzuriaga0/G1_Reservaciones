@@ -10,11 +10,11 @@ import java.util.Date;
 public class Reservacion {
     
     int id;
-    int id_cliente;
+    int id_usuario;
     int id_mesas;
     Date fecha_emision;
     Calendar hora;
-    int sillas;
+    int participantes;
     String estado;
 
     public int getId() {
@@ -26,11 +26,11 @@ public class Reservacion {
     }
 
     public int getId_cliente() {
-        return id_cliente;
+        return id_usuario;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_cliente(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public int getId_mesas() {
@@ -58,11 +58,11 @@ public class Reservacion {
     }
 
     public int getSillas() {
-        return sillas;
+        return participantes;
     }
 
-    public void setSillas(int sillas) {
-        this.sillas = sillas;
+    public void setSillas(int participantes) {
+        this.participantes = participantes;
     }
 
     public String getEstado() {

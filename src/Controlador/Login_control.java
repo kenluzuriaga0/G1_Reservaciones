@@ -2,6 +2,7 @@ package Controlador;
 
 import Dao.Usuario_dao;
 import Modelo.Usuario;
+import Vistas.Admin_view;
 import Vistas.ForgotPassword_view;
 import Vistas.Home_view;
 import java.awt.Color;
@@ -24,6 +25,8 @@ public class Login_control {
 
     private Home_control home_con;
     private Home_view home;
+    private Admin_view home_admin;
+    private Admin_control admin_control;
 
     public Login_control(Login_view login) {
 
@@ -68,14 +71,23 @@ public class Login_control {
     private void ingresar() {
 
         Usuario user_login = new Usuario();
-        
+
         user_login.setUsername(login.getTxt_campoUser().getText());
         user_login.setPassword(String.valueOf(login.getTxt_campoPassword().getPassword()));
         if (Usuario_dao.ingresar(user_login)) {
+
             login.dispose();
-            home = new Home_view();
-            home_con = new Home_control(home);
-            home.setVisible(true);
+
+            if (user_login.getId_rol() == 1) {
+                home_admin = new Admin_view();
+                admin_control = new Admin_control(home_admin);
+                home_admin.setVisible(true);
+            } else {
+                home = new Home_view();
+                home_con = new Home_control(home);
+                home.setVisible(true);
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Campos incorrectos", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
 
