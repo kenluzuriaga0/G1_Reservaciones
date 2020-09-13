@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +83,34 @@ public class Usuario_dao {
             return false;
         }
 
+    }
+
+    public static String[] traerContrasena(String email) {
+        String[] datos = new String[3];
+
+        Connection conn = Conexion.conectar();
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT NOMBRE, APELLIDO, PASSWORD,USERNAME FROM USUARIOS WHERE EMAIL = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                datos[0] =rs.getString("NOMBRE").toUpperCase()+" "+rs.getString("APELLIDO").toUpperCase(); //nom completo
+                datos[1] = rs.getString("PASSWORD");
+                datos[2]= rs.getString("USERNAME");
+                
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Error al encontrar Correo  " + ex.getMessage());
+        }
+
+        return datos;
     }
 
 }
