@@ -1,8 +1,10 @@
 package Vistas;
 
+import Controlador.Login_control;
 import Vistas_clases.MotionPanel;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -41,6 +43,7 @@ public class Home_view extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        lbl_logout = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
 
@@ -211,15 +214,29 @@ public class Home_view extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(29, 53, 87));
 
+        lbl_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        lbl_logout.setText("jLabel6");
+        lbl_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbl_logoutMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(lbl_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(392, Short.MAX_VALUE)
+                .addComponent(lbl_logout)
+                .addGap(17, 17, 17))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 200, 90, -1));
@@ -262,6 +279,22 @@ public class Home_view extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_reservaViewActionPerformed
 
+    private void lbl_logoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_logoutMousePressed
+
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesion?", "Confirmacion", JOptionPane.YES_OPTION);
+        if (opcion == 0) {
+            this.dispose();
+            Login_view login = new Login_view();
+            Login_control login_con = new Login_control(login);
+
+            login.setVisible(true);
+        } else {
+            System.out.println("el num 1");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_logoutMousePressed
+
     public JLabel getLbl_perfil() {
         return lbl_perfil;
     }
@@ -287,6 +320,7 @@ public class Home_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbl_logout;
     private javax.swing.JLabel lbl_perfil;
     // End of variables declaration//GEN-END:variables
 }
