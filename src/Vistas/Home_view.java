@@ -40,7 +40,7 @@ public class Home_view extends javax.swing.JFrame {
         btn_consultaView = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         lbl_perfil = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_PerfilName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lbl_logout = new javax.swing.JLabel();
@@ -143,10 +143,11 @@ public class Home_view extends javax.swing.JFrame {
         jLabel1.setText("Sistema de Reservaciones de Mesas");
 
         lbl_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/perfil.png"))); // NOI18N
+        lbl_perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Kluzuriaga");
+        lbl_PerfilName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl_PerfilName.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_PerfilName.setText("Kluzuriaga");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -169,9 +170,9 @@ public class Home_view extends javax.swing.JFrame {
                         .addComponent(btn_resenaView, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                        .addGap(275, 275, 275)
+                        .addComponent(lbl_PerfilName, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,13 +186,12 @@ public class Home_view extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(lbl_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_consultaView, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14)
-                        .addComponent(btn_resenaView, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_reservaView, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_consultaView, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_resenaView, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_reservaView, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_PerfilName))
                 .addGap(15, 15, 15))
         );
 
@@ -303,6 +303,14 @@ public class Home_view extends javax.swing.JFrame {
         this.lbl_perfil = lbl_perfil;
     }
 
+    public JLabel getLbl_PerfilName() {
+        return lbl_PerfilName;
+    }
+
+    public void setLbl_PerfilName(JLabel lbl_PerfilName) {
+        this.lbl_PerfilName = lbl_PerfilName;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
@@ -314,12 +322,12 @@ public class Home_view extends javax.swing.JFrame {
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbl_PerfilName;
     private javax.swing.JLabel lbl_logout;
     private javax.swing.JLabel lbl_perfil;
     // End of variables declaration//GEN-END:variables

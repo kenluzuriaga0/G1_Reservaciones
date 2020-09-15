@@ -2,7 +2,9 @@ package Vistas;
 
 import Controlador.Login_control;
 import Vistas_clases.MotionPanel;
+import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,15 +44,13 @@ public class Reporte_view extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         lbl_logout = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
-        txt_desde = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         btn_consultarMesas = new javax.swing.JButton();
-        txt_hasta = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_consultas = new javax.swing.JTable();
+        txt_desde = new com.toedter.calendar.JDateChooser();
+        txt_hasta = new com.toedter.calendar.JDateChooser();
 
         jTextField1.setText("jTextField1");
 
@@ -192,17 +192,9 @@ public class Reporte_view extends javax.swing.JFrame {
 
         contenedor_main.setBackground(new java.awt.Color(227, 226, 226));
 
-        txt_desde.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-
-        btn_consultarMesas.setBackground(new java.awt.Color(51, 51, 51));
+        btn_consultarMesas.setBackground(new java.awt.Color(102, 102, 102));
         btn_consultarMesas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_consultarMesas.setText("Consultar Reservaciones");
-
-        txt_hasta.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -238,55 +230,62 @@ public class Reporte_view extends javax.swing.JFrame {
             tabla_consultas.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        txt_desde.setBackground(new java.awt.Color(255, 255, 255));
+        txt_desde.setForeground(new java.awt.Color(0, 0, 0));
+        txt_desde.setDateFormatString("dd-MMM-yyyy");
+        txt_desde.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_desde.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
+        );
+        txt_desde.setOpaque(false);
+
+        txt_hasta.setBackground(new java.awt.Color(255, 255, 255));
+        txt_hasta.setForeground(new java.awt.Color(0, 0, 0));
+        txt_hasta.setDateFormatString("dd-MMM-yyyy");
+        txt_hasta.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_hasta.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
+        );
+        txt_hasta.setOpaque(false);
+
         javax.swing.GroupLayout contenedor_mainLayout = new javax.swing.GroupLayout(contenedor_main);
         contenedor_main.setLayout(contenedor_mainLayout);
         contenedor_mainLayout.setHorizontalGroup(
             contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedor_mainLayout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                .addComponent(txt_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor_mainLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(288, 288, 288))
             .addComponent(jScrollPane1)
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(btn_consultarMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(contenedor_mainLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(205, 205, 205))
         );
         contenedor_mainLayout.setVerticalGroup(
             contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenedor_mainLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor_mainLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(80, 80, 80)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addGroup(contenedor_mainLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(btn_consultarMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 890, 520));
@@ -343,19 +342,19 @@ public class Reporte_view extends javax.swing.JFrame {
         this.tabla_consultas = tabla_consultas;
     }
 
-    public JTextField getTxt_desde() {
+    public JDateChooser getTxt_desde() {
         return txt_desde;
     }
 
-    public void setTxt_desde(JTextField txt_desde) {
+    public void setTxt_desde(JDateChooser txt_desde) {
         this.txt_desde = txt_desde;
     }
 
-    public JTextField getTxt_hasta() {
+    public JDateChooser getTxt_hasta() {
         return txt_hasta;
     }
 
-    public void setTxt_hasta(JTextField txt_hasta) {
+    public void setTxt_hasta(JDateChooser txt_hasta) {
         this.txt_hasta = txt_hasta;
     }
 
@@ -367,8 +366,6 @@ public class Reporte_view extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -381,7 +378,7 @@ public class Reporte_view extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_administracion;
     private javax.swing.JLabel lbl_logout;
     private javax.swing.JTable tabla_consultas;
-    private javax.swing.JTextField txt_desde;
-    private javax.swing.JTextField txt_hasta;
+    private com.toedter.calendar.JDateChooser txt_desde;
+    private com.toedter.calendar.JDateChooser txt_hasta;
     // End of variables declaration//GEN-END:variables
 }

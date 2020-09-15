@@ -13,11 +13,12 @@ public class Home_control {
 
     private Home_view home;
     private Profile_view2 profile;
-    
+    private Profile_control profile_con;
     
     
     public Home_control(Home_view home) {
         this.home=home;
+        this.home.getLbl_PerfilName().setText(Login_control.getUser_login().getUsername());
         initListener();
         
     }
@@ -35,6 +36,11 @@ public class Home_control {
             
             Object fuente = e.getSource();
             if(fuente == home.getLbl_perfil()){
+                home.dispose();
+                
+                profile = new Profile_view2();
+                profile_con = new Profile_control(profile);
+                profile.setVisible(true);
                 
             }
             

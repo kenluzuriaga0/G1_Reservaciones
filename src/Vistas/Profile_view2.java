@@ -35,7 +35,7 @@ public class Profile_view2 extends javax.swing.JFrame {
         btn_minimizar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_nombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbl_resPendientes = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -109,24 +109,28 @@ public class Profile_view2 extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(29, 53, 87));
 
-        jLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Ken Luzuriaga");
+        lbl_nombre.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
+        lbl_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_nombre.setText("Ken Luzuriaga");
 
         jLabel2.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cliente");
 
         lbl_resPendientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_resPendientes.setForeground(new java.awt.Color(255, 255, 255));
         lbl_resPendientes.setText("0");
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("<html>Reservaciones<br>    Pendientes</html>");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("<html>Reservaciones<br>   Hechas</html>");
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lbl_resHechas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_resHechas.setForeground(new java.awt.Color(255, 255, 255));
         lbl_resHechas.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -136,7 +140,7 @@ public class Profile_view2 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -155,7 +159,7 @@ public class Profile_view2 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(lbl_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                 .addGap(60, 60, 60))
@@ -274,6 +278,38 @@ public class Profile_view2 extends javax.swing.JFrame {
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
+    public JLabel getLbl_nombre() {
+        return lbl_nombre;
+    }
+
+    public void setLbl_nombre(JLabel lbl_nombre) {
+        this.lbl_nombre = lbl_nombre;
+    }
+
+    public JLabel getLbl_resActual() {
+        return lbl_resActual;
+    }
+
+    public void setLbl_resActual(JLabel lbl_resActual) {
+        this.lbl_resActual = lbl_resActual;
+    }
+
+    public JLabel getLbl_resHechas() {
+        return lbl_resHechas;
+    }
+
+    public void setLbl_resHechas(JLabel lbl_resHechas) {
+        this.lbl_resHechas = lbl_resHechas;
+    }
+
+    public JLabel getLbl_resPendientes() {
+        return lbl_resPendientes;
+    }
+
+    public void setLbl_resPendientes(JLabel lbl_resPendientes) {
+        this.lbl_resPendientes = lbl_resPendientes;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
@@ -281,7 +317,6 @@ public class Profile_view2 extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
@@ -295,6 +330,7 @@ public class Profile_view2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_resActual;
     private javax.swing.JLabel lbl_resHechas;
     private javax.swing.JLabel lbl_resPendientes;

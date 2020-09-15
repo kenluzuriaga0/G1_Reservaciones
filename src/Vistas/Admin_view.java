@@ -2,6 +2,8 @@ package Vistas;
 
 import Controlador.Login_control;
 import Vistas_clases.MotionPanel;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
+import javax.swing.ImageIcon;
 /**
  *
  * @author kenlu
@@ -45,19 +47,9 @@ public class Admin_view extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         lbl_logout = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
-        txt_diaFin = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         btn_definirDia = new javax.swing.JButton();
-        txt_horaInicio = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txt_diaInicio = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txt_horaFin = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         spn_mesasDisp = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
@@ -65,6 +57,15 @@ public class Admin_view extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        txt_diaFin = new com.toedter.calendar.JDateChooser();
+        txt_diaInicio = new com.toedter.calendar.JDateChooser();
+        txt_campoUser = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        lbl_nombre = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -206,55 +207,21 @@ public class Admin_view extends javax.swing.JFrame {
         contenedor_main.setBackground(new java.awt.Color(227, 226, 226));
         contenedor_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_diaFin.setBackground(new java.awt.Color(255, 255, 255));
-        contenedor_main.add(txt_diaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 118, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-        contenedor_main.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 45, 77, 40));
-
         btn_definirDia.setBackground(new java.awt.Color(102, 102, 102));
         btn_definirDia.setFont(new java.awt.Font("MS UI Gothic", 1, 16)); // NOI18N
         btn_definirDia.setForeground(new java.awt.Color(0, 0, 0));
         btn_definirDia.setText("Definir Dia");
         contenedor_main.add(btn_definirDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 417, 201, 49));
 
-        txt_horaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        contenedor_main.add(txt_horaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 139, 118, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-        contenedor_main.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 121, 77, 40));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Dia Inicio");
-        contenedor_main.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 22, 76, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Hora Inicio");
-        contenedor_main.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 107, 77, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-        contenedor_main.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 77, 40));
-
-        txt_diaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        contenedor_main.add(txt_diaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 118, -1));
+        contenedor_main.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 76, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Dia Fin");
-        contenedor_main.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 22, 55, -1));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Hora Fin");
-        contenedor_main.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 77, -1));
-
-        txt_horaFin.setBackground(new java.awt.Color(255, 255, 255));
-        contenedor_main.add(txt_horaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 118, -1));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-        contenedor_main.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 77, 40));
+        contenedor_main.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 55, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -262,7 +229,7 @@ public class Admin_view extends javax.swing.JFrame {
         contenedor_main.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 201, -1));
 
         spn_mesasDisp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        contenedor_main.add(spn_mesasDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 76, 23));
+        contenedor_main.add(spn_mesasDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 80, 30));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
@@ -277,6 +244,63 @@ public class Admin_view extends javax.swing.JFrame {
         contenedor_main.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 199, 890, 10));
         contenedor_main.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 890, 10));
         contenedor_main.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 315, 890, 10));
+
+        txt_diaFin.setBackground(new java.awt.Color(255, 255, 255));
+        txt_diaFin.setForeground(new java.awt.Color(0, 0, 0));
+        txt_diaFin.setDateFormatString("dd-MMM-yyyy");
+        txt_diaFin.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_diaFin.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
+        );
+        txt_diaFin.setOpaque(false);
+        contenedor_main.add(txt_diaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 160, 30));
+
+        txt_diaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        txt_diaInicio.setForeground(new java.awt.Color(0, 0, 0));
+        txt_diaInicio.setDateFormatString("dd-MMM-yyyy");
+        txt_diaInicio.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_diaInicio.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
+        );
+        txt_diaInicio.setOpaque(false);
+        contenedor_main.add(txt_diaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 160, 30));
+
+        txt_campoUser.setBackground(new java.awt.Color(227, 226, 226));
+        txt_campoUser.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        txt_campoUser.setForeground(new java.awt.Color(102, 102, 102));
+        txt_campoUser.setText("##");
+        txt_campoUser.setBorder(null);
+        txt_campoUser.setEnabled(false);
+        txt_campoUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_campoUserActionPerformed(evt);
+            }
+        });
+        contenedor_main.add(txt_campoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 100, 30));
+        contenedor_main.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 100, 10));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Total de mesas: 50");
+        contenedor_main.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 170, 30));
+
+        jCheckBox1.setForeground(new java.awt.Color(102, 102, 102));
+        jCheckBox1.setText("Editar");
+        contenedor_main.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Definir Total Mesas");
+        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 150, 40));
+
+        lbl_nombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbl_nombre.setForeground(new java.awt.Color(29, 53, 87));
+        lbl_nombre.setText("Bienvenido");
+        contenedor_main.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, 120, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Bienvenido");
+        contenedor_main.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 90, -1));
 
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 950, 580));
 
@@ -307,6 +331,10 @@ public class Admin_view extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_logoutMousePressed
+
+    private void txt_campoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_campoUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_campoUserActionPerformed
 
     public JButton getBtn_definirDia() {
         return btn_definirDia;
@@ -340,37 +368,31 @@ public class Admin_view extends javax.swing.JFrame {
         this.spn_mesasDisp = spn_mesasDisp;
     }
 
-    public JTextField getTxt_diaFin() {
+    public JDateChooser getTxt_diaFin() {
         return txt_diaFin;
     }
 
-    public void setTxt_diaFin(JTextField txt_diaFin) {
+    public void setTxt_diaFin(JDateChooser txt_diaFin) {
         this.txt_diaFin = txt_diaFin;
     }
 
-    public JTextField getTxt_diaInicio() {
-        return txt_diaInicio;
+    public JDateChooser getTxt_diaInicio() {
+        return txt_diaFin;
     }
 
-    public void setTxt_diaInicio(JTextField txt_diaInicio) {
-        this.txt_diaInicio = txt_diaInicio;
+    public void setTxt_diaInicio(JDateChooser txt_diaInicio) {
+        this.txt_diaFin = txt_diaInicio;
     }
 
-    public JTextField getTxt_horaFin() {
-        return txt_horaFin;
+    public JLabel getLbl_nombre() {
+        return lbl_nombre;
     }
 
-    public void setTxt_horaFin(JTextField txt_horaFin) {
-        this.txt_horaFin = txt_horaFin;
+    public void setLbl_nombre(JLabel lbl_nombre) {
+        this.lbl_nombre = lbl_nombre;
     }
 
-    public JTextField getTxt_horaInicio() {
-        return txt_horaInicio;
-    }
 
-    public void setTxt_horaInicio(JTextField txt_horaInicio) {
-        this.txt_horaInicio = txt_horaInicio;
-    }
 
     
     
@@ -383,18 +405,16 @@ public class Admin_view extends javax.swing.JFrame {
     private javax.swing.JButton btn_definirDia;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -402,14 +422,15 @@ public class Admin_view extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_logout;
     private javax.swing.JLabel lbl_mesasFree;
+    private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_reportes;
     private javax.swing.JSpinner spn_mesasDisp;
-    private javax.swing.JTextField txt_diaFin;
-    private javax.swing.JTextField txt_diaInicio;
-    private javax.swing.JTextField txt_horaFin;
-    private javax.swing.JTextField txt_horaInicio;
+    private javax.swing.JTextField txt_campoUser;
+    private com.toedter.calendar.JDateChooser txt_diaFin;
+    private com.toedter.calendar.JDateChooser txt_diaInicio;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,6 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
-    private String telefono;
     private char estado;
     private char sexo;
     private int id_rol;
@@ -66,13 +65,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
 
     public char getEstado() {
         return estado;
@@ -96,6 +88,12 @@ public class Usuario {
 
     public void setSexo(char sexo) {
         this.sexo = sexo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id= " + id + ", username= " + username + ", password= " + password + ", nombre= " + nombre + ", apellido= " 
+                + apellido + ", email=" + email + ", estado= " + estado + ", sexo= " + sexo + ", id_rol= " + id_rol + '}';
     }
     
     

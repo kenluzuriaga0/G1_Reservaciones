@@ -19,6 +19,8 @@ public class Admin_control {
 
     Admin_control(Admin_view admin) {
         this.admin = admin;
+        String usuario_logueado = Login_control.getUser_login().getUsername();
+        this.admin.getLbl_nombre().setText(usuario_logueado.toUpperCase());
         initListener();
     }
     
@@ -35,6 +37,7 @@ public class Admin_control {
             Object fuente = e.getSource();
             
             if(fuente.equals(admin.getLbl_reportes())){
+                System.out.println(Login_control.getUser_login());
                 admin.dispose();
                 
                 reporte = new Reporte_view();

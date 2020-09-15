@@ -50,7 +50,7 @@ public class Usuario_dao {
     public static boolean ingresar(Usuario user) {
         Connection conn = Conexion.conectar();
         PreparedStatement ps = null;
-        String sql = "SELECT id_usuarios,username, password, id_roles FROM USUARIOS WHERE username = ?";
+        String sql = "SELECT id_usuarios,username, password, id_roles,nombre,apellido,email,estado, sexo FROM USUARIOS WHERE username = ?";
         ResultSet rs = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -66,6 +66,12 @@ public class Usuario_dao {
                     user.setUsername(rs.getString(2));
                     user.setPassword(rs.getString(3));
                     user.setId_rol(rs.getInt(4));
+                    user.setNombre(rs.getString(5));
+                    user.setApellido(rs.getString(6));
+                    user.setEmail(rs.getString(7));
+                    user.setEstado( rs.getString(8).charAt(0));
+                    user.setSexo(rs.getString(8).charAt(0));
+                    
                     ps.close();
                     return true;
 

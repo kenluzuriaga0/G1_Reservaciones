@@ -27,6 +27,8 @@ public class Login_control {
     private Home_view home;
     private Admin_view home_admin;
     private Admin_control admin_control;
+    
+    static private Usuario user_login  = new Usuario(); //USUARIO LOGUEADO
 
     public Login_control(Login_view login) {
 
@@ -70,7 +72,6 @@ public class Login_control {
 
     private void ingresar() {
 
-        Usuario user_login = new Usuario();
 
         user_login.setUsername(login.getTxt_campoUser().getText());
         user_login.setPassword(String.valueOf(login.getTxt_campoPassword().getPassword()));
@@ -147,6 +148,10 @@ public class Login_control {
 
         JOptionPane.showMessageDialog(null, nombres, "About GRUPO1", JOptionPane.INFORMATION_MESSAGE);
 
+    }
+
+    public static Usuario getUser_login() {
+        return user_login;
     }
 
 }

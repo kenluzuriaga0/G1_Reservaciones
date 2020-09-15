@@ -12,14 +12,14 @@ public class SignUp_control {
     private SignUp_view register;
     private Login_view login;
     private Login_control login_con;
-
+    
     public SignUp_control(SignUp_view register) {
         this.register = register;
         initListener();
     }
 
     private void initListener() {
-
+        
         //FLUJO DE VENTANAS
         register.getBtn_backToLogin().addMouseListener(new Flujo());
         register.getBtn_info().addMouseListener(new Flujo());
@@ -30,11 +30,11 @@ public class SignUp_control {
 
     private void registrarUsuario() {
 
-        Usuario user = new Usuario();
+        Usuario user = Login_control.getUser_login();
         char sexo='x';
-        String nombre = register.getTxt_nombres().getText();
-        String apellido = register.getTxt_apellidos().getText();
-        String email = register.getTxt_email().getText();
+        String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
+        String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
+        String email = register.getTxt_email().getText().toLowerCase().trim();
         
         if (register.getRadio_m().isSelected()) {
             System.out.println("elegiste masculino");
