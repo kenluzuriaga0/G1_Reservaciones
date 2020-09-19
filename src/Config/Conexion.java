@@ -19,12 +19,12 @@ public class Conexion {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(url, "ken", "123");
 
-            System.out.println("se conectó a la BD exitosamente");
+            System.out.println("-Conexion exitosa-");
 
         } catch (ClassNotFoundException e) {
-            System.out.println("no encontró el driver");
+            System.out.println("No encontró el driver");
         } catch (SQLException e) {
-            System.out.println("no conecta, falla de url, user o password");
+            System.out.println("No conecta, falla de url, user o password");
         }
 
         return conn;

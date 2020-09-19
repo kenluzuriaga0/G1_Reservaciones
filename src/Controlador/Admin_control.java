@@ -1,5 +1,7 @@
 package Controlador;
 
+import Dao.Mesas_dao;
+import Modelo.Mesa;
 import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
@@ -28,7 +30,28 @@ public class Admin_control {
         
         admin.getLbl_reportes().addMouseListener(new Flujo());
         
+        admin.getBtn_definirDia().addMouseListener(new Flujo());
+        
     }
+    
+    private void definirDia(){
+        Mesa mesa = new Mesa();
+        Mesas_dao dao = new Mesas_dao();
+        mesa.setId_mesas(dao.autoId("MESAS", "ID_MESAS"));
+        mesa.setEstado('S');
+        
+        mesa.setFecha(admin.getTxt_diaInicio().getDate());
+        int num_mesas =(Integer) admin.getSpn_mesasDisp().getValue();
+        int mesasFaltantes = mesa.getTotal_mesas() - num_mesas; //calculo
+        
+        mesa.setNum_mesas(num_mesas);
+        mesa.setMesas_faltantes(mesasFaltantes);
+        
+        dao.definirDia(mesa);
+    }
+    
+    
+    
 
     class Flujo extends MouseAdapter{
         
@@ -43,6 +66,9 @@ public class Admin_control {
                 reporte = new Reporte_view();
                 reporte_control = new Reporte_control(reporte);
                 reporte.setVisible(true);
+            }else if (fuente.equals(admin.getBtn_definirDia())){
+                definirDia();
+                
             }
                 
             
