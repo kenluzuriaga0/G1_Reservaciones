@@ -7,9 +7,9 @@ import java.util.Date;
  * @author kenlu
  */
 public class Mesa {
-    
+
     static int total_mesas;
-    
+
     int id_mesas;
     char estado;
     Date fecha;
@@ -63,8 +63,5 @@ public class Mesa {
     public static void setTotal_mesas(int total_mesas) {
         Mesa.total_mesas = total_mesas;
     }
-    
-    
-    
-    
+
 }

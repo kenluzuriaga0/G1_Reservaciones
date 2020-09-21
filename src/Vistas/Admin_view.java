@@ -347,11 +347,11 @@ public class Admin_view extends javax.swing.JFrame {
     }
 
     public JDateChooser getTxt_diaInicio() {
-        return txt_diaFin;
+        return txt_diaInicio;
     }
 
     public void setTxt_diaInicio(JDateChooser txt_diaInicio) {
-        this.txt_diaFin = txt_diaInicio;
+        this.txt_diaInicio = txt_diaInicio;
     }
 
     public JLabel getLbl_nombre() {
