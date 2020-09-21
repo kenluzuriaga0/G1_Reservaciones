@@ -8,6 +8,7 @@ import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,8 @@ public class Admin_control {
         String usuario_logueado = Login_control.getUser_login().getUsername();
         this.admin.getLbl_nombre().setText(usuario_logueado.toUpperCase());
         initListener();
+       
+        
     }
 
     private void initListener() {
@@ -53,6 +56,9 @@ public class Admin_control {
         mesa.setMesas_faltantes(mesasFaltantes);
 
         dao.definirDia(mesa);
+        
+        
+        
     }
 
     class Flujo extends MouseAdapter {
@@ -71,6 +77,7 @@ public class Admin_control {
             } else if (fuente.equals(admin.getBtn_definirDia())) {
 
                 definirDia();
+                
 
             }
 

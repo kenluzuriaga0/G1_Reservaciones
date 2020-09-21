@@ -1,6 +1,8 @@
 package Vistas;
 
 import Controlador.Login_control;
+import Dao.Mesas_dao;
+import Modelo.Mesa;
 import Vistas_clases.MotionPanel;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -12,6 +14,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
+import javax.swing.SpinnerNumberModel;
 /**
  *
  * @author kenlu
@@ -24,9 +27,16 @@ public class Admin_view extends javax.swing.JFrame {
     public Admin_view() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+          
+        Mesas_dao dao = new Mesas_dao();
+        Mesa.setTotal_mesas(dao.getTotalMesas());;
+        lbl_mesasFree.setText(Mesa.getTotal_mesas()+" Mesas Libres");       
   
-
+        SpinnerNumberModel modelSpn = new SpinnerNumberModel();
+        modelSpn.setMaximum(Mesa.getTotal_mesas());
+        modelSpn.setMinimum(0);
+        spn_mesasDisp.setModel(modelSpn);
+        
     }
 
 
@@ -226,7 +236,12 @@ public class Admin_view extends javax.swing.JFrame {
 
         spn_mesasDisp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         spn_mesasDisp.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        contenedor_main.add(spn_mesasDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 80, 30));
+        spn_mesasDisp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spn_mesasDispStateChanged(evt);
+            }
+        });
+        contenedor_main.add(spn_mesasDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 90, 40));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
@@ -237,7 +252,7 @@ public class Admin_view extends javax.swing.JFrame {
         lbl_mesasFree.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbl_mesasFree.setForeground(new java.awt.Color(51, 51, 51));
         lbl_mesasFree.setText("## Mesas Libres");
-        contenedor_main.add(lbl_mesasFree, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 140, -1));
+        contenedor_main.add(lbl_mesasFree, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 150, 30));
         contenedor_main.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 199, 890, 10));
         contenedor_main.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, 890, 10));
         contenedor_main.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 315, 890, 10));
@@ -264,7 +279,7 @@ public class Admin_view extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Definir Mesas en Total");
-        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 170, 40));
+        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 190, 40));
 
         lbl_nombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(29, 53, 87));
@@ -305,6 +320,14 @@ public class Admin_view extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_logoutMousePressed
+
+    private void spn_mesasDispStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spn_mesasDispStateChanged
+        Mesas_dao dao = new Mesas_dao();
+        
+        int valor = (int)spn_mesasDisp.getValue();
+        int mesas = Mesa.getTotal_mesas();
+        lbl_mesasFree.setText(mesas-valor+" Mesas Libres");        
+    }//GEN-LAST:event_spn_mesasDispStateChanged
 
     public JButton getBtn_definirDia() {
         return btn_definirDia;

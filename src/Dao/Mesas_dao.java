@@ -10,6 +10,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Mesas_dao {
 
             if (rs.next()) {
                 total_mesas = rs.getInt("TOTAL_MESAS");
-                
+
             }
 
         } catch (Exception ex) {
@@ -58,11 +59,12 @@ public class Mesas_dao {
             ps.setInt(5, mesa.getMesas_faltantes());
 
             ps.executeUpdate();
-            System.out.println("_ejecutado definir dia_");
+            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.getFecha() + "\nNumero Mesas: "+mesa.getNum_mesas());
 
             ps.close();
 
         } catch (SQLException ex) {
+
             System.out.println("Definir DIa error " + ex.getMessage());
         }
 
@@ -75,7 +77,7 @@ public class Mesas_dao {
             return dateformat.format(fecha);
 
         } else {
-            System.out.println("fecha vacia mi loco");
+            JOptionPane.showMessageDialog(null, "Coloque una Fecha correcta Porfavor", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
