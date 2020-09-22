@@ -2,7 +2,9 @@ package Controlador;
 
 import Dao.Dao;
 import Dao.Mesas_dao;
+import Dao.Usuario_dao;
 import Modelo.Mesa;
+import Modelo.Usuario;
 import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
@@ -14,20 +16,23 @@ import javax.swing.JOptionPane;
  *
  * @author kenlu
  */
-public class Admin_control {
+public class Admin_control extends Login_control {
 
     Admin_view admin;
 
     Reporte_view reporte;
     Reporte_control reporte_control;
 
-    Admin_control(Admin_view admin) {
+    public Admin_control() {
+    }
+
+    Admin_control(Usuario user, Usuario_dao userDao, Admin_view admin) {
+        super(user, userDao);
         this.admin = admin;
-        String usuario_logueado = Login_control.getUser_login().getUsername();
-        this.admin.getLbl_nombre().setText(usuario_logueado.toUpperCase());
+
         initListener();
-       
-        
+        admin.getLbl_nombre().setText(getUser().getUsername().toUpperCase());
+        System.out.println(getUser());
     }
 
     private void initListener() {
@@ -56,9 +61,7 @@ public class Admin_control {
         mesa.setMesas_faltantes(mesasFaltantes);
 
         dao.definirDia(mesa);
-        
-        
-        
+
     }
 
     class Flujo extends MouseAdapter {
@@ -67,17 +70,16 @@ public class Admin_control {
         public void mousePressed(MouseEvent e) {
             Object fuente = e.getSource();
 
-            if (fuente.equals(admin.getLbl_reportes())) {
-                System.out.println(Login_control.getUser_login());//BORRAR DESPUES OJO
+            if (fuente.equals(admin.getLbl_reportes())) {       //ir a Reporte
+                System.out.println(getUser());//BORRAR DESPUES OJO
                 admin.dispose();
                 reporte = new Reporte_view();
-                reporte_control = new Reporte_control(reporte);
+                reporte_control = new Reporte_control(getUser(), getUserDao(), reporte);
                 reporte.setVisible(true);
 
             } else if (fuente.equals(admin.getBtn_definirDia())) {
 
                 definirDia();
-                
 
             }
 

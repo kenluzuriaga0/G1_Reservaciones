@@ -55,7 +55,7 @@ public class Login_view extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btn_ingresar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        lbl_mispam = new javax.swing.JLabel();
         btn_olvidarContra = new javax.swing.JLabel();
         txt_campoPassword = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
@@ -124,16 +124,16 @@ public class Login_view extends javax.swing.JFrame {
         btn_salir.setText("Salir");
         jPanel2.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 90, 40));
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Developed by Freylolo y su gente");
-        jLabel7.setToolTipText("minspam_00");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_mispam.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_mispam.setText("Developed by Freylolo y su gente");
+        lbl_mispam.setToolTipText("minspam_00");
+        lbl_mispam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbl_mispam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                lbl_mispamMouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        jPanel2.add(lbl_mispam, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         btn_olvidarContra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_olvidarContra.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,7 +199,7 @@ public class Login_view extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_olvidarContraMouseExited
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void lbl_mispamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_mispamMouseClicked
 
         try{
             if(Desktop.isDesktopSupported()){
@@ -211,7 +211,7 @@ public class Login_view extends javax.swing.JFrame {
         }catch(Exception ex){
             System.out.println("Fallo Hipervinculo");
         }
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_lbl_mispamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -224,13 +224,13 @@ public class Login_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_mispam;
     private javax.swing.JPanel motionPanel;
     private javax.swing.JPasswordField txt_campoPassword;
     private javax.swing.JTextField txt_campoUser;

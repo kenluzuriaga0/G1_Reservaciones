@@ -27,18 +27,27 @@ public class Login_control {
 
     private Home_control home_con;
     private Home_view home;
-    private Admin_view home_admin;
+    private Admin_view admin;
     private Admin_control admin_control;
-    
-    static private Usuario user_login  = new Usuario(); //USUARIO LOGUEADO
 
-    public Login_control(Login_view login) {
+    private Usuario user;
+    private Usuario_dao userDao;
+
+    public Login_control(Login_view login, Usuario user, Usuario_dao userDao) {
 
         this.login = login;
+        this.user = user;
+        this.userDao = userDao;
 
         initListener();
         login.setVisible(true);
-       
+
+    }
+
+    public Login_control(Usuario user, Usuario_dao userDao) {
+        this.user = user;
+        this.userDao = userDao;
+
     }
 
     public Login_control() {
@@ -55,7 +64,7 @@ public class Login_control {
 
         login.getBtn_ingresar().addMouseListener(new Flujo_login());
 
-        login.getTxt_campoPassword().addKeyListener(new KeyAdapter() {
+        login.getTxt_campoPassword().addKeyListener(new KeyAdapter() { //evento de ENTER sin implementar
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 entrar_Enter(evt);
             }
@@ -75,21 +84,20 @@ public class Login_control {
 
     private void ingresar() {
 
+        this.user.setUsername(this.login.getTxt_campoUser().getText());
+        this.user.setPassword(String.valueOf(this.login.getTxt_campoPassword().getPassword()));
+        if (this.userDao.ingresar(user)) {
 
-        user_login.setUsername(login.getTxt_campoUser().getText());
-        user_login.setPassword(String.valueOf(login.getTxt_campoPassword().getPassword()));
-        if (Usuario_dao.ingresar(user_login)) {
+            this.login.dispose();
 
-            login.dispose();
-
-            if (user_login.getId_rol() == 1) {
-                home_admin = new Admin_view();
-                admin_control = new Admin_control(home_admin);
-                home_admin.setVisible(true);
+            if (user.getId_rol() == 1) {
+                admin = new Admin_view();
+                admin_control = new Admin_control(user,userDao,admin);
+                admin.setVisible(true);
             } else {
                 home = new Home_view();
-                home_con = new Home_control(home);
-                home.setVisible(true);
+                home_con = new Home_control(user, userDao,home);
+                home.setVisible(true);  
             }
 
         } else {
@@ -113,13 +121,13 @@ public class Login_control {
 
                 login.dispose();
                 register = new SignUp_view();
-                register_con = new SignUp_control(register);
+                register_con = new SignUp_control(user, userDao, register);
                 register.setVisible(true);
 
             } else if (fuente == login.getBtn_olvidarContra()) {                      //CAMBIAR VENTANA A RESTABLECER CONTRASEÑA
                 login.dispose();
                 forgot = new ForgotPassword_view();
-                forgot_con = new ForgotPassword_control(forgot);
+                forgot_con = new ForgotPassword_control(user, userDao,forgot);
                 forgot.setVisible(true);
             } else if (fuente == login.getBtn_info()) {                                //BOTON INFO
 
@@ -153,8 +161,12 @@ public class Login_control {
 
     }
 
-    public static Usuario getUser_login() {
-        return user_login;
+    public Usuario getUser() {
+        return user;
+    }
+
+    public Usuario_dao getUserDao() {
+        return userDao;
     }
 
 }

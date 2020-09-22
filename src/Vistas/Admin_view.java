@@ -1,6 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
+import Controlador.Reservaciones;
 import Dao.Mesas_dao;
 import Modelo.Mesa;
 import Vistas_clases.MotionPanel;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
 import javax.swing.SpinnerNumberModel;
+
 /**
  *
  * @author kenlu
@@ -27,18 +29,17 @@ public class Admin_view extends javax.swing.JFrame {
     public Admin_view() {
         initComponents();
         this.setLocationRelativeTo(null);
-          
+
         Mesas_dao dao = new Mesas_dao();
         Mesa.setTotal_mesas(dao.getTotalMesas());;
-        lbl_mesasFree.setText(Mesa.getTotal_mesas()+" Mesas Libres");       
-  
+        lbl_mesasFree.setText(Mesa.getTotal_mesas() + " Mesas Libres");
+
         SpinnerNumberModel modelSpn = new SpinnerNumberModel();
         modelSpn.setMaximum(Mesa.getTotal_mesas());
         modelSpn.setMinimum(0);
         spn_mesasDisp.setModel(modelSpn);
-        
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -310,10 +311,11 @@ public class Admin_view extends javax.swing.JFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesion?", "Confirmacion", JOptionPane.YES_OPTION);
         if (opcion == 0) {
             this.dispose();
-            Login_view login = new Login_view();
-            Login_control login_con = new Login_control(login);
+            String[] args = null;
+//            Login_view login = new Login_view();
+//            Login_control login_con = new Login_control();
+            Reservaciones.main(args);
 
-            login.setVisible(true);
         } else {
             System.out.println("el num 1");
         }
@@ -323,10 +325,10 @@ public class Admin_view extends javax.swing.JFrame {
 
     private void spn_mesasDispStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spn_mesasDispStateChanged
         Mesas_dao dao = new Mesas_dao();
-        
-        int valor = (int)spn_mesasDisp.getValue();
+
+        int valor = (int) spn_mesasDisp.getValue();
         int mesas = Mesa.getTotal_mesas();
-        lbl_mesasFree.setText(mesas-valor+" Mesas Libres");        
+        lbl_mesasFree.setText(mesas - valor + " Mesas Libres");
     }//GEN-LAST:event_spn_mesasDispStateChanged
 
     public JButton getBtn_definirDia() {
@@ -385,12 +387,6 @@ public class Admin_view extends javax.swing.JFrame {
         this.lbl_nombre = lbl_nombre;
     }
 
-
-
-    
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;

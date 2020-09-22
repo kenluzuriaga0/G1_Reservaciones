@@ -1,5 +1,6 @@
 package Controlador;
 
+import Dao.Dao;
 import Modelo.Usuario;
 import Vistas.Login_view;
 import Vistas.SignUp_view;
@@ -7,13 +8,19 @@ import Dao.Usuario_dao;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
-public class SignUp_control {
+public class SignUp_control extends Login_control{
 
     private SignUp_view register;
     private Login_view login;
     private Login_control login_con;
     
-    public SignUp_control(SignUp_view register) {
+
+    public SignUp_control(Usuario user, Usuario_dao userDao, SignUp_view register) {
+        super(user,userDao);
+//        this.login = login;
+//        this.user = user;
+//        this.userDao = userDao;
+        
         this.register = register;
         initListener();
     }
@@ -30,17 +37,20 @@ public class SignUp_control {
 
     private void registrarUsuario() {
 
-        Usuario user = Login_control.getUser_login();
+        Usuario user = new Usuario();
+        
+        
         char sexo='x';
+        int id = Dao.autoId("USUARIOS", "ID_USUARIOS");
         String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
         String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
         String email = register.getTxt_email().getText().toLowerCase().trim();
         
         if (register.getRadio_m().isSelected()) {
-            System.out.println("elegiste masculino");
+           
             sexo = 'M';
         } else if (register.getRadio_f().isSelected()) {
-            System.out.println("femeninaaa");
+            
             sexo =  'F';
         }
 
@@ -48,6 +58,7 @@ public class SignUp_control {
         String passConf = String.valueOf(register.getTxt_passwordConfirm().getPassword());
 
         if (pass.equals(passConf)) {
+            user.setId(id);
             user.setPassword(pass);
             user.setNombre(nombre);
             user.setApellido(apellido);
@@ -59,7 +70,7 @@ public class SignUp_control {
         } else {
             JOptionPane.showMessageDialog(null, "La contraseña no coincide");
         }
-        if (Usuario_dao.registrar(user)) {
+        if (getUserDao().registrar(user)) {
 
             JOptionPane.showMessageDialog(null, "USER NAME: " + user.getNombre().charAt(0) + user.getApellido());
 
@@ -80,11 +91,11 @@ public class SignUp_control {
 
                 login = new Login_view();
 
-                login_con = new Login_control(login);
+                login_con = new Login_control(login,getUser(),getUserDao());
                 login.setVisible(true);
 
             } else if (fuente == register.getBtn_info()) {  //BOTON INFO
-                login_con = new Login_control();
+               login_con = new Login_control();
                 login_con.printInfo();
 
             } else if (fuente == register.getBtn_ingresar()) {

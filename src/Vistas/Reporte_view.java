@@ -1,6 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
+import Controlador.Reservaciones;
 import Vistas_clases.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
@@ -307,10 +308,10 @@ public class Reporte_view extends javax.swing.JFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesion?", "Confirmacion", JOptionPane.YES_OPTION);
         if (opcion == 0) {
             this.dispose();
-            Login_view login = new Login_view();
-            Login_control login_con = new Login_control(login);
+            String[] args = null;
+            Reservaciones.main(args);
 
-            login.setVisible(true);
+
         } else {
             System.out.println("el num 1");
         }

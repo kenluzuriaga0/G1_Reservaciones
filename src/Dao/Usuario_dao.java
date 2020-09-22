@@ -16,23 +16,24 @@ import javax.swing.JOptionPane;
  */
 public class Usuario_dao {
 
-    public static boolean registrar(Usuario user) {
+    public boolean registrar(Usuario user) {
 
         Connection conn = Conexion.conectar();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO USUARIOS VALUES(SEC_IDUSUARIOS.nextval,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USUARIOS VALUES(?,?,?,?,?,?,?,?,?)";
 
         try {
 
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, 2);
-            ps.setString(2, user.getUsername());
-            ps.setString(3, user.getPassword());
-            ps.setString(4, user.getNombre());
-            ps.setString(5, user.getApellido());
-            ps.setString(6, user.getEmail());
-            ps.setString(7, String.valueOf(user.getEstado()));
-            ps.setString(8, String.valueOf(user.getSexo()));
+            ps.setInt(1,user.getId());
+            ps.setInt(2, 2);
+            ps.setString(3, user.getUsername());
+            ps.setString(4, user.getPassword());
+            ps.setString(5, user.getNombre());
+            ps.setString(6, user.getApellido());
+            ps.setString(7, user.getEmail());
+            ps.setString(8, String.valueOf(user.getEstado()));
+            ps.setString(9, String.valueOf(user.getSexo()));
 
             ps.executeUpdate();
 
@@ -47,7 +48,7 @@ public class Usuario_dao {
 
     }
 
-    public static boolean ingresar(Usuario user) {
+    public boolean ingresar(Usuario user) {
         Connection conn = Conexion.conectar();
         PreparedStatement ps = null;
         String sql = "SELECT id_usuarios,username, password, id_roles,nombre,apellido,email,estado, sexo FROM USUARIOS WHERE username = ?";
@@ -91,7 +92,7 @@ public class Usuario_dao {
 
     }
 
-    public static String[] traerContrasena(String email) {
+    public String[] traerContrasena(String email) {
         String[] datos = new String[3];
 
         Connection conn = Conexion.conectar();

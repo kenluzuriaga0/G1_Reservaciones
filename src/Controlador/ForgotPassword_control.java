@@ -1,6 +1,7 @@
 package Controlador;
 
 import Dao.Usuario_dao;
+import Modelo.Usuario;
 import Vistas.*;
 import java.awt.event.*;
 import java.util.Properties;
@@ -13,14 +14,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
-public class ForgotPassword_control {
+public class ForgotPassword_control extends Login_control {
 
 //Se conecta con:
     private ForgotPassword_view forgot;
     private Login_view login;
     private Login_control login_con;
-
-    public ForgotPassword_control(ForgotPassword_view forgot) {
+    
+    public ForgotPassword_control(Usuario user,Usuario_dao userDao,ForgotPassword_view forgot) {
+        super(user,userDao);
         this.forgot = forgot;
         initListener();
 
@@ -40,7 +42,7 @@ public class ForgotPassword_control {
     private void recuperarContrasena() { // [nombres,password,correo]
 
         String[] datos;
-        datos = Usuario_dao.traerContrasena(forgot.getTxt_campoEmail().getText().trim());
+        datos = getUserDao().traerContrasena(forgot.getTxt_campoEmail().getText().trim());
 
         if (!datos.equals(null)) {
 
@@ -101,7 +103,7 @@ public class ForgotPassword_control {
                 forgot.dispose();
 
                 login = new Login_view();
-                login_con = new Login_control(login);
+                login_con = new Login_control(login,getUser(),getUserDao());
                 login.setVisible(true);
 
             } else if (fuente == forgot.getBtn_info()) {      //BOTON INFO

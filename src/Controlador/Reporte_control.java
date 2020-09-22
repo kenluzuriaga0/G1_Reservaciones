@@ -1,6 +1,8 @@
 
 package Controlador;
 
+import Dao.Usuario_dao;
+import Modelo.Usuario;
 import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
@@ -10,16 +12,19 @@ import java.awt.event.MouseEvent;
  *
  * @author kenlu
  */
-public class Reporte_control {
+public class Reporte_control extends Login_control {
 
     Reporte_view reporte;
-    Admin_view admin;
+    Admin_view admin ;
     Admin_control admin_con;
+    
+    Reporte_control(Usuario user, Usuario_dao userDao, Reporte_view reporte) {
+        super(user,userDao);
 
-    Reporte_control(Reporte_view reporte) {
         this.reporte = reporte;
         initListener();
-    }
+        
+        }
 
     private void initListener() {
 
@@ -33,11 +38,10 @@ public class Reporte_control {
         public void mousePressed(MouseEvent e) {
             Object fuente = e.getSource();
 
-            if (fuente.equals(reporte.getLbl_administracion())) {
+            if (fuente.equals(reporte.getLbl_administracion())) { //ir a administracion
                 reporte.dispose();
-
                 admin = new Admin_view();
-                admin_con = new Admin_control(admin);
+                admin_con = new Admin_control(getUser(),getUserDao(),admin);
                 admin.setVisible(true);
             }
 

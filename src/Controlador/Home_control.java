@@ -1,5 +1,7 @@
 package Controlador;
 
+import Dao.Usuario_dao;
+import Modelo.Usuario;
 import Vistas.Home_view;
 import Vistas.Profile_view2;
 import java.awt.event.MouseAdapter;
@@ -9,16 +11,18 @@ import java.awt.event.MouseEvent;
  *
  * @author kenlu
  */
-public class Home_control {
+public class Home_control extends Login_control {
 
     private Home_view home;
     private Profile_view2 profile;
     private Profile_control profile_con;
     
     
-    public Home_control(Home_view home) {
+    public Home_control(Usuario user, Usuario_dao userDao,Home_view home) {
+        
+        super(user,userDao);
         this.home=home;
-        this.home.getLbl_PerfilName().setText(Login_control.getUser_login().getUsername());
+        this.home.getLbl_PerfilName().setText(getUser().getUsername());
         initListener();
         
     }
@@ -39,7 +43,7 @@ public class Home_control {
                 home.dispose();
                 
                 profile = new Profile_view2();
-                profile_con = new Profile_control(profile);
+                profile_con = new Profile_control(getUser(),getUserDao(),profile);
                 profile.setVisible(true);
                 
             }
