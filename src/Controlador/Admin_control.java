@@ -59,7 +59,6 @@ public class Admin_control extends Login_control {
         Date fechaInicio = admin.getTxt_diaInicio().getDate();
         Date fechaFin = admin.getTxt_diaFin().getDate();
         
-      //  mesa.setId_mesas(Dao.autoId("MESAS", "ID_MESAS"));
         mesa.setEstado('S');
         mesa.setFecha(mesa.listarFechas(fechaInicio, fechaFin));
 

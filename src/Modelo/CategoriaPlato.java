@@ -7,30 +7,26 @@ package Modelo;
 
 /**
  *
- * @author kenlu
+ * @author angela
  */
-public class Plato {
-
-    private int id;
-    private String nombre;
+public class CategoriaPlato {
     private int id_categoria_plato;
+    private String nombre;
 
-    public Plato(int id, String nombre, int id_categoria_plato) {
-        this.id = id;
-        this.nombre = nombre;
+    public CategoriaPlato(int id_categoria_plato, String nombre) {
         this.id_categoria_plato = id_categoria_plato;
+        this.nombre = nombre;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
+    
+     public CategoriaPlato(int id_categoria_plato) {
+        this.id_categoria_plato = id_categoria_plato;
     }
 
     public int getId_categoria_plato() {
         return id_categoria_plato;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 }

@@ -5,17 +5,64 @@
  */
 package Vistas;
 
+import Dao.DAOcategoriaPlato;
+import Dao.DAOplato;
+import Modelo.CategoriaPlato;
+import Modelo.Plato;
+import Vistas_clases.CuadroBuscador;
+import Vistas_clases.I;
+import Vistas_clases.ListaComida;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author kenlu
  */
-public class ConsultarMenu_view extends javax.swing.JPanel {
+public class ConsultarMenu_view extends javax.swing.JPanel implements ListSelectionListener{
 
 
-    
+    private ListaComida lista_categoria;
+    private ListaComida lista_plato;
+    private DAOcategoriaPlato daocategoria;
+    private DAOplato daoplato;
+    private CuadroBuscador cuadro_buscador;
     
     public ConsultarMenu_view() {
         initComponents();
+        this.setVisible(true);
+        lista_categoria = (ListaComida) this.lista_c;
+        lista_plato = (ListaComida) this.lista_p;
+        this.lista_categoria.addListSelectionListener(this);
+        this.daocategoria = new DAOcategoriaPlato();
+        this.daoplato = new DAOplato();
+        cuadro_buscador = (CuadroBuscador) this.cuadro_b;
+        this.cuadro_buscador.setListaComida(lista_plato);
+        
+        ArrayList<CategoriaPlato> nombres = this.daocategoria.listar();
+        ArrayList<Icon> iconos = new ArrayList<Icon>();
+        iconos.add(I.getI("coffee-cup"));
+        iconos.add(I.getI("beer"));
+        iconos.add(I.getI("muffin"));
+        iconos.add(I.getI("roasted-chicken"));
+        iconos.add(I.getI("salad"));
+        this.lista_categoria.actualizar(iconos, nombres, JLabel.CENTER, 20);
+        this.prepararListaPlato(1);
+    }
+    
+      private void prepararListaPlato(int categoria) {
+
+        ArrayList<Plato> nombres = this.daoplato.listarPlatos(new CategoriaPlato(categoria));
+        ArrayList<Icon> iconos = new ArrayList<Icon>();
+        for (int i = 0; i < nombres.size(); i++) {
+            iconos.add(I.getI("usuario"));
+        }
+        this.lista_plato.actualizar2(iconos, nombres, JLabel.LEFT, 12);
+        this.cuadro_buscador.setModeloLista(this.lista_plato.getModelo());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -24,14 +71,15 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jList1 = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
+        lista_c = new ListaComida(true);
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        cuadro_b = new CuadroBuscador();
         jLabel2 = new javax.swing.JLabel();
-        jList2 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lista_p = new ListaComida(false);
         fondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(820, 440));
@@ -43,17 +91,13 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Categorias");
 
-        jList1.setBackground(new java.awt.Color(29, 53, 87));
-        jList1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "PRINCIPAL", "BEBIDAS", "ENSALADAS", "DESAYUNOS", "POSTRES" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        lista_c.setBackground(new java.awt.Color(29, 53, 87));
+        lista_c.setBorder(null);
+        lista_c.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        lista_c.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -62,18 +106,17 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(8, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addComponent(lista_c, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jList1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,12 +125,12 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jList1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(lista_c, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 190, 230));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 250, 360));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,55 +157,50 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(29, 53, 87));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Buscar");
+        cuadro_b.setBackground(new java.awt.Color(255, 255, 255));
+        cuadro_b.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cuadro_b.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Detalles de platos");
 
-        jList2.setBackground(new java.awt.Color(29, 53, 87));
-        jList2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jList2.setForeground(new java.awt.Color(255, 255, 255));
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "vacio", "vacio", "vacio", "vacio", "vacio", "vacio", "vacio", "vacio", "vacio" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jScrollPane2.setBorder(null);
+
+        lista_p.setBackground(new java.awt.Color(29, 53, 87));
+        lista_p.setBorder(null);
+        lista_p.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lista_p.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setViewportView(lista_p);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jList2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cuadro_b, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cuadro_b, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jList2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 250, 330));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 320, 350));
 
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
@@ -172,16 +210,33 @@ public class ConsultarMenu_view extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cuadro_b;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> lista_c;
+    private javax.swing.JList<String> lista_p;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+         if (this.lista_categoria.getSelectedIndex() == 0) {
+            this.prepararListaPlato(1);
+        } else if (this.lista_categoria.getSelectedIndex() == 1) {
+            this.prepararListaPlato(2);
+        } else if (this.lista_categoria.getSelectedIndex() == 2) {
+            this.prepararListaPlato(3);
+        } else if (this.lista_categoria.getSelectedIndex() == 3) {
+            this.prepararListaPlato(4);
+        } else if (this.lista_categoria.getSelectedIndex() == 4) {
+            this.prepararListaPlato(5);
+        }
+
+    }
 }
