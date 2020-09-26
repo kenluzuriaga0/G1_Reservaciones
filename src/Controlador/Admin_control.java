@@ -9,6 +9,9 @@ import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,7 +47,8 @@ public class Admin_control extends Login_control {
     }
 
     private void definirDia() {
-
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Realizar esta transaccion?", "Confirmacion", JOptionPane.YES_OPTION);
+        if (opcion == 0) {
         Mesa mesa = new Mesa();
         Mesas_dao dao = new Mesas_dao();
 
@@ -52,16 +56,18 @@ public class Admin_control extends Login_control {
 
         int num_mesas = (Integer) admin.getSpn_mesasDisp().getValue();
         int mesasFaltantes = Mesa.getTotal_mesas() - num_mesas; //calculo
-
-        mesa.setId_mesas(Dao.autoId("MESAS", "ID_MESAS"));
+        Date fechaInicio = admin.getTxt_diaInicio().getDate();
+        Date fechaFin = admin.getTxt_diaFin().getDate();
+        
+      //  mesa.setId_mesas(Dao.autoId("MESAS", "ID_MESAS"));
         mesa.setEstado('S');
-        mesa.setFecha(admin.getTxt_diaInicio().getDate());
+        mesa.setFecha(mesa.listarFechas(fechaInicio, fechaFin));
 
         mesa.setNum_mesas(num_mesas);
         mesa.setMesas_faltantes(mesasFaltantes);
 
         dao.definirDia(mesa);
-
+        }
     }
 
     private void definirTotal() {
@@ -79,6 +85,10 @@ public class Admin_control extends Login_control {
         }
     }
 
+    
+    
+
+    
     class Flujo extends MouseAdapter {
 
         @Override

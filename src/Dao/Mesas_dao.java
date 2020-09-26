@@ -55,7 +55,7 @@ public class Mesas_dao {
 
             ps.setInt(1, Mesa.getTotal_mesas());
             ps.executeUpdate();
-            
+
         } catch (Exception ex) {
             System.out.println("no se actualizo la tabla " + ex.getMessage());
         }
@@ -69,20 +69,27 @@ public class Mesas_dao {
 
         try {
             ps = conn.prepareStatement(query);
+            for (int i = 0; i < mesa.getFecha().size(); i++) {
+                ps.setInt(1, Dao.autoId("MESAS", "ID_MESAS"));
+                ps.setString(2, String.valueOf(mesa.getEstado()));
+                ps.setString(3, formatear(mesa.getFecha().get(i)));
+                ps.setInt(4, mesa.getNum_mesas());
+                ps.setInt(5, mesa.getMesas_faltantes());
+                
+                ps.executeUpdate();
+                
+               
+            }
 
-            ps.setInt(1, mesa.getId_mesas());
-            ps.setString(2, String.valueOf(mesa.getEstado()));
-            ps.setString(3, formatear(mesa.getFecha()));
-            ps.setInt(4, mesa.getNum_mesas());
-            ps.setInt(5, mesa.getMesas_faltantes());
-
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.getFecha() + "\nNumero Mesas: " + mesa.getNum_mesas());
+            
+            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + formatear(mesa.getFecha().get(0)) + " hasta "
+                    + formatear(mesa.getFecha().get(mesa.getFecha().size() - 1))
+                    + "\nNumero Mesas: " + mesa.getNum_mesas());
 
             ps.close();
 
         } catch (SQLException ex) {
-
+            JOptionPane.showMessageDialog(null, "Ocurrio algun Error","Error",JOptionPane.ERROR);
             System.out.println("Definir DIa error " + ex.getMessage());
         }
 
