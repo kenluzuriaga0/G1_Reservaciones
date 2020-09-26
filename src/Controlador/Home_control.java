@@ -3,7 +3,7 @@ package Controlador;
 import Dao.Usuario_dao;
 import Modelo.Usuario;
 import Vistas.Home_view;
-import Vistas.Profile_view2;
+import Vistas.Profile_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 public class Home_control extends Login_control {
 
     private Home_view home;
-    private Profile_view2 profile;
+    private Profile_view profile;
     private Profile_control profile_con;
     
     
@@ -42,7 +42,7 @@ public class Home_control extends Login_control {
             if(fuente == home.getLbl_perfil()){
                 home.dispose();
                 
-                profile = new Profile_view2();
+                profile = new Profile_view();
                 profile_con = new Profile_control(getUser(),getUserDao(),profile);
                 profile.setVisible(true);
                 

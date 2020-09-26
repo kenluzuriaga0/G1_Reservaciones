@@ -20,6 +20,7 @@ public class Mesas_dao {
 
     static final String INSERT_DEFINIR = "INSERT INTO MESAS (id_mesas,estado,fecha_inicio, num_mesas,mesas_faltantes)values(?,?,?,?,?)";
     static final String SELECT_TOTALMESAS = "SELECT * FROM TOTAL_MESAS";
+    static final String UPDATE_TOTALMESAS = "UPDATE TOTAL_MESAS SET TOTAL_MESAS = ?";
 
     public int getTotalMesas() {
         Connection conn = Conexion.conectar();
@@ -35,11 +36,28 @@ public class Mesas_dao {
                 total_mesas = rs.getInt("TOTAL_MESAS");
 
             }
-
+            ps.close();
+            conn.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             return total_mesas;
+        }
+
+    }
+
+    public void definirTotalMesas() {
+        Connection conn = Conexion.conectar();
+        PreparedStatement ps;
+        String query = UPDATE_TOTALMESAS;
+        try {
+            ps = conn.prepareStatement(query);
+
+            ps.setInt(1, Mesa.getTotal_mesas());
+            ps.executeUpdate();
+            
+        } catch (Exception ex) {
+            System.out.println("no se actualizo la tabla " + ex.getMessage());
         }
 
     }
@@ -59,7 +77,7 @@ public class Mesas_dao {
             ps.setInt(5, mesa.getMesas_faltantes());
 
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.getFecha() + "\nNumero Mesas: "+mesa.getNum_mesas());
+            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.getFecha() + "\nNumero Mesas: " + mesa.getNum_mesas());
 
             ps.close();
 

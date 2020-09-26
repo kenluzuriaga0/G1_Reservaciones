@@ -1,6 +1,7 @@
 package Vistas;
 
 import Vistas_clases.MotionPanel;
+import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Label;
 import javax.swing.JLabel;
@@ -10,18 +11,22 @@ import javax.swing.SwingUtilities;
  *
  * @author yitsu
  */
-public class Profile_view2 extends javax.swing.JFrame {
+public class Profile_view extends javax.swing.JFrame {
 
-    ConsultarMenu_view panel1 = new ConsultarMenu_view();
-    Reserva_view panel2 = new Reserva_view();
-    CardLayout vista;
-
-    public Profile_view2() {
+    public Profile_view() {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        vista = (CardLayout) contenedor_main.getLayout();
 
+
+    }
+
+    public JDateChooser getTxt_fecha() {
+        return txt_fecha;
+    }
+
+    public void setTxt_fecha(JDateChooser txt_fecha) {
+        this.txt_fecha = txt_fecha;
     }
 
 
@@ -33,7 +38,7 @@ public class Profile_view2 extends javax.swing.JFrame {
         jPanel1 = new MotionPanel(this);
         btn_cerrar = new javax.swing.JLabel();
         btn_minimizar = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbl_home = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lbl_nombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,8 +53,8 @@ public class Profile_view2 extends javax.swing.JFrame {
         lbl_resActual = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         contenedor_main = new javax.swing.JPanel();
+        txt_fecha = new com.toedter.calendar.JDateChooser();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,9 +82,9 @@ public class Profile_view2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Sistema Reservaciones");
+        lbl_home.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_home.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_home.setText("Sistema Reservaciones");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,7 +92,7 @@ public class Profile_view2 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_home, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 549, Short.MAX_VALUE)
                 .addComponent(btn_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -101,7 +106,7 @@ public class Profile_view2 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                    .addComponent(lbl_home, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -138,11 +143,11 @@ public class Profile_view2 extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(159, 159, 159)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,11 +163,11 @@ public class Profile_view2 extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lbl_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(lbl_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                .addGap(60, 60, 60))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(68, 68, 68))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +180,7 @@ public class Profile_view2 extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 990, 160));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 990, 160));
 
         jPanel3.setBackground(new java.awt.Color(29, 53, 87));
 
@@ -253,16 +258,16 @@ public class Profile_view2 extends javax.swing.JFrame {
         jLabel6.setOpaque(true);
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 140, 30));
+        contenedor_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        contenedor_main.setLayout(new java.awt.CardLayout());
+        txt_fecha.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        contenedor_main.add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 160, 30));
 
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
         fondo.setText("Consulta nuestro Menú Aqui");
         fondo.setOpaque(true);
-        contenedor_main.add(fondo, "card2");
+        contenedor_main.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 430));
 
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 820, 440));
 
@@ -310,6 +315,10 @@ public class Profile_view2 extends javax.swing.JFrame {
         this.lbl_resPendientes = lbl_resPendientes;
     }
 
+    public JLabel getLbl_home() {
+        return lbl_home;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
@@ -320,7 +329,6 @@ public class Profile_view2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -329,10 +337,11 @@ public class Profile_view2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_resActual;
     private javax.swing.JLabel lbl_resHechas;
     private javax.swing.JLabel lbl_resPendientes;
+    private com.toedter.calendar.JDateChooser txt_fecha;
     // End of variables declaration//GEN-END:variables
 }

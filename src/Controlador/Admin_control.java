@@ -9,7 +9,6 @@ import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,7 +39,8 @@ public class Admin_control extends Login_control {
         admin.getLbl_reportes().addMouseListener(new Flujo());
 
         admin.getBtn_definirDia().addMouseListener(new Flujo());
-
+        
+        admin.getBtn_definirTotal().addMouseListener(new Flujo());
     }
 
     private void definirDia() {
@@ -64,6 +64,21 @@ public class Admin_control extends Login_control {
 
     }
 
+    private void definirTotal() {
+        Mesas_dao dao = new Mesas_dao();
+        
+        String input = JOptionPane.showInputDialog(null, "Total de mesas actual: " + Mesa.getTotal_mesas()+" mesas","Defina Total de Mesas", JOptionPane.QUESTION_MESSAGE);
+        
+        try {
+            
+            Mesa.setTotal_mesas(Integer.parseInt(input));
+            dao.definirTotalMesas();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Digite un numero válido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     class Flujo extends MouseAdapter {
 
         @Override
@@ -81,6 +96,8 @@ public class Admin_control extends Login_control {
 
                 definirDia();
 
+            }else if(fuente.equals(admin.getBtn_definirTotal())){
+                definirTotal();
             }
 
         }

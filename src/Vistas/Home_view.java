@@ -16,6 +16,7 @@ public class Home_view extends javax.swing.JFrame {
     
     ConsultarMenu_view panel1 = new ConsultarMenu_view();
     Reserva_view panel2 = new Reserva_view();
+    Resenas_view panel3 = new Resenas_view();
     CardLayout vista;
     
     public Home_view() {
@@ -125,6 +126,11 @@ public class Home_view extends javax.swing.JFrame {
         btn_resenaView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reseña.png"))); // NOI18N
         btn_resenaView.setText("Reseñas");
         btn_resenaView.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_resenaView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resenaViewActionPerformed(evt);
+            }
+        });
 
         btn_consultaView.setBackground(new java.awt.Color(112, 193, 179));
         boton_grupo.add(btn_consultaView);
@@ -293,6 +299,14 @@ public class Home_view extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_logoutMousePressed
+
+    private void btn_resenaViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resenaViewActionPerformed
+        contenedor_main.add(panel3, "resena");
+        vista.show(contenedor_main, "resena");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+
+    }//GEN-LAST:event_btn_resenaViewActionPerformed
     
     public JLabel getLbl_perfil() {
         return lbl_perfil;

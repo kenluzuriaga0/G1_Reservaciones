@@ -70,7 +70,7 @@ public class Admin_view extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         txt_diaFin = new com.toedter.calendar.JDateChooser();
         txt_diaInicio = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        btn_definirTotal = new javax.swing.JButton();
         lbl_nombre = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -235,7 +235,7 @@ public class Admin_view extends javax.swing.JFrame {
         jLabel11.setText("Numero Mesas Libres");
         contenedor_main.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 201, -1));
 
-        spn_mesasDisp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        spn_mesasDisp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         spn_mesasDisp.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         spn_mesasDisp.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -276,11 +276,11 @@ public class Admin_view extends javax.swing.JFrame {
         txt_diaInicio.setOpaque(false);
         contenedor_main.add(txt_diaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 160, 30));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Definir Mesas en Total");
-        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 190, 40));
+        btn_definirTotal.setBackground(new java.awt.Color(102, 102, 102));
+        btn_definirTotal.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
+        btn_definirTotal.setForeground(new java.awt.Color(0, 0, 0));
+        btn_definirTotal.setText("Definir Mesas en Total");
+        contenedor_main.add(btn_definirTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 190, 40));
 
         lbl_nombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(29, 53, 87));
@@ -312,8 +312,7 @@ public class Admin_view extends javax.swing.JFrame {
         if (opcion == 0) {
             this.dispose();
             String[] args = null;
-//            Login_view login = new Login_view();
-//            Login_control login_con = new Login_control();
+
             Reservaciones.main(args);
 
         } else {
@@ -387,14 +386,18 @@ public class Admin_view extends javax.swing.JFrame {
         this.lbl_nombre = lbl_nombre;
     }
 
+    public JButton getBtn_definirTotal() {
+        return btn_definirTotal;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
     private javax.swing.JLabel btn_cerrar;
     private javax.swing.JButton btn_definirDia;
+    private javax.swing.JButton btn_definirTotal;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
