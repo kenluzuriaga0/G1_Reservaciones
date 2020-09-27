@@ -73,6 +73,8 @@ public class Admin_view extends javax.swing.JFrame {
         btn_definirTotal = new javax.swing.JButton();
         lbl_nombre = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -292,6 +294,16 @@ public class Admin_view extends javax.swing.JFrame {
         jLabel5.setText("Bienvenido");
         contenedor_main.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 90, -1));
 
+        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel2.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
+        jLabel2.setText("Actualizar el total de mesas que posee el restaurante");
+        contenedor_main.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 370, -1));
+
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel3.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
+        jLabel3.setText("Separa el numero de mesas que haya definido en el rango de inicio y fin disponibles para reservaciones");
+        contenedor_main.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 710, -1));
+
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 950, 580));
 
         pack();
@@ -401,6 +413,8 @@ public class Admin_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;

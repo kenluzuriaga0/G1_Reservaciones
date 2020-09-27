@@ -28,7 +28,7 @@ public class Login_control {
     private Admin_view admin;
     private Admin_control admin_control;
 
-    private Usuario user;
+    private static Usuario user;
     private Usuario_dao userDao;
 
     public Login_control(Login_view login, Usuario user, Usuario_dao userDao) {
@@ -159,7 +159,7 @@ public class Login_control {
 
     }
 
-    public Usuario getUser() {
+    public static Usuario getUser() {
         return user;
     }
 

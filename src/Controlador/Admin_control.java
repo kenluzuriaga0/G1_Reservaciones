@@ -42,40 +42,43 @@ public class Admin_control extends Login_control {
         admin.getLbl_reportes().addMouseListener(new Flujo());
 
         admin.getBtn_definirDia().addMouseListener(new Flujo());
-        
+
         admin.getBtn_definirTotal().addMouseListener(new Flujo());
     }
 
     private void definirDia() {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Realizar esta transaccion?", "Confirmacion", JOptionPane.YES_OPTION);
         if (opcion == 0) {
-        Mesa mesa = new Mesa();
-        Mesas_dao dao = new Mesas_dao();
+            Mesa mesa = new Mesa();
+            Mesas_dao dao = new Mesas_dao();
 
-        Mesa.setTotal_mesas(dao.getTotalMesas()); //obtener el total de mesas
+            Mesa.setTotal_mesas(dao.getTotalMesas()); //obtener el total de mesas
 
-        int num_mesas = (Integer) admin.getSpn_mesasDisp().getValue();
-        int mesasFaltantes = Mesa.getTotal_mesas() - num_mesas; //calculo
-        Date fechaInicio = admin.getTxt_diaInicio().getDate();
-        Date fechaFin = admin.getTxt_diaFin().getDate();
-        
-        mesa.setEstado('S');
-        mesa.setFecha(mesa.listarFechas(fechaInicio, fechaFin));
+            if (mesa.validarDefinirMesas(admin.getTxt_diaInicio().getDate(), admin.getTxt_diaFin().getDate(), admin.getSpn_mesasDisp())) {
+                int num_mesas = (Integer) admin.getSpn_mesasDisp().getValue();
+                int mesasFaltantes = Mesa.getTotal_mesas() - num_mesas; //calculo
+                Date fechaInicio = admin.getTxt_diaInicio().getDate();
+                Date fechaFin = admin.getTxt_diaFin().getDate();
 
-        mesa.setNum_mesas(num_mesas);
-        mesa.setMesas_faltantes(mesasFaltantes);
+                mesa.setEstado('S');
+                mesa.setFecha(mesa.listarFechas(fechaInicio, fechaFin));
 
-        dao.definirDia(mesa);
+                mesa.setNum_mesas(num_mesas);
+                mesa.setMesas_faltantes(mesasFaltantes);
+
+                dao.definirDia(mesa);
+
+            }
         }
     }
 
     private void definirTotal() {
         Mesas_dao dao = new Mesas_dao();
-        
-        String input = JOptionPane.showInputDialog(null, "Total de mesas actual: " + Mesa.getTotal_mesas()+" mesas","Defina Total de Mesas", JOptionPane.QUESTION_MESSAGE);
-        
+
+        String input = JOptionPane.showInputDialog(null, "Total de mesas actual: " + Mesa.getTotal_mesas() + " mesas", "Defina Total de Mesas", JOptionPane.QUESTION_MESSAGE);
+
         try {
-            
+
             Mesa.setTotal_mesas(Integer.parseInt(input));
             dao.definirTotalMesas();
 
@@ -84,10 +87,6 @@ public class Admin_control extends Login_control {
         }
     }
 
-    
-    
-
-    
     class Flujo extends MouseAdapter {
 
         @Override
@@ -105,7 +104,7 @@ public class Admin_control extends Login_control {
 
                 definirDia();
 
-            }else if(fuente.equals(admin.getBtn_definirTotal())){
+            } else if (fuente.equals(admin.getBtn_definirTotal())) {
                 definirTotal();
             }
 

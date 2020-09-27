@@ -110,6 +110,7 @@ public class LaminaComentarios extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         if(this.procesador_texto.getCuadro_texto().getText().trim().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "No puede enviar comentarios vacios", "OYE NOOOO!!", JOptionPane.ERROR_MESSAGE);
         }else{
@@ -119,7 +120,7 @@ public class LaminaComentarios extends JPanel implements ActionListener{
               this.borrar();
           Date fecha=new Date();
           Timestamp fecha_completa=new Timestamp(fecha.getTime());
-          Comentario c=new Comentario(3,this.procesador_texto.getCuadro_texto().getText(),fecha_completa); //aqui va el id
+          Comentario c=new Comentario(Login_control.getUser().getId(),this.procesador_texto.getCuadro_texto().getText(),fecha_completa); //aqui va el id
            //del usuario logueado en el segundo parametro
            dao.insertar(c);
            this.insertarComentarios();

@@ -1,10 +1,12 @@
 package Modelo;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.control.Spinner;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -26,7 +28,7 @@ public class Mesa {
 
         fin = truncarFecha(fin);
         while (inicio.before(fin) || inicio.equals(fin)) { //atentoooo FIN tienes segundos y fechas - Truncar esos minutos, tu puedes ken del futuro
-            
+
             fechas.add(inicio);
             inicio = new Date(inicio.getTime() + (1000 * 60 * 60 * 24));
 
@@ -35,14 +37,40 @@ public class Mesa {
         return fechas;
     }
 
+    public boolean validarDefinirMesas(Date inicio, Date fin, JSpinner mesas) {
+
+        if (inicio == null || fin == null || mesas.getValue().equals(0)) {
+
+            JOptionPane.showMessageDialog(null, "Error, porfavor llene todos los campos", "Error Mensaje", JOptionPane.ERROR_MESSAGE);
+            return false;
+
+        } else if (inicio.after(fin)) {
+            JOptionPane.showMessageDialog(null, "Error, La fecha Inicio no puede ser mayor que la fecha Final", "Error Mensaje", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+            
+        } else {
+            return true;
+        }
+
+    }
+
     public Date truncarFecha(Date fecha) {
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(fecha);
-        calendario.set(Calendar.HOUR_OF_DAY, 0);
-        calendario.set(Calendar.MINUTE, 0);
-        calendario.set(Calendar.SECOND, 0);
-        calendario.set(Calendar.MILLISECOND, 0);
-        return calendario.getTime();
+        Calendar calendario = null;
+        try {
+            calendario = Calendar.getInstance();
+            calendario.setTime(fecha);
+            calendario.set(Calendar.HOUR_OF_DAY, 0);
+            calendario.set(Calendar.MINUTE, 0);
+            calendario.set(Calendar.SECOND, 0);
+            calendario.set(Calendar.MILLISECOND, 0);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error, porfavor elija un rango de fechas válido", "Error Mensaje", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            return calendario.getTime();
+        }
+
     }
 
     public int getId_mesas() {
