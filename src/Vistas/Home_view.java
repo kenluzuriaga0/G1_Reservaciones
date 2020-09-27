@@ -2,6 +2,7 @@ package Vistas;
 
 import Controlador.Login_control;
 import Controlador.Reservaciones;
+import Vistas_clases.LaminaComentarios;
 import Vistas_clases.MotionPanel;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
@@ -13,20 +14,21 @@ import javax.swing.SwingUtilities;
  * @author yitsu
  */
 public class Home_view extends javax.swing.JFrame {
-    
+
     ConsultarMenu_view panel1 = new ConsultarMenu_view();
     Reserva_view panel2 = new Reserva_view();
-    Resenas_view panel3 = new Resenas_view();
+        Resenas_view panel3 = new Resenas_view();
+
     CardLayout vista;
-    
+
     public Home_view() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         vista = (CardLayout) contenedor_main.getLayout();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -266,7 +268,7 @@ public class Home_view extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cerrarMouseClicked
 
     private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
-        
+
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
@@ -278,16 +280,17 @@ public class Home_view extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_consultaViewActionPerformed
 
     private void btn_reservaViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reservaViewActionPerformed
+
         contenedor_main.add(panel2, "reserva");
         vista.show(contenedor_main, "reserva");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
-        
+
 
     }//GEN-LAST:event_btn_reservaViewActionPerformed
 
     private void lbl_logoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_logoutMousePressed
-        
+
         int opcion = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesion?", "Confirmacion", JOptionPane.YES_OPTION);
         if (opcion == 0) {
             this.dispose();
@@ -307,19 +310,19 @@ public class Home_view extends javax.swing.JFrame {
         this.repaint();
 
     }//GEN-LAST:event_btn_resenaViewActionPerformed
-    
+
     public JLabel getLbl_perfil() {
         return lbl_perfil;
     }
-    
+
     public void setLbl_perfil(JLabel lbl_perfil) {
         this.lbl_perfil = lbl_perfil;
     }
-    
+
     public JLabel getLbl_PerfilName() {
         return lbl_PerfilName;
     }
-    
+
     public void setLbl_PerfilName(JLabel lbl_PerfilName) {
         this.lbl_PerfilName = lbl_PerfilName;
     }
