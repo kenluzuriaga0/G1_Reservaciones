@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import com.toedter.calendar.*;
+
 /**
  *
  * @author kenlu
@@ -14,8 +16,12 @@ public class Reserva_view extends javax.swing.JPanel {
     /**
      * Creates new form Reserva_view
      */
+     JCalendar fecha;
     public Reserva_view() {
         initComponents();
+                fecha = new JCalendar();
+
+        
     }
 
     /**
@@ -38,6 +44,7 @@ public class Reserva_view extends javax.swing.JPanel {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
+        panel_fecha = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
         cmb_numPersonas = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -65,6 +72,11 @@ public class Reserva_view extends javax.swing.JPanel {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel5MousePressed(evt);
+            }
+        });
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 310, 130));
@@ -130,6 +142,7 @@ public class Reserva_view extends javax.swing.JPanel {
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        add(panel_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 220, 200));
 
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -165,6 +178,16 @@ public class Reserva_view extends javax.swing.JPanel {
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 440));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+
+   
+
+        panel_fecha.add(fecha);
+        fecha.setBounds(10, 10, 50, 50);
+        System.out.println("ojito");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmb_numPersonas;
@@ -183,5 +206,6 @@ public class Reserva_view extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel panel_fecha;
     // End of variables declaration//GEN-END:variables
 }

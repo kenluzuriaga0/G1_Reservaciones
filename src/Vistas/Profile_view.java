@@ -1,6 +1,6 @@
 package Vistas;
 
-import Vistas_clases.MotionPanel;
+import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Label;

@@ -80,7 +80,7 @@ public class Admin_control extends Login_control {
         try {
 
             Mesa.setTotal_mesas(Integer.parseInt(input));
-            dao.definirTotalMesas();
+            dao. actualizarTotalMesas();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Digite un numero válido", "Error", JOptionPane.ERROR_MESSAGE);

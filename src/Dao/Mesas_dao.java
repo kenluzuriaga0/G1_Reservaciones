@@ -1,27 +1,25 @@
 package Dao;
 
 import Config.Conexion;
+import IDao.IMesa_dao;
 import Modelo.Mesa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author kenlu
  */
-public class Mesas_dao {
+public class Mesas_dao implements IMesa_dao {
 
     static final String INSERT_DEFINIR = "INSERT INTO MESAS (id_mesas,estado,fecha_inicio, num_mesas,mesas_faltantes)values(?,?,?,?,?)";
     static final String SELECT_TOTALMESAS = "SELECT * FROM TOTAL_MESAS";
     static final String UPDATE_TOTALMESAS = "UPDATE TOTAL_MESAS SET TOTAL_MESAS = ?";
 
+    @Override
     public int getTotalMesas() {
         Connection conn = Conexion.conectar();
         PreparedStatement ps;
@@ -46,7 +44,8 @@ public class Mesas_dao {
 
     }
 
-    public void definirTotalMesas() {
+    @Override
+    public void actualizarTotalMesas() {
         Connection conn = Conexion.conectar();
         PreparedStatement ps;
         String query = UPDATE_TOTALMESAS;
@@ -62,6 +61,7 @@ public class Mesas_dao {
 
     }
 
+    @Override
     public void definirDia(Mesa mesa) {
         Connection conn = Conexion.conectar();
         PreparedStatement ps;
@@ -72,39 +72,25 @@ public class Mesas_dao {
             for (int i = 0; i < mesa.getFecha().size(); i++) {
                 ps.setInt(1, Dao.autoId("MESAS", "ID_MESAS"));
                 ps.setString(2, String.valueOf(mesa.getEstado()));
-                ps.setString(3, formatear(mesa.getFecha().get(i)));
+                ps.setString(3, mesa.formatear(mesa.getFecha().get(i)));
                 ps.setInt(4, mesa.getNum_mesas());
                 ps.setInt(5, mesa.getMesas_faltantes());
-                
+
                 ps.executeUpdate();
-                
-               
+
             }
 
-            
-            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + formatear(mesa.getFecha().get(0)) + " hasta "
-                    + formatear(mesa.getFecha().get(mesa.getFecha().size() - 1))
+            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.formatear(mesa.getFecha().get(0)) + " hasta "
+                    + mesa.formatear(mesa.getFecha().get(mesa.getFecha().size() - 1))
                     + "\nNumero Mesas: " + mesa.getNum_mesas());
 
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ocurrio algun Error","Error",JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Ocurrio algun Error", "Error", JOptionPane.ERROR);
             System.out.println("Definir DIa error " + ex.getMessage());
         }
 
-    }
-
-    public String formatear(Date fecha) {
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-
-        if (fecha != null) {
-            return dateformat.format(fecha);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Coloque una Fecha correcta Porfavor", "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
     }
 
 }

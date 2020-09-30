@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas_clases;
+package Vistas_aux;
 
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
@@ -27,7 +27,7 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
 public class ListaComida extends JList{
     private DefaultListModel<CeldasLamina> modelo;

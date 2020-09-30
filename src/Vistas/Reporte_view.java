@@ -2,7 +2,7 @@ package Vistas;
 
 import Controlador.Login_control;
 import Controlador.Reservaciones;
-import Vistas_clases.MotionPanel;
+import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import javax.swing.ImageIcon;

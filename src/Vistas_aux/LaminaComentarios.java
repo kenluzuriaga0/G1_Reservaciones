@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas_clases;
+package Vistas_aux;
 
 import Controlador.Login_control;
-import Dao.DaoComentarios;
+import Dao.Comentario_dao;
 import Modelo.Comentario;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
@@ -42,10 +42,10 @@ import javax.swing.border.Border;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
 public class LaminaComentarios extends JPanel implements ActionListener{
-    private DaoComentarios dao;
+    private Comentario_dao dao;
     private ArrayList<Comentario>comentarios;
     private Box caja_vertical;
     private ProcesadorDeTexto procesador_texto;
@@ -57,7 +57,7 @@ public class LaminaComentarios extends JPanel implements ActionListener{
     public LaminaComentarios() {
         this.setBackground(Color.white);
         procesador_texto=new ProcesadorDeTexto();
-        dao=new DaoComentarios();
+        dao=new Comentario_dao();
         boton_enviar=new JButton("ENVIAR COMENTARIO!!");
         caja_vertical=Box.createVerticalBox();
         add(caja_vertical);

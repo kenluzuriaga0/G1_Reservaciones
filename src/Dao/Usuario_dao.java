@@ -2,20 +2,22 @@ package Dao;
 
 import Modelo.*;
 import Config.Conexion;
+import IDao.IUsuario_dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author kenlu
  */
-public class Usuario_dao {
+public class Usuario_dao implements IUsuario_dao {
 
+    @Override
     public boolean registrar(Usuario user) {
 
         Connection conn = Conexion.conectar();
@@ -48,6 +50,7 @@ public class Usuario_dao {
 
     }
 
+    @Override
     public boolean ingresar(Usuario user) {
         Connection conn = Conexion.conectar();
         PreparedStatement ps = null;
@@ -92,9 +95,10 @@ public class Usuario_dao {
 
     }
 
-    public String[] traerContrasena(String email) {
-        String[] datos = new String[3];
-
+    @Override
+    public  List<String>  contrasenaPorCorreo(String email) {
+        //String[] datos = new String[3];
+        List<String> datos = new ArrayList<>();
         Connection conn = Conexion.conectar();
         PreparedStatement ps;
         ResultSet rs;
@@ -105,9 +109,9 @@ public class Usuario_dao {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                datos[0] =rs.getString("NOMBRE").toUpperCase()+" "+rs.getString("APELLIDO").toUpperCase(); //nom completo
-                datos[1] = rs.getString("PASSWORD");
-                datos[2]= rs.getString("USERNAME");
+                datos.add(rs.getString("NOMBRE").toUpperCase()+" "+rs.getString("APELLIDO").toUpperCase()); //nom completo
+                datos.add(rs.getString("PASSWORD"));
+                datos.add(rs.getString("USERNAME"));
                 
                 
             }

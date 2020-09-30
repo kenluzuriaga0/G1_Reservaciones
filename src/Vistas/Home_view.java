@@ -2,8 +2,8 @@ package Vistas;
 
 import Controlador.Login_control;
 import Controlador.Reservaciones;
-import Vistas_clases.LaminaComentarios;
-import Vistas_clases.MotionPanel;
+import Vistas_aux.LaminaComentarios;
+import Vistas_aux.MotionPanel;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

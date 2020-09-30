@@ -4,6 +4,7 @@ import Dao.Usuario_dao;
 import Modelo.Usuario;
 import Vistas.*;
 import java.awt.event.*;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -41,8 +42,8 @@ public class ForgotPassword_control extends Login_control {
 
     private void recuperarContrasena() { // [nombres,password,correo]
 
-        String[] datos;
-        datos = getUserDao().traerContrasena(forgot.getTxt_campoEmail().getText().trim());
+        List<String> datos;
+        datos = getUserDao().contrasenaPorCorreo(forgot.getTxt_campoEmail().getText().trim());
 
         if (!datos.equals(null)) {
 
@@ -60,8 +61,8 @@ public class ForgotPassword_control extends Login_control {
             String passwordRemitente = "11agosto";
             String correoReceptor = forgot.getTxt_campoEmail().getText();
             String asunto = "-Reservaciones- Correo de Recuperacion de Contraseña";
-            String mensaje = "Hola " + datos[0] + ", ha solicitado el envio de su contraseña en el SISTEMA DE RESERVACION DE MESAS<br>"
-                    + "Username: <b>" + datos[2] + "</b><br>Contraseña: <b>" + datos[1] + "</b><br> Por favor, No Responder a este correo";
+            String mensaje = "Hola " + datos.get(0) + ", ha solicitado el envio de su contraseña en el SISTEMA DE RESERVACION DE MESAS<br>"
+                    + "Username: <b>" + datos.get(2) + "</b><br>Contraseña: <b>" + datos.get(1) + "</b><br> Por favor, No Responder a este correo";
 
             MimeMessage message = new MimeMessage(session);
             try {

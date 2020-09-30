@@ -1,4 +1,4 @@
-package Vistas_clases;
+package Vistas_aux;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;

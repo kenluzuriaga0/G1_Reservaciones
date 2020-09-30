@@ -5,13 +5,13 @@
  */
 package Vistas;
 
-import Dao.DAOcategoriaPlato;
-import Dao.DAOplato;
+import Dao.Categoria_dao;
+import Dao.Plato_dao;
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
-import Vistas_clases.CuadroBuscador;
-import Vistas_clases.I;
-import Vistas_clases.ListaComida;
+import Vistas_aux.CuadroBuscador;
+import Vistas_aux.I;
+import Vistas_aux.ListaComida;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -27,8 +27,8 @@ public class ConsultarMenu_view extends javax.swing.JPanel implements ListSelect
 
     private ListaComida lista_categoria;
     private ListaComida lista_plato;
-    private DAOcategoriaPlato daocategoria;
-    private DAOplato daoplato;
+    private Categoria_dao daocategoria;
+    private Plato_dao daoplato;
     private CuadroBuscador cuadro_buscador;
     
     public ConsultarMenu_view() {
@@ -37,8 +37,8 @@ public class ConsultarMenu_view extends javax.swing.JPanel implements ListSelect
         lista_categoria = (ListaComida) this.lista_c;
         lista_plato = (ListaComida) this.lista_p;
         this.lista_categoria.addListSelectionListener(this);
-        this.daocategoria = new DAOcategoriaPlato();
-        this.daoplato = new DAOplato();
+        this.daocategoria = new Categoria_dao();
+        this.daoplato = new Plato_dao();
         cuadro_buscador = (CuadroBuscador) this.cuadro_b;
         this.cuadro_buscador.setListaComida(lista_plato);
         

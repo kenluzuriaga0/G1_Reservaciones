@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas_clases;
+package Vistas_aux;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import Vistas_clases.ListaComida.CeldasLamina;
+import Vistas_aux.ListaComida.CeldasLamina;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
 public class CuadroBuscador extends JTextField {
     private DefaultListModel<CeldasLamina>modelo_lista;

@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +22,18 @@ public class Mesa {
     List<Date> fecha;
     int num_mesas;
     int mesas_faltantes;
+    
+        public String formatear(Date fecha) {
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+
+        if (fecha != null) {
+            return dateformat.format(fecha);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Coloque una Fecha correcta Porfavor", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
 
     public List<Date> listarFechas(Date inicio, Date fin) {
 

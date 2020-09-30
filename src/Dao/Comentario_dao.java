@@ -1,33 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Dao;
 
 import Config.Conexion;
+import IDao.IComentario_dao;
 import Modelo.Comentario;
 import java.sql.Connection;
-import java.util.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
-public class DaoComentarios {
+public class Comentario_dao implements IComentario_dao{
     
     private final String query_listar="select us.username, c.comentario, c.id_usuarios, c.fecha_publicacion from usuarios us, comentarios c where us.id_usuarios=c.id_usuarios order by id_comentario desc";
     private final String query_insertar="insert into comentarios values(?,?,?,?)";
     
     
       //METODO PRIMARIO
+    @Override
     public ArrayList<Comentario> ListarComentarios(){
         Connection cn = Conexion.conectar();
         PreparedStatement ps;
@@ -49,10 +43,12 @@ public class DaoComentarios {
     }
     
     //METODO PRIMARIO
+    @Override
     public void insertar(Comentario c){
         Connection cn = Conexion.conectar();
         PreparedStatement ps=null;
-        int id_siguiente=this.buscarIdSiguiente(cn, "comentarios", "id_comentario");
+        
+        int id_siguiente=Dao.autoId("comentarios", "id_comentario");
         try{
           ps=cn.prepareStatement(query_insertar);
           ps.setInt(1, id_siguiente);

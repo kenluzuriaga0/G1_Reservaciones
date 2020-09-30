@@ -4,7 +4,7 @@ import Controlador.Login_control;
 import Controlador.Reservaciones;
 import Dao.Mesas_dao;
 import Modelo.Mesa;
-import Vistas_clases.MotionPanel;
+import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;

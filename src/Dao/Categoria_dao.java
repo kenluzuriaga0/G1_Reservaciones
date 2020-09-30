@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
-public class DAOcategoriaPlato {
+public class Categoria_dao {
    private final String query_listar="select * from categoria_plato";
     
     

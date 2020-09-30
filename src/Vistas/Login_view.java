@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
-import Vistas_clases.MotionPanel;
+import Vistas_aux.MotionPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import Vistas_clases.PlaceHolder;
+import Vistas_aux.PlaceHolder;
 import java.awt.Desktop;
 import java.awt.font.TextAttribute;
 import java.net.URI;

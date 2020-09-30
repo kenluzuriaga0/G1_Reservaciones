@@ -6,6 +6,7 @@
 package Dao;
 
 import Config.Conexion;
+import IDao.IPlato_dao;
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
 import java.sql.Connection;
@@ -17,11 +18,12 @@ import java.util.ArrayList;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
-public class DAOplato {
+public class Plato_dao implements IPlato_dao {
     private final String query_listar_platos="select * from plato where id_categoria_plato=?";
     
+    @Override
     public ArrayList<Plato> listarPlatos(CategoriaPlato cp){
         Connection cn = Conexion.conectar();
         PreparedStatement ps;
@@ -50,6 +52,8 @@ public class DAOplato {
         return p;
         
     }
+
+    
     
     
 }
