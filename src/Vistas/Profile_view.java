@@ -2,10 +2,9 @@ package Vistas;
 
 import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
-import java.awt.CardLayout;
-import java.awt.Label;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,18 +16,17 @@ public class Profile_view extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-
+        txt_fechaFiltro.getCalendarButton().setBackground(new Color(187,187,187));
 
     }
 
     public JDateChooser getTxt_fecha() {
-        return txt_fecha;
+        return txt_fechaFiltro;
     }
 
     public void setTxt_fecha(JDateChooser txt_fecha) {
-        this.txt_fecha = txt_fecha;
+        this.txt_fechaFiltro = txt_fecha;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -54,7 +52,8 @@ public class Profile_view extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
-        txt_fecha = new com.toedter.calendar.JDateChooser();
+        txt_fechaFiltro = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,6 +84,7 @@ public class Profile_view extends javax.swing.JFrame {
         lbl_home.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_home.setForeground(new java.awt.Color(0, 0, 0));
         lbl_home.setText("Sistema Reservaciones");
+        lbl_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,15 +148,15 @@ public class Profile_view extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lbl_resPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(lbl_resPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
+                        .addGap(43, 43, 43)
                         .addComponent(lbl_resHechas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(103, 103, 103))
         );
@@ -256,12 +256,20 @@ public class Profile_view extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fecha");
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 50, -1));
 
         contenedor_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_fecha.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
-        contenedor_main.add(txt_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 160, 30));
+        txt_fechaFiltro.setFont(new java.awt.Font("MS UI Gothic", 1, 16)); // NOI18N
+        txt_fechaFiltro.setIcon(new ImageIcon(getClass().getResource("/img/calendar.png")));
+        contenedor_main.add(txt_fechaFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 170, 40));
+
+        jButton1.setBackground(new java.awt.Color(46, 253, 217));
+        jButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Buscar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 220, 40));
 
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
@@ -326,6 +334,7 @@ public class Profile_view extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel fondo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
@@ -342,6 +351,6 @@ public class Profile_view extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_resActual;
     private javax.swing.JLabel lbl_resHechas;
     private javax.swing.JLabel lbl_resPendientes;
-    private com.toedter.calendar.JDateChooser txt_fecha;
+    private com.toedter.calendar.JDateChooser txt_fechaFiltro;
     // End of variables declaration//GEN-END:variables
 }

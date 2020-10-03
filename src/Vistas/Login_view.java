@@ -26,7 +26,9 @@ public class Login_view extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         initListener();
         txt_campoUser.setText("nvera");
-       // txt_campoPassword.setText("nvera");
+        txt_campoPassword.setText("nvera");
+     //  txt_campoUser.setText("admin");
+     //  txt_campoPassword.setText("admin1");
         
        
 

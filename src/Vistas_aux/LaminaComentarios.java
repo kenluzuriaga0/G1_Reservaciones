@@ -24,16 +24,12 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Calendar;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -61,6 +57,8 @@ public class LaminaComentarios extends JPanel implements ActionListener{
         boton_enviar=new JButton("ENVIAR COMENTARIO!!");
         caja_vertical=Box.createVerticalBox();
         add(caja_vertical);
+        boton_enviar.setBackground(new Color(46,253,217));
+        boton_enviar.setForeground(Color.black);
         boton_enviar.addActionListener(this);
         this.insertarComentarios();
     }
