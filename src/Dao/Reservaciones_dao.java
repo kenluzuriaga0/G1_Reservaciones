@@ -12,19 +12,22 @@ import java.util.Date;
 
 public class Reservaciones_dao implements Ireservaciones {
 
-    private String query_insertar = "insert into reservaciones values (?,?,?,?)";
-private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN (? AND ?)";
+    private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
+    private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";
+
     @Override
     public void insertar(Reservacion e) {
         Connection cn = Conexion.conectar();
         PreparedStatement ps;
         int id_siguiente = Dao.autoId("reservaciones", "id_reservaciones");
         try {
-            ps = cn.prepareStatement(query_insertar);
+            ps = cn.prepareStatement(INSERTAR_RESERVACION);
             ps.setInt(1, id_siguiente);
             ps.setInt(2, e.getId_usuario());
             ps.setTimestamp(3, e.getFecha_emision());
             ps.setInt(4, e.getParticipantes());
+            ps.setString(5, e.getMotivo());
+            ps.setString(6, e.getDetalleMotivo());
             ps.executeUpdate();
             cn.close();
         } catch (Exception ex) {
@@ -44,30 +47,32 @@ private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FE
     }
 
     @Override
-    public ArrayList<Reservacion> listar(Date inicio,Date fin) {
+    public ArrayList<Reservacion> listar(Date inicio, Date fin) {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = SELECT_TODO_X_FECHA;
-        
-        ArrayList<Reservacion> listaReservacion = new ArrayList<>();    
-        
-        try{
-        ps = con.prepareStatement(query);
-        ps.setDate(1, (java.sql.Date) inicio);
-        ps.setDate(2, (java.sql.Date) fin);
-         
-        rs = ps.executeQuery();
-        while(rs.next()){
-            
-        }
-        
-        
-        }catch(SQLException ex){
-            System.out.println("Fallo en elinstar "+ex.getMessage());
+
+        ArrayList<Reservacion> listaReservacion = new ArrayList<>();
+
+        try {
+            ps = con.prepareStatement(query);
+            ps.setDate(1, (java.sql.Date) inicio);
+            ps.setDate(2, (java.sql.Date) fin);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Reservacion res = new Reservacion();
+                res.setId(rs.getInt(1));
+                res.setId_usuario(rs.getInt(1));
+                
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Fallo en elinstar " + ex.getMessage());
         }
 
-        return new ArrayList<Reservacion>();
+        return listaReservacion;
     }
 
     //VALIDACION-------------------------------------------------------------

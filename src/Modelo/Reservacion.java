@@ -11,16 +11,21 @@ public class Reservacion {
     
     int id;
     int id_usuario;
-    int id_mesas;
     Timestamp fecha_emision;
     Calendar hora;
     int participantes;
-    String estado;
+    String motivo;
+    String detalleMotivo;
 
-    public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes) {
+    public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes,String motivo, String detalleMotivo) {
         this.id_usuario = id_usuario;
         this.fecha_emision = fecha_emision;
         this.participantes = participantes;
+        this.motivo = motivo;
+        this.detalleMotivo = detalleMotivo;
+    }
+    public Reservacion(){
+        
     }
 
     public int getId() {
@@ -39,12 +44,20 @@ public class Reservacion {
         this.id_usuario = id_usuario;
     }
 
-    public int getId_mesas() {
-        return id_mesas;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setId_mesas(int id_mesas) {
-        this.id_mesas = id_mesas;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public String getDetalleMotivo() {
+        return detalleMotivo;
+    }
+
+    public void setDetalleMotivo(String detalleMotivo) {
+        this.detalleMotivo = detalleMotivo;
     }
 
     public Timestamp getFecha_emision() {
@@ -71,14 +84,6 @@ public class Reservacion {
         this.participantes = participantes;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
     
     
     

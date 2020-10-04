@@ -219,6 +219,8 @@ public class Reserva_view extends javax.swing.JPanel {
         });
         add(btn_Reservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 130, 60));
 
+        cmb_NumPersonas.setBackground(new java.awt.Color(29, 53, 87));
+        cmb_NumPersonas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmb_NumPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 Personas", "3 Personas", "4 Personas", "5 Personas", "6 Personas", "7 Personas", "8 Personas" }));
         add(cmb_NumPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 

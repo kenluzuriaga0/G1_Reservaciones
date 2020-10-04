@@ -51,18 +51,27 @@ public class Reservacion_control extends Login_control {
             long milis = this.setearTiempo(fecha, 0, 0);//fecha.getTime();
             java.sql.Date sqlfecha = new java.sql.Date(milis);
             int hora, minutos, personas;
+            String motivo = null, detalleMotivo = null;
             hora = Integer.valueOf(String.valueOf(reserva.getSpn_hora().getValue()));
             minutos = Integer.valueOf(String.valueOf(reserva.getSpn_minuto().getValue()));
             personas = Integer.valueOf(String.valueOf(reserva.getCmb_NumPersonas().getSelectedItem()).substring(0, 1));
+            if (reserva.getLaboral().isSelected()) 
+                motivo = "LABORAL";
+             else if (reserva.getFamiliar().isSelected()) 
+                motivo = "FAMILIAR";
+             else if (reserva.getAmigos().isSelected()) 
+                motivo = "AMIGOS";
+            detalleMotivo = reserva.getTxt_detalleMotivo().getText();
+            
             if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { //Login_control.getUser().getId()
                 if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
 
                     Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
 
-                    Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas);
+                    Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas,motivo,detalleMotivo);
                     daoReservaciones.insertar(r);
-                    
-                    JOptionPane.showMessageDialog(null,"Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
+
+                    JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
