@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Dao;
 
 import Config.Conexion;
-import Controlador.Login_control;
 import IDao.Ireservaciones;
 import Modelo.Reservacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DaoReservaciones implements Ireservaciones {
@@ -23,7 +16,7 @@ public class DaoReservaciones implements Ireservaciones {
     public void insertar(Reservacion e) {
         Connection cn = Conexion.conectar();
         PreparedStatement ps;
-        int id_siguiente = this.buscarIdSiguiente(cn, "reservaciones", "id_reservaciones");
+        int id_siguiente = Dao.autoId(  "reservaciones", "id_reservaciones");
         try {
             ps = cn.prepareStatement(query_insertar);
             ps.setInt(1, id_siguiente);
@@ -53,6 +46,8 @@ public class DaoReservaciones implements Ireservaciones {
         return new ArrayList<Reservacion>();
     }
 
+    
+    //VALIDACION-------------------------------------------------------------
     public int getMesasOcupadas(java.sql.Date fecha) {
         Connection cn = Conexion.conectar();
         PreparedStatement ps = null;
@@ -97,30 +92,4 @@ public class DaoReservaciones implements Ireservaciones {
         return existe;
     }
 
-    private int buscarIdSiguiente(Connection cn, String nombre_tabla, String nombre_columna) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int id = 0;
-        String query = "select max(" + nombre_columna + ") from " + nombre_tabla;
-
-        try {
-            ps = cn.prepareStatement(query);
-        } catch (SQLException ex) {
-            System.out.println("error en prepared statemente de id siguiente");
-        }
-        try {
-            rs = ps.executeQuery();
-        } catch (SQLException ex) {
-            System.out.println("error execute query de idsiguiente");
-        }
-        try {
-            rs.next();
-            id = rs.getInt(1);
-
-        } catch (SQLException ex) {
-            System.out.println("error en getInt de idsiguiente");
-        }
-
-        return id + 1;
-    }
 }

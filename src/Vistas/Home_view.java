@@ -1,12 +1,16 @@
 package Vistas;
 
 import Controlador.Login_control;
+import Controlador.Reservacion_control;
 import Controlador.Reservaciones;
-import Vistas_aux.LaminaComentarios;
+import Dao.Usuario_dao;
 import Vistas_aux.MotionPanel;
 import java.awt.CardLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
 /**
@@ -16,15 +20,18 @@ import javax.swing.SwingUtilities;
 public class Home_view extends javax.swing.JFrame {
 
     ConsultarMenu_view panel1 = new ConsultarMenu_view();
-    Reserva_view panel2 = new Reserva_view();
-        Resenas_view panel3 = new Resenas_view();
+    Reserva_view panel2;
+    Reservacion_control reserva;
+    Resenas_view panel3 = new Resenas_view();
 
     CardLayout vista;
 
     public Home_view() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        Usuario_dao dao = new Usuario_dao();
+         panel2 = new Reserva_view();
+         reserva = new Reservacion_control(Login_control.getUser(), dao, panel2);
         vista = (CardLayout) contenedor_main.getLayout();
 
     }
@@ -281,7 +288,7 @@ public class Home_view extends javax.swing.JFrame {
 
     private void btn_reservaViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reservaViewActionPerformed
 
-        contenedor_main.add(panel2, "reserva");
+        contenedor_main.add(reserva.getReserva(), "reserva");
         vista.show(contenedor_main, "reserva");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
@@ -325,6 +332,34 @@ public class Home_view extends javax.swing.JFrame {
 
     public void setLbl_PerfilName(JLabel lbl_PerfilName) {
         this.lbl_PerfilName = lbl_PerfilName;
+    }
+
+    public ButtonGroup getBoton_grupo() {
+        return boton_grupo;
+    }
+
+    public JLabel getBtn_cerrar() {
+        return btn_cerrar;
+    }
+
+    public JToggleButton getBtn_consultaView() {
+        return btn_consultaView;
+    }
+
+    public JLabel getBtn_minimizar() {
+        return btn_minimizar;
+    }
+
+    public JToggleButton getBtn_resenaView() {
+        return btn_resenaView;
+    }
+
+    public JToggleButton getBtn_reservaView() {
+        return btn_reservaView;
+    }
+
+    public JPanel getContenedor_main() {
+        return contenedor_main;
     }
 
 

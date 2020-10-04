@@ -28,8 +28,8 @@ public class Reserva_view extends javax.swing.JPanel {
     public Reserva_view() {
 
         initComponents();
-                daoDisponibles = new Mesas_dao();
-        daoReservaciones=new DaoReservaciones();
+//        daoDisponibles = new Mesas_dao();
+//        daoReservaciones = new DaoReservaciones();
 
         cuadroFechaReservacion.getCalendarButton().setBackground(new Color(29, 53, 87));
     }
@@ -38,56 +38,36 @@ public class Reserva_view extends javax.swing.JPanel {
         return amigos;
     }
 
-    public JDateChooser getCuadroFechaReservacion() {
-        return cuadroFechaReservacion;
-    }
-
-    public void setAmigos(JCheckBox amigos) {
-        this.amigos = amigos;
-    }
-
     public JButton getBtn_Reservar() {
         return btn_Reservar;
+    }
+
+    public JComboBox<String> getCmb_NumPersonas() {
+        return cmb_NumPersonas;
+    }
+
+    public JDateChooser getCuadroFechaReservacion() {
+        return cuadroFechaReservacion;
     }
 
     public JCheckBox getFamiliar() {
         return familiar;
     }
 
-    public void setFamiliar(JCheckBox familiar) {
-        this.familiar = familiar;
-    }
-
-    public JDateChooser getFecha() {
-        return cuadroFechaReservacion;
-    }
-
-    public void setFecha(JDateChooser fecha) {
-        this.cuadroFechaReservacion = fecha;
-    }
-
-    public JSpinner getHora() {
-        return comboBox_Minutos;
-    }
-
-    public void setHora(JSpinner hora) {
-        this.comboBox_Minutos = hora;
-    }
-
     public JCheckBox getLaboral() {
         return laboral;
     }
 
-    public void setLaboral(JCheckBox laboral) {
-        this.laboral = laboral;
+    public JSpinner getSpn_hora() {
+        return spn_hora;
+    }
+
+    public JSpinner getSpn_minuto() {
+        return spn_minuto;
     }
 
     public JTextField getTxt_detalleMotivo() {
         return txt_detalleMotivo;
-    }
-
-    public void setTxt_detalleMotivo(JTextField txt_detalleMotivo) {
-        this.txt_detalleMotivo = txt_detalleMotivo;
     }
 
     @SuppressWarnings("unchecked")
@@ -96,10 +76,12 @@ public class Reserva_view extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         cuadroFechaReservacion = new com.toedter.calendar.JDateChooser();
-        comboBox_Minutos = new javax.swing.JSpinner();
+        spn_minuto = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        comboBox_Hora = new javax.swing.JSpinner();
+        spn_hora = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -108,8 +90,9 @@ public class Reserva_view extends javax.swing.JPanel {
         familiar = new javax.swing.JCheckBox();
         txt_detalleMotivo = new javax.swing.JTextField();
         btn_Reservar = new javax.swing.JButton();
-        spinner_NumPersonas = new javax.swing.JSpinner();
+        cmb_NumPersonas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,10 +104,11 @@ public class Reserva_view extends javax.swing.JPanel {
         cuadroFechaReservacion.setIcon(new ImageIcon(getClass().getResource("/img/calendar.png")));
         jPanel2.add(cuadroFechaReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 200, 40));
 
-        comboBox_Minutos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboBox_Minutos.setModel(new javax.swing.SpinnerNumberModel());
-        comboBox_Minutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(comboBox_Minutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 60, 40));
+        spn_minuto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        spn_minuto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        spn_minuto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        spn_minuto.setEditor(new javax.swing.JSpinner.NumberEditor(spn_minuto, "00"));
+        jPanel2.add(spn_minuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 60, 40));
 
         jLabel4.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,10 +120,21 @@ public class Reserva_view extends javax.swing.JPanel {
         jLabel5.setText("Fecha ->");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
-        comboBox_Hora.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboBox_Hora.setModel(new javax.swing.SpinnerNumberModel());
-        comboBox_Hora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(comboBox_Hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 60, 40));
+        spn_hora.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        spn_hora.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        spn_hora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        spn_hora.setEditor(new javax.swing.JSpinner.NumberEditor(spn_hora, "00"));
+        jPanel2.add(spn_hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 60, 40));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("hr   :");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 80, 30, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("min");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 30, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 310, 130));
 
@@ -224,17 +219,22 @@ public class Reserva_view extends javax.swing.JPanel {
         });
         add(btn_Reservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 130, 60));
 
-        spinner_NumPersonas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        spinner_NumPersonas.setModel(new javax.swing.SpinnerNumberModel());
-        spinner_NumPersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(spinner_NumPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 60, 40));
+        cmb_NumPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 Personas", "3 Personas", "4 Personas", "5 Personas", "6 Personas", "7 Personas", "8 Personas" }));
+        add(cmb_NumPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(29, 53, 87));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Motivo");
+        jLabel2.setText("Participantes");
         jLabel2.setOpaque(true);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 60, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, 20));
+
+        jLabel9.setBackground(new java.awt.Color(29, 53, 87));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Motivo");
+        jLabel9.setOpaque(true);
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 60, 20));
 
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
@@ -246,48 +246,46 @@ public class Reserva_view extends javax.swing.JPanel {
     DaoReservaciones daoReservaciones;
     private void btn_ReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReservarActionPerformed
 
-        java.util.Date fecha = this.cuadroFechaReservacion.getDate();
-
-        long milis = this.setearTiempo(fecha, 0, 0);//fecha.getTime();
-        java.sql.Date sqlfecha = new java.sql.Date(milis);
-        int hora, minutos, personas;
-        hora = Integer.valueOf(String.valueOf(this.comboBox_Hora.getValue()));
-        minutos = Integer.valueOf(String.valueOf(this.comboBox_Minutos.getValue()));
-        personas = Integer.valueOf(String.valueOf(this.spinner_NumPersonas.getValue()));
-        if (this.daoDisponibles.verificarFecha(sqlfecha) == true && this.daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { //Login_control.getUser().getId()
-System.out.println("Paso la 1ra condicion");
-            if (this.daoDisponibles.getMesasExistentes(sqlfecha) - this.daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
-
-                Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
-
-                Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas);
-                this.daoReservaciones.insertar(r);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "ESTE DIA NO ESTA DISPONIBLE O YA RESERVA EN ESTE DIA", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+//        java.util.Date fecha = this.cuadroFechaReservacion.getDate();
+//
+//        long milis = this.setearTiempo(fecha, 0, 0);//fecha.getTime();
+//        java.sql.Date sqlfecha = new java.sql.Date(milis);
+//        int hora, minutos, personas;
+//        hora = Integer.valueOf(String.valueOf(this.spn_hora.getValue()));
+//        minutos = Integer.valueOf(String.valueOf(this.spn_minuto.getValue()));
+//        personas = Integer.valueOf(String.valueOf(this.cmb_NumPersonas.getSelectedItem()).substring(0, 1));
+//        if (this.daoDisponibles.verificarFecha(sqlfecha) == true && this.daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { //Login_control.getUser().getId()
+//            if (this.daoDisponibles.getMesasExistentes(sqlfecha) - this.daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
+//
+//                Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
+//
+//                Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas);
+//                this.daoReservaciones.insertar(r);
+//
+//            } else {
+//                JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "ESTE DIA NO ESTA DISPONIBLE O YA RESERVA EN ESTE DIA", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
 
 
     }//GEN-LAST:event_btn_ReservarActionPerformed
-    private long setearTiempo(java.util.Date fecha, int hora, int minuto) {
-        long milis = fecha.getTime();
-        Calendar c = Calendar.getInstance();
-        c.setTime(fecha);
-        c.set(Calendar.HOUR_OF_DAY, hora);
-        c.set(Calendar.MINUTE, minuto);
-        c.set(Calendar.SECOND, 0);
-        return c.getTimeInMillis();
-    }
+//    private long setearTiempo(java.util.Date fecha, int hora, int minuto) {
+//        long milis = fecha.getTime();
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(fecha);
+//        c.set(Calendar.HOUR_OF_DAY, hora);
+//        c.set(Calendar.MINUTE, minuto);
+//        c.set(Calendar.SECOND, 0);
+//        return c.getTimeInMillis();
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox amigos;
     private javax.swing.JButton btn_Reservar;
-    private javax.swing.JSpinner comboBox_Hora;
-    private javax.swing.JSpinner comboBox_Minutos;
+    private javax.swing.JComboBox<String> cmb_NumPersonas;
     private com.toedter.calendar.JDateChooser cuadroFechaReservacion;
     private javax.swing.JCheckBox familiar;
     private javax.swing.JLabel fondo;
@@ -296,10 +294,14 @@ System.out.println("Paso la 1ra condicion");
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JCheckBox laboral;
-    private javax.swing.JSpinner spinner_NumPersonas;
+    private javax.swing.JSpinner spn_hora;
+    private javax.swing.JSpinner spn_minuto;
     private javax.swing.JTextField txt_detalleMotivo;
     // End of variables declaration//GEN-END:variables
 }
