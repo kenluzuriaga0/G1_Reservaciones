@@ -92,5 +92,52 @@ public class Mesas_dao implements IMesa_dao {
         }
 
     }
+    
+    
+//------------------------------------------------------------------------------------
+    public boolean verificarFecha(java.sql.Date fecha) {
+        Connection cn = Conexion.conectar();
+        PreparedStatement ps;
+        int filas = 0;
+        System.out.println(fecha);
+        boolean existe = false;
+        String query = "select * from mesas where trunc(fecha_inicio)=?";
+
+        try {
+            ps = cn.prepareStatement(query);
+            ps.setDate(1, fecha);
+            filas = ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error en verificarFecha "+e);
+        }
+
+        if (filas > 0) {
+            existe = true;
+        } else {
+            existe = false;
+        }
+        return existe;
+    }
+
+    public int getMesasExistentes(java.sql.Date fecha) {
+        Connection cn = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int mesas = 0;
+        String query = " select num_mesas from mesas where fecha_inicio=?";
+        try {
+            ps = cn.prepareStatement(query);
+            ps.setDate(1, fecha);
+            rs = ps.executeQuery();
+            if(rs.next()){
+            mesas = rs.getInt(1);     
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error mi loco, getMesasExistentes "+e.getMessage());
+        }
+        return mesas;
+    }
 
 }

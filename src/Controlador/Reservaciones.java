@@ -4,12 +4,6 @@ import Controlador.*;
 import Dao.Usuario_dao;
 import Modelo.Usuario;
 import Vistas.Login_view;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Reservaciones {

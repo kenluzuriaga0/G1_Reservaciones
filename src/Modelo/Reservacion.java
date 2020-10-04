@@ -1,7 +1,7 @@
 package Modelo;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -12,10 +12,16 @@ public class Reservacion {
     int id;
     int id_usuario;
     int id_mesas;
-    Date fecha_emision;
+    Timestamp fecha_emision;
     Calendar hora;
     int participantes;
     String estado;
+
+    public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes) {
+        this.id_usuario = id_usuario;
+        this.fecha_emision = fecha_emision;
+        this.participantes = participantes;
+    }
 
     public int getId() {
         return id;
@@ -25,11 +31,11 @@ public class Reservacion {
         this.id = id;
     }
 
-    public int getId_cliente() {
+    public int getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_cliente(int id_usuario) {
+    public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
 
@@ -41,11 +47,11 @@ public class Reservacion {
         this.id_mesas = id_mesas;
     }
 
-    public Date getFecha_emision() {
+    public Timestamp getFecha_emision() {
         return fecha_emision;
     }
 
-    public void setFecha_emision(Date fecha_emision) {
+    public void setFecha_emision(Timestamp fecha_emision) {
         this.fecha_emision = fecha_emision;
     }
 
@@ -57,11 +63,11 @@ public class Reservacion {
         this.hora = hora;
     }
 
-    public int getSillas() {
+    public int getParticipantes() {
         return participantes;
     }
 
-    public void setSillas(int participantes) {
+    public void setParticipantes(int participantes) {
         this.participantes = participantes;
     }
 
