@@ -45,7 +45,7 @@ public class Reporte_view extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         lbl_logout = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
-        btn_consultarMesas = new javax.swing.JButton();
+        btn_consultarReservaciones = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -193,9 +193,9 @@ public class Reporte_view extends javax.swing.JFrame {
 
         contenedor_main.setBackground(new java.awt.Color(227, 226, 226));
 
-        btn_consultarMesas.setBackground(new java.awt.Color(102, 102, 102));
-        btn_consultarMesas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_consultarMesas.setText("Consultar Reservaciones");
+        btn_consultarReservaciones.setBackground(new java.awt.Color(102, 102, 102));
+        btn_consultarReservaciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_consultarReservaciones.setText("Consultar Reservaciones");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -254,7 +254,7 @@ public class Reporte_view extends javax.swing.JFrame {
             .addComponent(jScrollPane1)
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(btn_consultarMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_consultarReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
@@ -283,7 +283,7 @@ public class Reporte_view extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(btn_consultarMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_consultarReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
@@ -319,12 +319,12 @@ public class Reporte_view extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_logoutMousePressed
 
-    public JButton getBtn_consultarMesas() {
-        return btn_consultarMesas;
+    public JButton getBtn_consultarReservaciones() {
+        return btn_consultarReservaciones;
     }
 
-    public void setBtn_consultarMesas(JButton btn_consultarMesas) {
-        this.btn_consultarMesas = btn_consultarMesas;
+    public void setBtn_consultarReservaciones(JButton btn_consultarReservaciones) {
+        this.btn_consultarReservaciones = btn_consultarReservaciones;
     }
 
     public JLabel getLbl_administracion() {
@@ -363,7 +363,7 @@ public class Reporte_view extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
     private javax.swing.JLabel btn_cerrar;
-    private javax.swing.JButton btn_consultarMesas;
+    private javax.swing.JButton btn_consultarReservaciones;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel jLabel1;

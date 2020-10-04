@@ -1,6 +1,6 @@
 package Controlador;
 
-import Dao.DaoReservaciones;
+import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
 import Modelo.Reservacion;
@@ -21,7 +21,7 @@ public class Reservacion_control extends Login_control {
     Reserva_view reserva;
 
     Mesas_dao daoDisponibles;
-    DaoReservaciones daoReservaciones;
+    Reservaciones_dao daoReservaciones;
 
     public Reserva_view getReserva() {
         return reserva;
@@ -32,7 +32,7 @@ public class Reservacion_control extends Login_control {
         this.reserva = reserva;
         initListener();
         daoDisponibles = new Mesas_dao();
-        daoReservaciones = new DaoReservaciones();
+        daoReservaciones = new Reservaciones_dao();
 
     }
 
@@ -61,6 +61,8 @@ public class Reservacion_control extends Login_control {
 
                     Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas);
                     daoReservaciones.insertar(r);
+                    
+                    JOptionPane.showMessageDialog(null,"Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);

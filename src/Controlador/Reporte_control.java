@@ -29,7 +29,7 @@ public class Reporte_control extends Login_control {
     private void initListener() {
 
         reporte.getLbl_administracion().addMouseListener(new Flujo());
-
+        reporte.getBtn_consultarReservaciones().addMouseListener(new Flujo());
     }
 
     class Flujo extends MouseAdapter {
@@ -43,6 +43,8 @@ public class Reporte_control extends Login_control {
                 admin = new Admin_view();
                 admin_con = new Admin_control(getUser(),getUserDao(),admin);
                 admin.setVisible(true);
+            }else if(fuente.equals(reporte.getBtn_consultarReservaciones())){       //BOTON CONSULTAR
+                
             }
 
         }

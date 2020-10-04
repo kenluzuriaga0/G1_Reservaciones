@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
-import Dao.DaoReservaciones;
+import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
 import Modelo.Reservacion;
 import com.toedter.calendar.JDateChooser;
@@ -29,7 +29,7 @@ public class Reserva_view extends javax.swing.JPanel {
 
         initComponents();
 //        daoDisponibles = new Mesas_dao();
-//        daoReservaciones = new DaoReservaciones();
+//        daoReservaciones = new Reservaciones_dao();
 
         cuadroFechaReservacion.getCalendarButton().setBackground(new Color(29, 53, 87));
     }
@@ -243,7 +243,7 @@ public class Reserva_view extends javax.swing.JPanel {
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 440));
     }// </editor-fold>//GEN-END:initComponents
     Mesas_dao daoDisponibles;
-    DaoReservaciones daoReservaciones;
+    Reservaciones_dao daoReservaciones;
     private void btn_ReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReservarActionPerformed
 
 //        java.util.Date fecha = this.cuadroFechaReservacion.getDate();
