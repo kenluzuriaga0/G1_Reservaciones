@@ -9,6 +9,7 @@ import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +21,7 @@ public class Reporte_control extends Login_control {
     Reporte_view reporte;
     Admin_view admin;
     Admin_control admin_con;
-    
+
     DefaultTableModel model;
 
     Reporte_control(Usuario user, Usuario_dao userDao, Reporte_view reporte) {
@@ -39,8 +40,20 @@ public class Reporte_control extends Login_control {
     }
 
     private void consultarReservaciones() {
-        
+
         limpiarTabla();
+     //VALIDACIONES *************
+        if (reporte.getTxt_desde().getDate() == null || reporte.getTxt_hasta().getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Ingrese los campos de fecha", "Error Mensaje", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (reporte.getTxt_desde().getDate().after(reporte.getTxt_hasta().getDate())) {
+            JOptionPane.showMessageDialog(null, "La fecha Desde no puede ser posterior a la fecha Hasta", "Error Mensaje", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+      //FIN DE VALIDACIONES  
+        
         Reservacion reserve = new Reservacion();
         Reservaciones_dao dao = new Reservaciones_dao();
 
@@ -67,14 +80,15 @@ public class Reporte_control extends Login_control {
         reporte.getTabla_consultas().setModel(model);
 
     }
+
     private void limpiarTabla() {
 
-       
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
 
     }
+
     class Flujo extends MouseAdapter {
 
         @Override

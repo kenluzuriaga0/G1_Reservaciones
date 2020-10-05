@@ -30,7 +30,6 @@ public class Reservacion {
     }
 
     public long setearTiempo(java.util.Date fecha, int hora, int minuto) {
-        long milis = fecha.getTime();
         Calendar c = Calendar.getInstance();
         c.setTime(fecha);
         c.set(Calendar.HOUR_OF_DAY, hora);
