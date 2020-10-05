@@ -1,13 +1,17 @@
 package Controlador;
 
+import Dao.Dao;
 import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
 import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Reserva_view;
+import Vistas_aux.PlaceHolder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -39,7 +43,7 @@ public class Reservacion_control extends Login_control {
     private void initListener() {
 
         reserva.getBtn_Reservar().addActionListener(new Flujo());
-
+        reserva.getTxt_detalleMotivo().addFocusListener(new PlaceHolderr());
     }
 
     class Flujo implements ActionListener {
@@ -55,20 +59,21 @@ public class Reservacion_control extends Login_control {
             hora = Integer.valueOf(String.valueOf(reserva.getSpn_hora().getValue()));
             minutos = Integer.valueOf(String.valueOf(reserva.getSpn_minuto().getValue()));
             personas = Integer.valueOf(String.valueOf(reserva.getCmb_NumPersonas().getSelectedItem()).substring(0, 1));
-            if (reserva.getLaboral().isSelected()) 
+            if (reserva.getLaboral().isSelected()) {
                 motivo = "LABORAL";
-             else if (reserva.getFamiliar().isSelected()) 
+            } else if (reserva.getFamiliar().isSelected()) {
                 motivo = "FAMILIAR";
-             else if (reserva.getAmigos().isSelected()) 
+            } else if (reserva.getAmigos().isSelected()) {
                 motivo = "AMIGOS";
+            }
             detalleMotivo = reserva.getTxt_detalleMotivo().getText();
-            
+
             if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { //Login_control.getUser().getId()
                 if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
 
                     Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
 
-                    Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas,motivo,detalleMotivo);
+                    Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
                     daoReservaciones.insertar(r);
 
                     JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -94,5 +99,27 @@ public class Reservacion_control extends Login_control {
         }
 
     }
+
+    class PlaceHolderr implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            Object fuente = e.getSource();
+            if (fuente.equals(reserva.getTxt_detalleMotivo())) {
+                PlaceHolder.quitar_PlaceHolder("Motivo", reserva.getTxt_detalleMotivo());
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            Object fuente = e.getSource();
+            if (fuente.equals(reserva.getTxt_detalleMotivo())){
+                    
+                PlaceHolder.poner_PlaceHolder("Motivo", reserva.getTxt_detalleMotivo());
+
+        }
+    }
+
+}
 
 }

@@ -8,12 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Reservaciones_dao implements Ireservaciones {
 
     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
     private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";
+    private final String SELECT_TODO = "SELECT * FROM RESERVACIONES";
 
     @Override
     public void insertar(Reservacion e) {
@@ -47,29 +47,33 @@ public class Reservaciones_dao implements Ireservaciones {
     }
 
     @Override
-    public ArrayList<Reservacion> listar(Date inicio, Date fin) {
+    public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin) {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = SELECT_TODO_X_FECHA;
 
         ArrayList<Reservacion> listaReservacion = new ArrayList<>();
-
         try {
             ps = con.prepareStatement(query);
-            ps.setDate(1, (java.sql.Date) inicio);
-            ps.setDate(2, (java.sql.Date) fin);
+            ps.setDate(1, inicio);
+            ps.setDate(2, fin);
 
             rs = ps.executeQuery();
             while (rs.next()) {
                 Reservacion res = new Reservacion();
                 res.setId(rs.getInt(1));
-                res.setId_usuario(rs.getInt(1));
-                
+                res.setId_usuario(rs.getInt(2));
+                res.setFecha_emision(rs.getTimestamp(3));
+                res.setParticipantes(rs.getInt(4));
+                res.setMotivo(rs.getString(5));
+                res.setDetalleMotivo(rs.getString(6));
+                listaReservacion.add(res);
             }
+            ps.close();
 
         } catch (SQLException ex) {
-            System.out.println("Fallo en elinstar " + ex.getMessage());
+            System.out.println("Fallo en enlistar " + ex.getMessage());
         }
 
         return listaReservacion;

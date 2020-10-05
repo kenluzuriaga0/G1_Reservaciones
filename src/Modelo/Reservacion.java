@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author kenlu
  */
 public class Reservacion {
-    
+
     int id;
     int id_usuario;
     Timestamp fecha_emision;
@@ -17,15 +17,26 @@ public class Reservacion {
     String motivo;
     String detalleMotivo;
 
-    public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes,String motivo, String detalleMotivo) {
+    public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes, String motivo, String detalleMotivo) {
         this.id_usuario = id_usuario;
         this.fecha_emision = fecha_emision;
         this.participantes = participantes;
         this.motivo = motivo;
         this.detalleMotivo = detalleMotivo;
     }
-    public Reservacion(){
-        
+
+    public Reservacion() {
+
+    }
+
+    public long setearTiempo(java.util.Date fecha, int hora, int minuto) {
+        long milis = fecha.getTime();
+        Calendar c = Calendar.getInstance();
+        c.setTime(fecha);
+        c.set(Calendar.HOUR_OF_DAY, hora);
+        c.set(Calendar.MINUTE, minuto);
+        c.set(Calendar.SECOND, 0);
+        return c.getTimeInMillis();
     }
 
     public int getId() {
@@ -84,8 +95,4 @@ public class Reservacion {
         this.participantes = participantes;
     }
 
-    
-    
-    
-    
 }

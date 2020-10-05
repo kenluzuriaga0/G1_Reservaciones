@@ -1,17 +1,13 @@
 package Vistas;
 
-import Controlador.Login_control;
 import Controlador.Reservaciones;
 import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
-import java.awt.CardLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -208,17 +204,14 @@ public class Reporte_view extends javax.swing.JFrame {
         tabla_consultas.setBackground(new java.awt.Color(204, 204, 204));
         tabla_consultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Num", "Cliente", "Fecha", "Hora", "Estado", "Participantes", "Motivo"
+                "Num", "Cliente", "Fecha", "Participantes", "Motivo", "Detalle motivo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -228,7 +221,7 @@ public class Reporte_view extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabla_consultas);
         if (tabla_consultas.getColumnModel().getColumnCount() > 0) {
             tabla_consultas.getColumnModel().getColumn(0).setResizable(false);
-            tabla_consultas.getColumnModel().getColumn(6).setResizable(false);
+            tabla_consultas.getColumnModel().getColumn(4).setResizable(false);
         }
 
         txt_desde.setBackground(new java.awt.Color(255, 255, 255));
