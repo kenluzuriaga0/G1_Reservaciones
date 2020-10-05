@@ -202,6 +202,7 @@ public class Reporte_view extends javax.swing.JFrame {
         jLabel5.setText("Hasta");
 
         tabla_consultas.setBackground(new java.awt.Color(204, 204, 204));
+        tabla_consultas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabla_consultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

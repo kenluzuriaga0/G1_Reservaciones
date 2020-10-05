@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class Reservaciones_dao implements Ireservaciones {
 
     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
-    private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";
-    private final String SELECT_TODO = "SELECT * FROM RESERVACIONES";
+    //private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";
+    private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO " +
+"    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";
 
     @Override
     public void insertar(Reservacion e) {
@@ -63,7 +64,8 @@ public class Reservaciones_dao implements Ireservaciones {
             while (rs.next()) {
                 Reservacion res = new Reservacion();
                 res.setId(rs.getInt(1));
-                res.setId_usuario(rs.getInt(2));
+                res.setUsername(rs.getString(2));
+                System.out.println(res.getUsername());
                 res.setFecha_emision(rs.getTimestamp(3));
                 res.setParticipantes(rs.getInt(4));
                 res.setMotivo(rs.getString(5));

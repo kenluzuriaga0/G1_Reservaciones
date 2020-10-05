@@ -2,6 +2,7 @@ package Controlador;
 
 import Dao.Reservaciones_dao;
 import Dao.Usuario_dao;
+import Modelo.Mesa;
 import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Admin_view;
@@ -56,7 +57,7 @@ public class Reporte_control extends Login_control {
         
         Reservacion reserve = new Reservacion();
         Reservaciones_dao dao = new Reservaciones_dao();
-
+        Mesa f = new Mesa();
         model = (DefaultTableModel) reporte.getTabla_consultas().getModel();
 
         ArrayList<Reservacion> lista;
@@ -69,9 +70,9 @@ public class Reporte_control extends Login_control {
         Object[] rows = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             rows[0] = lista.get(i).getId();
-            rows[1] = lista.get(i).getId_usuario();
-            rows[2] = lista.get(i).getFecha_emision();
-            rows[3] = lista.get(i).getParticipantes();
+            rows[1] = lista.get(i).getUsername();
+            rows[2] = f.formatear(lista.get(i).getFecha_emision());
+            rows[3] = lista.get(i).getParticipantes()+" Personas";
             rows[4] = lista.get(i).getMotivo();
             rows[5] = lista.get(i).getDetalleMotivo();
             model.addRow(rows);

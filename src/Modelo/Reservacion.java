@@ -16,6 +16,10 @@ public class Reservacion {
     int participantes;
     String motivo;
     String detalleMotivo;
+    
+    //------CONSULTA
+    String username;
+    
 
     public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes, String motivo, String detalleMotivo) {
         this.id_usuario = id_usuario;
@@ -36,6 +40,14 @@ public class Reservacion {
         c.set(Calendar.MINUTE, minuto);
         c.set(Calendar.SECOND, 0);
         return c.getTimeInMillis();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getId() {

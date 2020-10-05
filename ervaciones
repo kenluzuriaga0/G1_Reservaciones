@@ -1,0 +1,97 @@
+[1mdiff --git a/src/Controlador/Reporte_control.java b/src/Controlador/Reporte_control.java[m
+[1mindex 96248a0..d23ea16 100644[m
+[1m--- a/src/Controlador/Reporte_control.java[m
+[1m+++ b/src/Controlador/Reporte_control.java[m
+[36m@@ -2,6 +2,7 @@[m [mpackage Controlador;[m
+ [m
+ import Dao.Reservaciones_dao;[m
+ import Dao.Usuario_dao;[m
+[32m+[m[32mimport Modelo.Mesa;[m
+ import Modelo.Reservacion;[m
+ import Modelo.Usuario;[m
+ import Vistas.Admin_view;[m
+[36m@@ -56,7 +57,7 @@[m [mpublic class Reporte_control extends Login_control {[m
+         [m
+         Reservacion reserve = new Reservacion();[m
+         Reservaciones_dao dao = new Reservaciones_dao();[m
+[31m-[m
+[32m+[m[32m        Mesa f = new Mesa();[m
+         model = (DefaultTableModel) reporte.getTabla_consultas().getModel();[m
+ [m
+         ArrayList<Reservacion> lista;[m
+[36m@@ -69,9 +70,9 @@[m [mpublic class Reporte_control extends Login_control {[m
+         Object[] rows = new Object[6];[m
+         for (int i = 0; i < lista.size(); i++) {[m
+             rows[0] = lista.get(i).getId();[m
+[31m-            rows[1] = lista.get(i).getId_usuario();[m
+[31m-            rows[2] = lista.get(i).getFecha_emision();[m
+[31m-            rows[3] = lista.get(i).getParticipantes();[m
+[32m+[m[32m            rows[1] = lista.get(i).getUsername();[m
+[32m+[m[32m            rows[2] = f.formatear(lista.get(i).getFecha_emision());[m
+[32m+[m[32m            rows[3] = lista.get(i).getParticipantes()+" Personas";[m
+             rows[4] = lista.get(i).getMotivo();[m
+             rows[5] = lista.get(i).getDetalleMotivo();[m
+             model.addRow(rows);[m
+[1mdiff --git a/src/Dao/Reservaciones_dao.java b/src/Dao/Reservaciones_dao.java[m
+[1mindex e2e945b..4b66ecb 100644[m
+[1m--- a/src/Dao/Reservaciones_dao.java[m
+[1m+++ b/src/Dao/Reservaciones_dao.java[m
+[36m@@ -13,7 +13,8 @@[m [mpublic class Reservaciones_dao implements Ireservaciones {[m
+ [m
+     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";[m
+     private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";[m
+[31m-    private final String SELECT_TODO = "SELECT * FROM RESERVACIONES";[m
+[32m+[m[32m    private final String SELECT_TODO_X_FECHANOMBRE = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO " +[m
+[32m+[m[32m"    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";[m
+ [m
+     @Override[m
+     public void insertar(Reservacion e) {[m
+[36m@@ -51,7 +52,7 @@[m [mpublic class Reservaciones_dao implements Ireservaciones {[m
+         Connection con = Conexion.conectar();[m
+         PreparedStatement ps = null;[m
+         ResultSet rs = null;[m
+[31m-        String query = SELECT_TODO_X_FECHA;[m
+[32m+[m[32m        String query = SELECT_TODO_X_FECHANOMBRE;[m
+ [m
+         ArrayList<Reservacion> listaReservacion = new ArrayList<>();[m
+         try {[m
+[36m@@ -63,7 +64,8 @@[m [mpublic class Reservaciones_dao implements Ireservaciones {[m
+             while (rs.next()) {[m
+                 Reservacion res = new Reservacion();[m
+                 res.setId(rs.getInt(1));[m
+[31m-                res.setId_usuario(rs.getInt(2));[m
+[32m+[m[32m                res.setUsername(rs.getString(2));[m
+[32m+[m[32m                System.out.println(res.getUsername());[m
+                 res.setFecha_emision(rs.getTimestamp(3));[m
+                 res.setParticipantes(rs.getInt(4));[m
+                 res.setMotivo(rs.getString(5));[m
+[1mdiff --git a/src/Modelo/Reservacion.java b/src/Modelo/Reservacion.java[m
+[1mindex 6e10ba2..878f088 100644[m
+[1m--- a/src/Modelo/Reservacion.java[m
+[1m+++ b/src/Modelo/Reservacion.java[m
+[36m@@ -16,6 +16,10 @@[m [mpublic class Reservacion {[m
+     int participantes;[m
+     String motivo;[m
+     String detalleMotivo;[m
+[32m+[m[41m    [m
+[32m+[m[32m    //------CONSULTA[m
+[32m+[m[32m    String username;[m
+[32m+[m[41m    [m
+ [m
+     public Reservacion(int id_usuario, Timestamp fecha_emision, int participantes, String motivo, String detalleMotivo) {[m
+         this.id_usuario = id_usuario;[m
+[36m@@ -38,6 +42,14 @@[m [mpublic class Reservacion {[m
+         return c.getTimeInMillis();[m
+     }[m
+ [m
+[32m+[m[32m    public String getUsername() {[m
+[32m+[m[32m        return username;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void setUsername(String username) {[m
+[32m+[m[32m        this.username = username;[m
+[32m+[m[32m    }[m
+[32m+[m
+     public int getId() {[m
+         return id;[m
+     }[m
