@@ -3,6 +3,8 @@ package Vistas;
 import Controlador.Reservaciones;
 import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,6 +23,12 @@ public class Reporte_view extends javax.swing.JFrame {
     public Reporte_view() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        tabla_consultas.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
+        tabla_consultas.getTableHeader().setOpaque(false);
+        tabla_consultas.getTableHeader().setBackground(new Color(29,53,87));
+        tabla_consultas.getTableHeader().setForeground(new Color(255,255,255));
+        tabla_consultas.setRowHeight(25);
 
     }
 
@@ -48,6 +56,11 @@ public class Reporte_view extends javax.swing.JFrame {
         tabla_consultas = new javax.swing.JTable();
         txt_desde = new com.toedter.calendar.JDateChooser();
         txt_hasta = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        lbl_hoy = new javax.swing.JLabel();
+        lbl_refrescar = new javax.swing.JLabel();
+        lbl_tomorrow = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -219,6 +232,10 @@ public class Reporte_view extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla_consultas.setFocusable(false);
+        tabla_consultas.setRowHeight(25);
+        tabla_consultas.setShowVerticalLines(true);
+        tabla_consultas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabla_consultas);
         if (tabla_consultas.getColumnModel().getColumnCount() > 0) {
             tabla_consultas.getColumnModel().getColumn(0).setResizable(false);
@@ -228,7 +245,7 @@ public class Reporte_view extends javax.swing.JFrame {
         txt_desde.setBackground(new java.awt.Color(255, 255, 255));
         txt_desde.setForeground(new java.awt.Color(0, 0, 0));
         txt_desde.setDateFormatString("dd-MMM-yyyy");
-        txt_desde.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_desde.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         txt_desde.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
         );
         txt_desde.setOpaque(false);
@@ -236,10 +253,33 @@ public class Reporte_view extends javax.swing.JFrame {
         txt_hasta.setBackground(new java.awt.Color(255, 255, 255));
         txt_hasta.setForeground(new java.awt.Color(0, 0, 0));
         txt_hasta.setDateFormatString("dd-MMM-yyyy");
-        txt_hasta.setFont(new java.awt.Font("MS UI Gothic", 0, 16)); // NOI18N
+        txt_hasta.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         txt_hasta.setIcon(new ImageIcon(getClass().getResource("/img/calendar2.jpg"))
         );
         txt_hasta.setOpaque(false);
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Reservaciones para Hoy");
+
+        lbl_hoy.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbl_hoy.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_hoy.setText("##");
+
+        lbl_refrescar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl_refrescar.setForeground(new java.awt.Color(29, 53, 87));
+        lbl_refrescar.setText("refrescar");
+        lbl_refrescar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lbl_tomorrow.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbl_tomorrow.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_tomorrow.setText("##");
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Reservaciones para Mañana:");
 
         javax.swing.GroupLayout contenedor_mainLayout = new javax.swing.GroupLayout(contenedor_main);
         contenedor_main.setLayout(contenedor_mainLayout);
@@ -249,7 +289,19 @@ public class Reporte_view extends javax.swing.JFrame {
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(btn_consultarReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(contenedor_mainLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_tomorrow, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(contenedor_mainLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_hoy, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
             .addGroup(contenedor_mainLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,17 +322,31 @@ public class Reporte_view extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addComponent(txt_hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
+                        .addGap(64, 64, 64))
                     .addGroup(contenedor_mainLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(btn_consultarReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                        .addComponent(txt_desde, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenedor_mainLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_consultarReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(contenedor_mainLayout.createSequentialGroup()
+                                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lbl_hoy))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contenedor_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(lbl_tomorrow))))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor_mainLayout.createSequentialGroup()
+                        .addComponent(lbl_refrescar)
+                        .addGap(44, 44, 44)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(contenedor_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 890, 520));
@@ -317,41 +383,39 @@ public class Reporte_view extends javax.swing.JFrame {
         return btn_consultarReservaciones;
     }
 
-    public void setBtn_consultarReservaciones(JButton btn_consultarReservaciones) {
-        this.btn_consultarReservaciones = btn_consultarReservaciones;
-    }
 
     public JLabel getLbl_administracion() {
         return lbl_administracion;
     }
 
-    public void setLbl_administracion(JLabel lbl_administracion) {
-        this.lbl_administracion = lbl_administracion;
-    }
 
     public JTable getTabla_consultas() {
         return tabla_consultas;
     }
 
-    public void setTabla_consultas(JTable tabla_consultas) {
-        this.tabla_consultas = tabla_consultas;
-    }
 
     public JDateChooser getTxt_desde() {
         return txt_desde;
     }
 
-    public void setTxt_desde(JDateChooser txt_desde) {
-        this.txt_desde = txt_desde;
-    }
 
     public JDateChooser getTxt_hasta() {
         return txt_hasta;
     }
 
-    public void setTxt_hasta(JDateChooser txt_hasta) {
-        this.txt_hasta = txt_hasta;
+
+    public JLabel getLbl_hoy() {
+        return lbl_hoy;
     }
+
+    public JLabel getLbl_tomorrow() {
+        return lbl_tomorrow;
+    }
+
+    public JLabel getLbl_refrescar() {
+        return lbl_refrescar;
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -361,9 +425,11 @@ public class Reporte_view extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -371,7 +437,10 @@ public class Reporte_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_administracion;
+    private javax.swing.JLabel lbl_hoy;
     private javax.swing.JLabel lbl_logout;
+    private javax.swing.JLabel lbl_refrescar;
+    private javax.swing.JLabel lbl_tomorrow;
     private javax.swing.JTable tabla_consultas;
     private com.toedter.calendar.JDateChooser txt_desde;
     private com.toedter.calendar.JDateChooser txt_hasta;

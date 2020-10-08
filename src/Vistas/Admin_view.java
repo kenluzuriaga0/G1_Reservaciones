@@ -1,19 +1,14 @@
 package Vistas;
 
-import Controlador.Login_control;
 import Controlador.Reservaciones;
 import Dao.Mesas_dao;
 import Modelo.Mesa;
 import Vistas_aux.MotionPanel;
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
-import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
 import javax.swing.SpinnerNumberModel;
 
@@ -346,56 +341,29 @@ public class Admin_view extends javax.swing.JFrame {
         return btn_definirDia;
     }
 
-    public void setBtn_definirDia(JButton btn_definirDia) {
-        this.btn_definirDia = btn_definirDia;
-    }
-
     public JLabel getLbl_mesasFree() {
         return lbl_mesasFree;
-    }
-
-    public void setLbl_mesasFree(JLabel lbl_mesasFree) {
-        this.lbl_mesasFree = lbl_mesasFree;
     }
 
     public JLabel getLbl_reportes() {
         return lbl_reportes;
     }
 
-    public void setLbl_reportes(JLabel lbl_reportes) {
-        this.lbl_reportes = lbl_reportes;
-    }
 
     public JSpinner getSpn_mesasDisp() {
         return spn_mesasDisp;
-    }
-
-    public void setSpn_mesasDisp(JSpinner spn_mesasDisp) {
-        this.spn_mesasDisp = spn_mesasDisp;
     }
 
     public JDateChooser getTxt_diaFin() {
         return txt_diaFin;
     }
 
-    public void setTxt_diaFin(JDateChooser txt_diaFin) {
-        this.txt_diaFin = txt_diaFin;
-    }
-
     public JDateChooser getTxt_diaInicio() {
         return txt_diaInicio;
     }
 
-    public void setTxt_diaInicio(JDateChooser txt_diaInicio) {
-        this.txt_diaInicio = txt_diaInicio;
-    }
-
     public JLabel getLbl_nombre() {
         return lbl_nombre;
-    }
-
-    public void setLbl_nombre(JLabel lbl_nombre) {
-        this.lbl_nombre = lbl_nombre;
     }
 
     public JButton getBtn_definirTotal() {

@@ -31,13 +31,15 @@ public class Reporte_control extends Login_control {
         this.reporte = reporte;
         initListener();
         model = new DefaultTableModel();
+        setearNow_Tomorrow();
 
     }
 
     private void initListener() {
 
         reporte.getLbl_administracion().addMouseListener(new Flujo());
-        reporte.getBtn_consultarReservaciones().addMouseListener(new Flujo());
+        reporte.getBtn_consultarReservaciones().addMouseListener(new Flujo());      
+        reporte.getLbl_refrescar().addMouseListener(new Flujo());
     }
 
     private void consultarReservaciones() {
@@ -89,6 +91,14 @@ public class Reporte_control extends Login_control {
         }
 
     }
+    
+    private void setearNow_Tomorrow(){
+        Reservaciones_dao dao = new Reservaciones_dao();
+        reporte.getLbl_hoy().setText(String.valueOf(dao.getTotalHoy()));
+        reporte.getLbl_tomorrow().setText(String.valueOf(dao.getTotalManana()));
+    }
+    
+    
 
     class Flujo extends MouseAdapter {
 
@@ -105,6 +115,8 @@ public class Reporte_control extends Login_control {
 
                 consultarReservaciones();
 
+            }else if(fuente.equals(reporte.getLbl_refrescar())){
+                setearNow_Tomorrow();
             }
 
         }

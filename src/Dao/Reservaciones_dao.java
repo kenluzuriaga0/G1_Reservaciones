@@ -9,12 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Reservaciones_dao implements Ireservaciones {
+public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
-    //private final String SELECT_TODO_X_FECHA = "SELECT * FROM RESERVACIONES WHERE FECHA_RESERVACION BETWEEN ? AND ?";
-    private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO " +
-"    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";
+    private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO "
+            + "    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";
 
     @Override
     public void insertar(Reservacion e) {
@@ -80,6 +79,58 @@ public class Reservaciones_dao implements Ireservaciones {
 
         return listaReservacion;
     }
+
+    //VISTA-----------------------------------------------------------------
+    public int getTotalHoy() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate)";
+        
+         int paraHoy = 0;
+        try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                 paraHoy= rs.getInt(1);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Falla de getHoy " + ex.getMessage());
+        }finally{
+            return paraHoy;
+        }
+
+    }
+
+    public int getTotalManana() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate+1)";
+
+         int paraHoy = 0;
+        try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                 paraHoy= rs.getInt(1);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Falla de getTomorrow " + ex.getMessage());
+        }finally{
+            return paraHoy;
+        }
+
+    }
+  
 
     //VALIDACION-------------------------------------------------------------
     public int getMesasOcupadas(java.sql.Date fecha) {
