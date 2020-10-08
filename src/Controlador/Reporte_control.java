@@ -73,7 +73,7 @@ public class Reporte_control extends Login_control {
         for (int i = 0; i < lista.size(); i++) {
             rows[0] = lista.get(i).getId();
             rows[1] = lista.get(i).getUsername();
-            rows[2] = f.formatear(lista.get(i).getFecha_emision());
+            rows[2] = f.formatear(lista.get(i).getFecha_emision(),"dd/MM/yyyy");
             rows[3] = lista.get(i).getParticipantes()+" Personas";
             rows[4] = lista.get(i).getMotivo();
             rows[5] = lista.get(i).getDetalleMotivo();

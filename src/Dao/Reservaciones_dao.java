@@ -1,6 +1,7 @@
 package Dao;
 
 import Config.Conexion;
+import Controlador.Login_control;
 import IDao.Ireservaciones;
 import Modelo.Reservacion;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
     private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO "
             + "    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";
+    private final String DELETE_RESERVACION = "DELETE FROM RESERVACIONES WHERE ID_RESERVACIONES = ?";
 
     @Override
     public void insertar(Reservacion e) {
@@ -38,16 +40,34 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     @Override
     public boolean eliminar(Reservacion e) {
+        Connection cn = Conexion.conectar();
+        PreparedStatement ps;
+
+        try {
+            ps = cn.prepareStatement(DELETE_RESERVACION);
+            ps.setInt(1, e.getId());
+            ps.executeUpdate();
+            
+            
+            ps.close();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Fallo Eliminar_dao "+ ex.getMessage());
+            return false;
+        }
+
+        
+    }
+
+    @Override
+    public boolean actualizar(Reservacion e
+    ) {
         return false;
     }
 
     @Override
-    public boolean actualizar(Reservacion e) {
-        return false;
-    }
-
-    @Override
-    public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin) {
+    public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin
+    ) {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -79,28 +99,27 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
         return listaReservacion;
     }
-
     //VISTA-----------------------------------------------------------------
+    //--ReporteView--
+
     public int getTotalHoy() {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate)";
-        
-         int paraHoy = 0;
+
+        int paraHoy = 0;
         try {
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
 
-            if(rs.next()){
-                 paraHoy= rs.getInt(1);
+            if (rs.next()) {
+                paraHoy = rs.getInt(1);
             }
-            
-            
-            
+            ps.close();
         } catch (SQLException ex) {
             System.out.println("Falla de getHoy " + ex.getMessage());
-        }finally{
+        } finally {
             return paraHoy;
         }
 
@@ -112,25 +131,105 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate+1)";
 
-         int paraHoy = 0;
+        int paraHoy = 0;
         try {
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
 
-            if(rs.next()){
-                 paraHoy= rs.getInt(1);
+            if (rs.next()) {
+                paraHoy = rs.getInt(1);
             }
-            
-            
-            
+            ps.close();
         } catch (SQLException ex) {
             System.out.println("Falla de getTomorrow " + ex.getMessage());
-        }finally{
+        } finally {
             return paraHoy;
         }
 
     }
-  
+    //--FIN ReporteView--
+
+    //--ProfileView--
+    public int getPendientes_x_user() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "select count(*) from reservaciones where id_usuarios = ? and fecha_reservacion > sysdate";
+
+        int pendientes = 0;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, Login_control.getUser().getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                pendientes = rs.getInt(1);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Falla de getTPendientes " + ex.getMessage());
+        } finally {
+            return pendientes;
+        }
+    }
+//--FIN ProfileView--
+
+    //--PerfilView--
+    public ArrayList<Reservacion> listarHistorico() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "select id_reservaciones, fecha_reservacion, numero_personas, motivo, detalle_motivo from reservaciones where id_usuarios = ? order by fecha_reservacion desc";
+
+        ArrayList<Reservacion> listaReservacion = new ArrayList<>();
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, Login_control.getUser().getId());
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Reservacion res = new Reservacion();
+                res.setId(rs.getInt(1));
+                res.setFecha_emision(rs.getTimestamp(2));
+                res.setParticipantes(rs.getInt(3));
+                res.setMotivo(rs.getString(4));
+                res.setDetalleMotivo(rs.getString(5));
+                listaReservacion.add(res);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Fallo en enlistarHistorico " + ex.getMessage());
+        }
+
+        return listaReservacion;
+    }
+
+    //-- FIN PerfilView--
+    public int getHechas_x_user() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "select count(*) from reservaciones where id_usuarios = ? and  fecha_reservacion < sysdate";
+
+        int hechas = 0;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1, Login_control.getUser().getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                hechas = rs.getInt(1);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Falla de getTHechas " + ex.getMessage());
+        } finally {
+            return hechas;
+        }
+    }
 
     //VALIDACION-------------------------------------------------------------
     public int getMesasOcupadas(java.sql.Date fecha) {
@@ -169,7 +268,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
             if (ps.executeUpdate() > 0) {
                 existe = true;
             }
-            cn.close();
+            ps.close();
         } catch (Exception e) {
             System.out.println("Error en verificarFechayaReservada  " + e);
         }

@@ -23,8 +23,8 @@ public class Mesa {
     int num_mesas;
     int mesas_faltantes;
     
-        public String formatear(Date fecha) {
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+        public String formatear(Date fecha, String formato) {
+        SimpleDateFormat dateformat = new SimpleDateFormat(formato);
 
         if (fecha != null) {
             return dateformat.format(fecha);

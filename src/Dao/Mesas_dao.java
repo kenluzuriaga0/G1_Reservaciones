@@ -72,7 +72,7 @@ public class Mesas_dao implements IMesa_dao {
             for (int i = 0; i < mesa.getFecha().size(); i++) {
                 ps.setInt(1, Dao.autoId("MESAS", "ID_MESAS"));
                 ps.setString(2, String.valueOf(mesa.getEstado()));
-                ps.setString(3, mesa.formatear(mesa.getFecha().get(i)));
+                ps.setString(3, mesa.formatear(mesa.getFecha().get(i),"dd/MM/yyyy"));
                 ps.setInt(4, mesa.getNum_mesas());
                 ps.setInt(5, mesa.getMesas_faltantes());
 
@@ -80,8 +80,8 @@ public class Mesas_dao implements IMesa_dao {
 
             }
 
-            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.formatear(mesa.getFecha().get(0)) + " hasta "
-                    + mesa.formatear(mesa.getFecha().get(mesa.getFecha().size() - 1))
+            JOptionPane.showMessageDialog(null, "Registro Exitoso\nFecha: " + mesa.formatear(mesa.getFecha().get(0),"dd/MM/yyyy") + " hasta "
+                    + mesa.formatear(mesa.getFecha().get(mesa.getFecha().size() - 1),"dd/MM/yyyy")
                     + "\nNumero Mesas: " + mesa.getNum_mesas());
 
             ps.close();

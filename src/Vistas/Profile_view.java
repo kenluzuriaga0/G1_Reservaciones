@@ -3,8 +3,11 @@ package Vistas;
 import Vistas_aux.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,7 +20,12 @@ public class Profile_view extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         txt_fechaFiltro.getCalendarButton().setBackground(new Color(187,187,187));
-
+        
+        tabla_historico.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
+        tabla_historico.getTableHeader().setOpaque(false);
+        tabla_historico.getTableHeader().setBackground(new Color(29,53,87));
+        tabla_historico.getTableHeader().setForeground(new Color(255,255,255));
+        tabla_historico.setRowHeight(25);
     }
 
     public JDateChooser getTxt_fecha() {
@@ -47,13 +55,14 @@ public class Profile_view extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        lbl_resActual = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        tabla_historico = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
         txt_fechaFiltro = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        lbl_resActual = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btn_cancelarRes = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -212,55 +221,46 @@ public class Profile_view extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 200, 90, -1));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_historico.setBackground(new java.awt.Color(255, 255, 255));
+        tabla_historico.setForeground(new java.awt.Color(0, 0, 0));
+        tabla_historico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "N", "Fecha", "Hora", "Estado", "Participantes", "Motivo"
+                "N", "Fecha", "Dia", "Participantes", "Motivo", "Detalle Motivo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tabla_historico.setFocusable(false);
+        tabla_historico.setRowHeight(25);
+        tabla_historico.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabla_historico.setShowHorizontalLines(true);
+        tabla_historico.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabla_historico);
+        if (tabla_historico.getColumnModel().getColumnCount() > 0) {
+            tabla_historico.getColumnModel().getColumn(0).setPreferredWidth(5);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 820, 220));
 
-        lbl_resActual.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_resActual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_resActual.setForeground(new java.awt.Color(0, 0, 0));
-        lbl_resActual.setText("00/00/0000 - 00:00");
-        lbl_resActual.setOpaque(true);
-        getContentPane().add(lbl_resActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 230, 60));
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Reservas Pendientes");
-        jLabel8.setOpaque(true);
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
-
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fecha");
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 50, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 60, -1));
 
         contenedor_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_fechaFiltro.setFont(new java.awt.Font("MS UI Gothic", 1, 16)); // NOI18N
+        txt_fechaFiltro.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         txt_fechaFiltro.setIcon(new ImageIcon(getClass().getResource("/img/calendar.png")));
         contenedor_main.add(txt_fechaFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 170, 40));
 
@@ -269,7 +269,29 @@ public class Profile_view extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Buscar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 220, 40));
+        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 140, 40));
+
+        lbl_resActual.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_resActual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbl_resActual.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_resActual.setText("00/00/0000 - 00:00");
+        lbl_resActual.setOpaque(true);
+        contenedor_main.add(lbl_resActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 230, 60));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Reservas Pendientes");
+        jLabel8.setOpaque(true);
+        contenedor_main.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
+
+        btn_cancelarRes.setBackground(new java.awt.Color(32, 177, 151));
+        btn_cancelarRes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_cancelarRes.setForeground(new java.awt.Color(0, 0, 0));
+        btn_cancelarRes.setText("Cancelar Reservacion");
+        btn_cancelarRes.setToolTipText("Seleccione 1 posterior a 2 dias de HOY");
+        btn_cancelarRes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contenedor_main.add(btn_cancelarRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 170, 40));
 
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
@@ -295,41 +317,35 @@ public class Profile_view extends javax.swing.JFrame {
         return lbl_nombre;
     }
 
-    public void setLbl_nombre(JLabel lbl_nombre) {
-        this.lbl_nombre = lbl_nombre;
-    }
-
     public JLabel getLbl_resActual() {
         return lbl_resActual;
-    }
-
-    public void setLbl_resActual(JLabel lbl_resActual) {
-        this.lbl_resActual = lbl_resActual;
     }
 
     public JLabel getLbl_resHechas() {
         return lbl_resHechas;
     }
 
-    public void setLbl_resHechas(JLabel lbl_resHechas) {
-        this.lbl_resHechas = lbl_resHechas;
-    }
-
     public JLabel getLbl_resPendientes() {
         return lbl_resPendientes;
     }
 
-    public void setLbl_resPendientes(JLabel lbl_resPendientes) {
-        this.lbl_resPendientes = lbl_resPendientes;
-    }
 
     public JLabel getLbl_home() {
         return lbl_home;
     }
 
+    public JTable getTabla_historico() {
+        return tabla_historico;
+    }
+
+    public JButton getBtn_cancelarRes() {
+        return btn_cancelarRes;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
+    private javax.swing.JButton btn_cancelarRes;
     private javax.swing.JLabel btn_cerrar;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
@@ -345,12 +361,12 @@ public class Profile_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_resActual;
     private javax.swing.JLabel lbl_resHechas;
     private javax.swing.JLabel lbl_resPendientes;
+    private javax.swing.JTable tabla_historico;
     private com.toedter.calendar.JDateChooser txt_fechaFiltro;
     // End of variables declaration//GEN-END:variables
 }
