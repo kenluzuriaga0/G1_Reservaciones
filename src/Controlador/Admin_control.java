@@ -3,6 +3,7 @@ package Controlador;
 import Dao.Dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
+import IDao.IMesa_dao;
 import Modelo.Mesa;
 import Modelo.Usuario;
 import Vistas.Admin_view;
@@ -50,7 +51,7 @@ public class Admin_control extends Login_control {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Realizar esta transaccion?", "Confirmacion", JOptionPane.YES_OPTION);
         if (opcion == 0) {
             Mesa mesa = new Mesa();
-            Mesas_dao dao = new Mesas_dao();
+            IMesa_dao dao = new Mesas_dao();
 
             Mesa.setTotal_mesas(dao.getTotalMesas()); //obtener el total de mesas
 
@@ -73,7 +74,7 @@ public class Admin_control extends Login_control {
     }
 
     private void definirTotal() {
-        Mesas_dao dao = new Mesas_dao();
+        IMesa_dao dao = new Mesas_dao();
 
         String input = JOptionPane.showInputDialog(null, "Total de mesas actual: " + Mesa.getTotal_mesas() + " mesas", "Defina Total de Mesas", JOptionPane.QUESTION_MESSAGE);
 

@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
@@ -47,16 +48,14 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
             ps = cn.prepareStatement(DELETE_RESERVACION);
             ps.setInt(1, e.getId());
             ps.executeUpdate();
-            
-            
+
             ps.close();
             return true;
         } catch (SQLException ex) {
-            System.out.println("Fallo Eliminar_dao "+ ex.getMessage());
+            System.out.println("Fallo Eliminar_dao " + ex.getMessage());
             return false;
         }
 
-        
     }
 
     @Override
@@ -175,7 +174,31 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     }
 //--FIN ProfileView--
 
+    public Date getProximo() {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String query = "SELECT fecha_reservacion FROM reservaciones WHERE fecha_reservacion > TRUNC(sysdate) AND ROWNUM <=1";
+
+        Date fechaReciente=null;
+        try {
+            ps = con.prepareCall(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                
+                fechaReciente = rs.getDate(1);
+            }
+        } catch (Exception ex) {
+            System.out.println("Falla en getProximo Reservaciones  " + ex.getMessage());
+        }finally{
+            return fechaReciente;
+        }
+        
+
+    }
+
     //--PerfilView--
+    @Override
     public ArrayList<Reservacion> listarHistorico() {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;

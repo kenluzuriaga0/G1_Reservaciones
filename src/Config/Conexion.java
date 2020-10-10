@@ -19,7 +19,7 @@ public class Conexion {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(url, "ken", "123");
 
-            System.out.println("-Conexion exitosa-");
+            System.out.print("-");
 
         } catch (ClassNotFoundException e) {
             System.out.println("No encontró el driver");

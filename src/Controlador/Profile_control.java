@@ -2,6 +2,7 @@ package Controlador;
 
 import Dao.Reservaciones_dao;
 import Dao.Usuario_dao;
+import IDao.Ireservaciones;
 import Modelo.Mesa;
 import Modelo.Reservacion;
 import Modelo.Usuario;
@@ -47,9 +48,11 @@ public class Profile_control extends Login_control {
     }
 
     private void setearStats() {
+        Mesa f = new Mesa();
         Reservaciones_dao dao = new Reservaciones_dao();
         profile.getLbl_resPendientes().setText(String.valueOf(dao.getPendientes_x_user()));
         profile.getLbl_resHechas().setText(String.valueOf(dao.getHechas_x_user()));
+        profile.getLbl_resActual().setText(f.formatear(dao.getProximo(), "dd/MM/yyyy - HH:mm:ss"));
 
     }
 
@@ -57,8 +60,7 @@ public class Profile_control extends Login_control {
 
         limpiarTabla();
 
-        Reservacion reserve = new Reservacion();
-        Reservaciones_dao dao = new Reservaciones_dao();
+        Ireservaciones dao = new Reservaciones_dao();
         Mesa f = new Mesa();
         model = (DefaultTableModel) profile.getTabla_historico().getModel();
 
@@ -91,7 +93,7 @@ public class Profile_control extends Login_control {
     private void eliminar(JTable tabla) {
         int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?");
         if (opcion == 0) {
-            Reservaciones_dao dao = new Reservaciones_dao();
+            Ireservaciones dao = new Reservaciones_dao();
             Reservacion e = new Reservacion();
             DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
             int fila = tabla.getSelectedRowCount(); //cuento cuantas filas hay seleccionadas

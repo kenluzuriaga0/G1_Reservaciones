@@ -7,7 +7,6 @@ package IDao;
 
 import Modelo.Reservacion;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -18,4 +17,5 @@ public interface Ireservaciones {
     public boolean eliminar(Reservacion e);
     public boolean actualizar(Reservacion e);
     public ArrayList<Reservacion> listar(java.sql.Date i, java.sql.Date f);
+    public ArrayList<Reservacion> listarHistorico();
 }

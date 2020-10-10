@@ -50,6 +50,8 @@ public class Reservacion_control extends Login_control {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            //Obtencion de datos de los campos en la vista
             java.util.Date fecha = reserva.getCuadroFechaReservacion().getDate();
 
             long milis = this.setearTiempo(fecha, 0, 0);//fecha.getTime();
@@ -66,9 +68,16 @@ public class Reservacion_control extends Login_control {
             } else if (reserva.getAmigos().isSelected()) {
                 motivo = "AMIGOS";
             }
-            detalleMotivo = reserva.getTxt_detalleMotivo().getText();
-
-            if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { //Login_control.getUser().getId()
+            
+            detalleMotivo = reserva.getTxt_detalleMotivo().getText().trim();
+            System.out.println(detalleMotivo);
+            if(detalleMotivo.equals("Motivo")|| detalleMotivo==null){
+                detalleMotivo = "";
+            }
+            
+            // Comienza VALIDACIONES de fechas
+            
+            if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { 
                 if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
 
                     Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
@@ -89,7 +98,6 @@ public class Reservacion_control extends Login_control {
         }
 
         private long setearTiempo(java.util.Date fecha, int hora, int minuto) {
-            long milis = fecha.getTime();
             Calendar c = Calendar.getInstance();
             c.setTime(fecha);
             c.set(Calendar.HOUR_OF_DAY, hora);
@@ -113,13 +121,13 @@ public class Reservacion_control extends Login_control {
         @Override
         public void focusLost(FocusEvent e) {
             Object fuente = e.getSource();
-            if (fuente.equals(reserva.getTxt_detalleMotivo())){
-                    
+            if (fuente.equals(reserva.getTxt_detalleMotivo())) {
+
                 PlaceHolder.poner_PlaceHolder("Motivo", reserva.getTxt_detalleMotivo());
 
+            }
         }
-    }
 
-}
+    }
 
 }
