@@ -1,6 +1,5 @@
 package Controlador;
 
-import Dao.Dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
 import IDao.IMesa_dao;
@@ -10,9 +9,7 @@ import Vistas.Admin_view;
 import Vistas.Reporte_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**

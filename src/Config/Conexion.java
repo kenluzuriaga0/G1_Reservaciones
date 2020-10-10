@@ -1,4 +1,3 @@
-
 package Config;
 
 import java.sql.Connection;
@@ -10,10 +9,10 @@ import java.sql.SQLException;
  * @author kenlu
  */
 public class Conexion {
-    
-    Connection con;
-    
-    public Connection conectar() {
+
+    private Connection con = null;
+
+    public Conexion() {
         con = null;
         try {
 
@@ -22,15 +21,34 @@ public class Conexion {
             con = DriverManager.getConnection(url, "ken", "123");
 
             System.out.print("-");
-
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            String classe = elements[2].getClassName();
+            String method = elements[2].getMethodName();
+            System.out.print(classe + " _ " + method);
         } catch (ClassNotFoundException e) {
             System.out.println("No encontró el driver");
         } catch (SQLException e) {
-            System.out.println("No conecta, falla de url, user o password");
+            System.out.println("No conecta, falla de url, user o password " + e.getMessage());
         }
 
-        return con;
     }
-    
-    
+
+    public void cerrar() {
+
+        if (con != null) {
+            try {
+
+                con.close();
+                //   Thread.sleep(500);
+                System.out.print(" se cerró\n");
+            } catch (SQLException ex) {
+                System.out.println("No se realizó la desconexión: " + ex.getMessage());
+            }
+        }
+    }
+
+    public Connection getCon() {
+        return this.con;
+    }
+
 }

@@ -20,18 +20,18 @@ import javax.swing.SwingUtilities;
 public class Home_view extends javax.swing.JFrame {
 
     ConsultarMenu_view panel1 = new ConsultarMenu_view();
-    Reserva_view panel2;
-    Reservacion_control reserva;
+//    Reserva_view panel2;
+//    Reservacion_control reserva;
     Resenas_view panel3 = new Resenas_view();
-
+    Reserva_view panel2 = new Reserva_view();
+    Usuario_dao dao = new Usuario_dao();
+    
+    Reservacion_control reserva = new Reservacion_control(Login_control.getUser(), dao, panel2);
     CardLayout vista;
 
     public Home_view() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Usuario_dao dao = new Usuario_dao();
-         panel2 = new Reserva_view();
-         reserva = new Reservacion_control(Login_control.getUser(), dao, panel2);
         vista = (CardLayout) contenedor_main.getLayout();
 
     }

@@ -18,23 +18,29 @@ public class Comentario_dao extends Conexion implements IComentario_dao{
     
     private final String query_listar="select us.username, c.comentario, c.id_usuarios, c.fecha_publicacion from usuarios us, comentarios c where us.id_usuarios=c.id_usuarios order by id_comentario desc";
     private final String query_insertar="insert into comentarios values(?,?,?,?)";
+
+    public Comentario_dao() {
+        super.cerrar();
+    }
     
     
       //METODO PRIMARIO
     @Override
     public ArrayList<Comentario> ListarComentarios(){
-        Connection cn =conectar();
+        Conexion cn = new Conexion();
+        //System.out.print("listar comments");
         PreparedStatement ps;
         ResultSet rs;
         ArrayList<Comentario>arreglo=new ArrayList<Comentario>();
         
         try{
-             ps=cn.prepareStatement(query_listar);
+             ps=cn.getCon().prepareStatement(query_listar);
              rs=ps.executeQuery();
              while(rs.next()){
                arreglo.add(obtenerComentario(rs));
              }
-             cn.close();
+             ps.close();
+             cn.cerrar();
         }catch(Exception e){
             System.out.println("error");
         }
@@ -45,18 +51,20 @@ public class Comentario_dao extends Conexion implements IComentario_dao{
     //METODO PRIMARIO
     @Override
     public void insertar(Comentario c){
-        Connection cn = conectar();
+       Conexion cn = new Conexion();
+     //  System.out.print("insertar comments");
         PreparedStatement ps=null;
         Dao dao = new Dao();
         int id_siguiente=dao.autoId("comentarios", "id_comentario");
         try{
-          ps=cn.prepareStatement(query_insertar);
+          ps=cn.getCon().prepareStatement(query_insertar);
           ps.setInt(1, id_siguiente);
           ps.setInt(2,c.getId_usuario() ); //el 3 se refiere al id del usuario que tiene sesion iniciada
           ps.setString(3, c.getComentario());
           ps.setTimestamp(4, c.getFecha_publicacion());
           ps.executeQuery();
-          cn.close();
+             ps.close();
+             cn.cerrar();
         }catch(Exception e){
             System.out.println(e);
         }

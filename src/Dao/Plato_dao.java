@@ -9,7 +9,6 @@ import Config.Conexion;
 import IDao.IPlato_dao;
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,21 +20,27 @@ import java.util.ArrayList;
  */
 public class Plato_dao extends Conexion implements IPlato_dao {
     private final String query_listar_platos="select * from plato where id_categoria_plato=?";
+
+    public Plato_dao() {
+         super.cerrar();
+    }
     
     @Override
     public ArrayList<Plato> listarPlatos(CategoriaPlato cp){
-        Connection cn = conectar();
+        Conexion cn = new Conexion();
+      //  System.out.print("listarPlatos");
         PreparedStatement ps;
         ResultSet rs;      
         ArrayList<Plato>platos=new  ArrayList<Plato>();
         try{
-            ps=cn.prepareStatement(query_listar_platos);
+            ps=cn.getCon().prepareStatement(query_listar_platos);
         ps.setInt(1, cp.getId_categoria_plato());
         rs=ps.executeQuery();
         while(rs.next()){
             platos.add(this.obtenerPlato(rs));
         }
-        ps.close();
+             ps.close();
+             cn.cerrar();
         }catch(Exception e){
             System.out.println(e);
         }
