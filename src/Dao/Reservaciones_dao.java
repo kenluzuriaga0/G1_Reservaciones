@@ -178,7 +178,8 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String query = "SELECT fecha_reservacion FROM reservaciones WHERE fecha_reservacion > TRUNC(sysdate) AND ROWNUM <=1";
+        String query = "SELECT fecha_reservacion FROM "
+                + "(select fecha_reservacion from reservaciones  WHERE fecha_reservacion > sysdate order by fecha_reservacion asc) WHERE rownum<=1";
 
         Date fechaReciente=null;
         try {
@@ -188,6 +189,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
                 
                 fechaReciente = rs.getDate(1);
             }
+            ps.close();
         } catch (Exception ex) {
             System.out.println("Falla en getProximo Reservaciones  " + ex.getMessage());
         }finally{
@@ -298,5 +300,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
         return existe;
     }
+    
+
 
 }

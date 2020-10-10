@@ -50,7 +50,7 @@ public class Reservacion_control extends Login_control {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             //Obtencion de datos de los campos en la vista
             java.util.Date fecha = reserva.getCuadroFechaReservacion().getDate();
 
@@ -68,31 +68,34 @@ public class Reservacion_control extends Login_control {
             } else if (reserva.getAmigos().isSelected()) {
                 motivo = "AMIGOS";
             }
-            
+
             detalleMotivo = reserva.getTxt_detalleMotivo().getText().trim();
             System.out.println(detalleMotivo);
-            if(detalleMotivo.equals("Motivo")|| detalleMotivo==null){
+            if (detalleMotivo.equals("Motivo") || detalleMotivo == null) {
                 detalleMotivo = "";
             }
-            
+
             // Comienza VALIDACIONES de fechas
-            
-            if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) { 
-                if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
+            Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
+            if (fechaEsFuturo(fecha_ingreso)) {
 
-                    Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
+                if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) {
+                    if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
 
-                    Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
-                    daoReservaciones.insertar(r);
+                        Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
+                        daoReservaciones.insertar(r);
 
-                    JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "ESTE DIA NO ESTA DISPONIBLE O YA RESERVA EN ESTE DIA", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
             } else {
-                JOptionPane.showMessageDialog(null, "ESTE DIA NO ESTA DISPONIBLE O YA RESERVA EN ESTE DIA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La fecha debe ser posterior a HOY", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -104,6 +107,18 @@ public class Reservacion_control extends Login_control {
             c.set(Calendar.MINUTE, minuto);
             c.set(Calendar.SECOND, 0);
             return c.getTimeInMillis();
+        }
+
+        private boolean fechaEsFuturo(Timestamp fecha) { //verifica si lafecha escogida ya pasó
+
+            Calendar hoy = Calendar.getInstance();
+            if (fecha.after(hoy.getTime())) {
+                System.out.println("es futuro");
+                return true;
+            } else {
+                return false;
+            }
+
         }
 
     }
