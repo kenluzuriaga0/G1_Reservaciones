@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author kenlu
  */
-public class Usuario_dao implements IUsuario_dao {
+public class Usuario_dao extends Conexion implements IUsuario_dao {
 
     @Override
     public boolean registrar(Usuario user) {
 
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps = null;
         String sql = "INSERT INTO USUARIOS VALUES(?,?,?,?,?,?,?,?,?)";
 
@@ -52,7 +52,7 @@ public class Usuario_dao implements IUsuario_dao {
 
     @Override
     public boolean ingresar(Usuario user) {
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps = null;
         String sql = "SELECT id_usuarios,username, password, id_roles,nombre,apellido,email,estado, sexo FROM USUARIOS WHERE username = ?";
         ResultSet rs = null;
@@ -99,7 +99,7 @@ public class Usuario_dao implements IUsuario_dao {
     public  List<String>  contrasenaPorCorreo(String email) {
         //String[] datos = new String[3];
         List<String> datos = new ArrayList<>();
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps;
         ResultSet rs;
         String sql = "SELECT NOMBRE, APELLIDO, PASSWORD,USERNAME FROM USUARIOS WHERE EMAIL = ?";

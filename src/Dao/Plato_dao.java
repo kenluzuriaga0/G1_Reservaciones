@@ -10,7 +10,6 @@ import IDao.IPlato_dao;
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,12 +19,12 @@ import java.util.ArrayList;
  *
  * @author luisMenol
  */
-public class Plato_dao implements IPlato_dao {
+public class Plato_dao extends Conexion implements IPlato_dao {
     private final String query_listar_platos="select * from plato where id_categoria_plato=?";
     
     @Override
     public ArrayList<Plato> listarPlatos(CategoriaPlato cp){
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
         ResultSet rs;      
         ArrayList<Plato>platos=new  ArrayList<Plato>();
@@ -36,7 +35,7 @@ public class Plato_dao implements IPlato_dao {
         while(rs.next()){
             platos.add(this.obtenerPlato(rs));
         }
-        cn.close();
+        ps.close();
         }catch(Exception e){
             System.out.println(e);
         }

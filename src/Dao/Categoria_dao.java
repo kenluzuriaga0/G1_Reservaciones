@@ -8,7 +8,6 @@ package Dao;
 import Config.Conexion;
 import Modelo.CategoriaPlato;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author luisMenol
  */
-public class Categoria_dao {
+public class Categoria_dao extends Conexion {
    private final String query_listar="select * from categoria_plato";
     
     
@@ -26,7 +25,7 @@ public class Categoria_dao {
        
        
         ArrayList<CategoriaPlato> categorias = new ArrayList<CategoriaPlato>();
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
         ResultSet rs;
         try {
@@ -35,7 +34,7 @@ public class Categoria_dao {
             while (rs.next()) {
                 categorias.add(this.crearObjeto(rs));
             }
-            cn.close();
+            ps.close();
         } catch (Exception e) {
 
         }

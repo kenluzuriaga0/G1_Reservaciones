@@ -10,10 +10,10 @@ import java.sql.SQLException;
  *
  * @author kenlu
  */
-public class Dao {
+public class Dao extends Conexion{
 
-    public static int autoId(String table, String id_table) {
-        Connection conn = Conexion.conectar();
+    public int autoId(String table, String id_table) {
+        Connection conn = conectar();
         PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT " + id_table + " FROM " + table + " WHERE ROWNUM<=1 ORDER BY " + id_table + " DESC";

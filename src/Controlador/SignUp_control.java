@@ -38,10 +38,10 @@ public class SignUp_control extends Login_control{
     private void registrarUsuario() {
 
         Usuario user = new Usuario();
-        
+        Dao dao = new Dao();
         
         char sexo='x';
-        int id = Dao.autoId("USUARIOS", "ID_USUARIOS");
+        int id = dao.autoId("USUARIOS", "ID_USUARIOS");
         String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
         String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
         String email = register.getTxt_email().getText().toLowerCase().trim();

@@ -20,9 +20,10 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     @Override
     public void insertar(Reservacion e) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
-        int id_siguiente = Dao.autoId("reservaciones", "id_reservaciones");
+        Dao dao = new Dao();
+        int id_siguiente = dao.autoId("reservaciones", "id_reservaciones");
         try {
             ps = cn.prepareStatement(INSERTAR_RESERVACION);
             ps.setInt(1, id_siguiente);
@@ -41,7 +42,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     @Override
     public boolean eliminar(Reservacion e) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
 
         try {
@@ -66,7 +67,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     @Override
     public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin, boolean flag) {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = SELECT_TODO_X_FECHA;
@@ -105,7 +106,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     //--ReporteView--
 
     public int getTotalHoy() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate)";
@@ -128,7 +129,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     }
 
     public int getTotalManana() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where trunc(fecha_reservacion) = trunc(sysdate+1)";
@@ -153,7 +154,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     //--ProfileView--
     public int getPendientes_x_user() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where id_usuarios = ? and fecha_reservacion > sysdate";
@@ -178,7 +179,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 //--FIN ProfileView--
 
     public Date getProximo() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "SELECT fecha_reservacion FROM "
@@ -207,7 +208,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     //--PerfilView--
     @Override
     public ArrayList<Reservacion> listarHistorico() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select id_reservaciones, fecha_reservacion, numero_personas, motivo, detalle_motivo from reservaciones where id_usuarios = ? order by fecha_reservacion desc";
@@ -238,7 +239,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     //-- FIN PerfilView--
     public int getHechas_x_user() {
-        Connection con = Conexion.conectar();
+        Connection con = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "select count(*) from reservaciones where id_usuarios = ? and  fecha_reservacion < sysdate";
@@ -263,7 +264,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     //VALIDACION-------------------------------------------------------------
     public int getMesasOcupadas(java.sql.Date fecha) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         int mesas = 0;
@@ -286,7 +287,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     }
 
     public boolean verificarFechaYaReservada(java.sql.Date fecha, int id) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
         String query = "select * from reservaciones where trunc(fecha_reservacion)=? and id_usuarios=?";
         boolean existe = false;

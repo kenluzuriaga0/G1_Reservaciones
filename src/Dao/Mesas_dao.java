@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author kenlu
  */
-public class Mesas_dao implements IMesa_dao {
+public class Mesas_dao extends Conexion implements IMesa_dao {
 
     static final String INSERT_DEFINIR = "INSERT INTO MESAS (id_mesas,estado,fecha_inicio, num_mesas,mesas_faltantes)values(?,?,?,?,?)";
     static final String SELECT_TOTALMESAS = "SELECT * FROM TOTAL_MESAS";
@@ -24,7 +24,7 @@ public class Mesas_dao implements IMesa_dao {
             + "= (select min(id_mesas) from mesas) or id_mesas=(select max(id_mesas) from mesas)"; //NUEVO
 
     public ArrayList<java.sql.Date> obtenerComienzoFinal() { //NUEVO
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps;
         String query = RANGO_TOTAL;
         ResultSet rs;
@@ -47,7 +47,7 @@ public class Mesas_dao implements IMesa_dao {
 
     @Override
     public int getTotalMesas() {
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps;
         String query = SELECT_TOTALMESAS;
         ResultSet rs;
@@ -72,7 +72,7 @@ public class Mesas_dao implements IMesa_dao {
 
     @Override
     public void actualizarTotalMesas() {
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps;
         String query = UPDATE_TOTALMESAS;
         try {
@@ -89,14 +89,14 @@ public class Mesas_dao implements IMesa_dao {
 
     @Override
     public void definirDia(Mesa mesa) {
-        Connection conn = Conexion.conectar();
+        Connection conn = conectar();
         PreparedStatement ps;
         String query = INSERT_DEFINIR;
-
+Dao dao = new Dao();
         try {
             ps = conn.prepareStatement(query);
             for (int i = 0; i < mesa.getFecha().size(); i++) {
-                ps.setInt(1, Dao.autoId("MESAS", "ID_MESAS"));
+                ps.setInt(1, dao.autoId("MESAS", "ID_MESAS"));
                 ps.setString(2, String.valueOf(mesa.getEstado()));
                 ps.setString(3, mesa.formatear(mesa.getFecha().get(i), "dd/MM/yyyy"));
                 ps.setInt(4, mesa.getNum_mesas());
@@ -121,7 +121,7 @@ public class Mesas_dao implements IMesa_dao {
 
 //------------------------------------------------------------------------------------
     public boolean verificarFecha(java.sql.Date fecha) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps;
         int filas = 0;
         System.out.println(fecha);
@@ -132,6 +132,7 @@ public class Mesas_dao implements IMesa_dao {
             ps = cn.prepareStatement(query);
             ps.setDate(1, fecha);
             filas = ps.executeUpdate();
+            ps.close();
 
         } catch (Exception e) {
             System.out.println("Error en verificarFecha " + e);
@@ -146,7 +147,7 @@ public class Mesas_dao implements IMesa_dao {
     }
 
     public int getMesasExistentes(java.sql.Date fecha) {
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
         int mesas = 0;
@@ -158,7 +159,7 @@ public class Mesas_dao implements IMesa_dao {
             if (rs.next()) {
                 mesas = rs.getInt(1);
             }
-
+            ps.close(); 
         } catch (Exception e) {
             System.out.println("Error mi loco, getMesasExistentes " + e.getMessage());
         }

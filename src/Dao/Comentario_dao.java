@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author luisMenol
  */
-public class Comentario_dao implements IComentario_dao{
+public class Comentario_dao extends Conexion implements IComentario_dao{
     
     private final String query_listar="select us.username, c.comentario, c.id_usuarios, c.fecha_publicacion from usuarios us, comentarios c where us.id_usuarios=c.id_usuarios order by id_comentario desc";
     private final String query_insertar="insert into comentarios values(?,?,?,?)";
@@ -23,7 +23,7 @@ public class Comentario_dao implements IComentario_dao{
       //METODO PRIMARIO
     @Override
     public ArrayList<Comentario> ListarComentarios(){
-        Connection cn = Conexion.conectar();
+        Connection cn =conectar();
         PreparedStatement ps;
         ResultSet rs;
         ArrayList<Comentario>arreglo=new ArrayList<Comentario>();
@@ -45,10 +45,10 @@ public class Comentario_dao implements IComentario_dao{
     //METODO PRIMARIO
     @Override
     public void insertar(Comentario c){
-        Connection cn = Conexion.conectar();
+        Connection cn = conectar();
         PreparedStatement ps=null;
-        
-        int id_siguiente=Dao.autoId("comentarios", "id_comentario");
+        Dao dao = new Dao();
+        int id_siguiente=dao.autoId("comentarios", "id_comentario");
         try{
           ps=cn.prepareStatement(query_insertar);
           ps.setInt(1, id_siguiente);
@@ -61,40 +61,6 @@ public class Comentario_dao implements IComentario_dao{
             System.out.println(e);
         }
       
-    }
-     
-    
-    
-    
-    
-    private int buscarIdSiguiente(Connection cn, String nombre_tabla, String nombre_columna){
-        PreparedStatement ps=null;
-        ResultSet rs=null;
-        int id=0;
-        String query="select max("+nombre_columna+") from "+nombre_tabla;
-    
-       
-        try {
-            ps=cn.prepareStatement(query);
-        } catch (SQLException ex) {
-            System.out.println("error en prepared statemente de id siguiente");
-        }
-        try {
-            rs=ps.executeQuery();
-        } catch (SQLException ex) {
-            System.out.println("error execute query de idsiguiente");
-        }
-        try {
-          rs.next();
-          id = rs.getInt(1);
-           
-           
-        } catch (SQLException ex) {
-            System.out.println("error en getInt de idsiguiente");
-        }
-     
-       
-        return id+1;
     }
     
     

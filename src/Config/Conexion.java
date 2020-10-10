@@ -11,13 +11,15 @@ import java.sql.SQLException;
  */
 public class Conexion {
     
-    public static Connection conectar() {
-        Connection conn = null;
+    Connection con;
+    
+    public Connection conectar() {
+        con = null;
         try {
 
             String url = "jdbc:oracle:thin:@KEN-PC:1521:XE";
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection(url, "ken", "123");
+            con = DriverManager.getConnection(url, "ken", "123");
 
             System.out.print("-");
 
@@ -27,7 +29,8 @@ public class Conexion {
             System.out.println("No conecta, falla de url, user o password");
         }
 
-        return conn;
+        return con;
     }
+    
     
 }
