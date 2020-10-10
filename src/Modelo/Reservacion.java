@@ -17,6 +17,8 @@ public class Reservacion {
     String motivo;
     String detalleMotivo;
     
+    boolean notificado; //NUEVO
+    
     //------CONSULTA
     String username;
     
@@ -27,6 +29,7 @@ public class Reservacion {
         this.participantes = participantes;
         this.motivo = motivo;
         this.detalleMotivo = detalleMotivo;
+        this.notificado = false; //NUEVO
     }
 
     public Reservacion() {
@@ -104,6 +107,13 @@ public class Reservacion {
 
     public void setParticipantes(int participantes) {
         this.participantes = participantes;
+    }
+        public boolean isNotificado() { //NUEVO
+        return notificado;
+    }
+
+    public void setNotificado(boolean notificado) { //NUEVO
+        this.notificado = notificado;
     }
 
 }

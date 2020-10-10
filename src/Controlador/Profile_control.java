@@ -10,7 +10,11 @@ import Vistas.Home_view;
 import Vistas.Profile_view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -68,7 +72,7 @@ public class Profile_control extends Login_control {
 
         lista = dao.listarHistorico();
         Object[] rows = new Object[6];
-        for (int i = 0; i < lista.size(); i++) {
+        for (int i = 0; i < lista.size(); i++) {  //OJO
             rows[0] = lista.get(i).getId();
             rows[1] = f.formatear(lista.get(i).getFecha_emision(), "dd/MM/yyyy - HH:mm:ss");
             rows[2] = f.formatear(lista.get(i).getFecha_emision(), "EEEE").toUpperCase();
@@ -90,28 +94,60 @@ public class Profile_control extends Login_control {
 
     }
 
-    private void eliminar(JTable tabla) {
-        int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?");
-        if (opcion == 0) {
-            Ireservaciones dao = new Reservaciones_dao();
-            Reservacion e = new Reservacion();
-            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-            int fila = tabla.getSelectedRowCount(); //cuento cuantas filas hay seleccionadas
+    private boolean veriEliminacion(String fecha) {
+        Date date;
+        long diaMil;
+        long milHoy;
+        long dia = 60000 * 60 * 24;
+        Calendar hoy = Calendar.getInstance();
+        try {
+            date = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").parse(fecha);
+            diaMil = date.getTime();
+            milHoy = hoy.getTimeInMillis();
+            if (Math.abs(milHoy - diaMil) > dia) { //tiene 24 horas de diferencia?
 
-            if (fila > 0) {
-                int codigoSeleccinado = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0))); //obtengo el codigo del producto
-                e.setId(codigoSeleccinado);
-                System.out.println(codigoSeleccinado);
-                if (dao.eliminar(e)) {
-                    modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
-                    tabla.setModel(model);
-
-                    JOptionPane.showMessageDialog(null, "Borrado con exito");
-                }
-
+                return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No Selecciono Ninguna Fila", "Aviso", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
+
+        } catch (ParseException ex) {
+            System.out.println("Error de parseo String a date " + ex.getMessage());
+            return false;
+        }
+    }
+
+    private void eliminar(JTable tabla) {
+        int fila = tabla.getSelectedRowCount(); // cuantas filas hay seleccionadas
+        if (fila > 0) {
+            //obtengo el codigo del producto
+            int codigoSeleccinado = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
+            String fechita = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 1));
+            if (veriEliminacion(fechita)) {
+                int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
+                if (opcion == 0) {
+                    Ireservaciones dao = new Reservaciones_dao();
+                    Reservacion e = new Reservacion();
+                    DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+
+                    e.setId(codigoSeleccinado);
+
+                    if (dao.eliminar(e)) {
+
+                        modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
+                        tabla.setModel(model);
+
+                        JOptionPane.showMessageDialog(null, "Borrado con exito");
+                    }
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No Selecciono Ninguna Fila", "Aviso", JOptionPane.ERROR_MESSAGE);
 
         }
 

@@ -14,6 +14,7 @@ import Vistas.Login_view;
 import Vistas.SignUp_view;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import zComponentes.Alarma;
 
 public class Login_control {
 
@@ -30,6 +31,7 @@ public class Login_control {
 
     private static Usuario user;
     private Usuario_dao userDao;
+    Alarma alarma;
 
     public Login_control(Login_view login, Usuario user, Usuario_dao userDao) {
 
@@ -90,12 +92,15 @@ public class Login_control {
 
             if (user.getId_rol() == 1) {
                 admin = new Admin_view();
-                admin_control = new Admin_control(user,userDao,admin);
+                admin_control = new Admin_control(user, userDao, admin);
                 admin.setVisible(true);
+
             } else {
                 home = new Home_view();
-                home_con = new Home_control(user, userDao,home);
-                home.setVisible(true);  
+                home_con = new Home_control(user, userDao, home);
+                home.setVisible(true);
+
+                // alarma = new Alarma();
             }
 
         } else {
@@ -125,7 +130,7 @@ public class Login_control {
             } else if (fuente == login.getBtn_olvidarContra()) {                      //CAMBIAR VENTANA A RESTABLECER CONTRASEÑA
                 login.dispose();
                 forgot = new ForgotPassword_view();
-                forgot_con = new ForgotPassword_control(user, userDao,forgot);
+                forgot_con = new ForgotPassword_control(user, userDao, forgot);
                 forgot.setVisible(true);
             } else if (fuente == login.getBtn_info()) {                                //BOTON INFO
 

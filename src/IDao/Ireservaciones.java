@@ -16,6 +16,6 @@ public interface Ireservaciones {
     public void insertar(Reservacion e);
     public boolean eliminar(Reservacion e);
     public boolean actualizar(Reservacion e);
-    public ArrayList<Reservacion> listar(java.sql.Date i, java.sql.Date f);
+    public ArrayList<Reservacion> listar(java.sql.Date i, java.sql.Date f, boolean flag);  //flag para setear userId
     public ArrayList<Reservacion> listarHistorico();
 }

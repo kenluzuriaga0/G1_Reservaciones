@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controlador.Reservaciones;
-import Vistas_aux.MotionPanel;
+import zComponentes.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;

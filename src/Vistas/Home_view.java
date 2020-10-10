@@ -4,7 +4,7 @@ import Controlador.Login_control;
 import Controlador.Reservacion_control;
 import Controlador.Reservaciones;
 import Dao.Usuario_dao;
-import Vistas_aux.MotionPanel;
+import zComponentes.MotionPanel;
 import java.awt.CardLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;

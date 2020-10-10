@@ -14,7 +14,7 @@ import java.util.Date;
 public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     private String INSERTAR_RESERVACION = "INSERT INTO reservaciones VALUES (?,?,?,?,?,?)";
-    private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO "
+    private final String SELECT_TODO_X_FECHA = "SELECT R.ID_RESERVACIONES, U.USERNAME, R.FECHA_RESERVACION, R.NUMERO_PERSONAS,R.MOTIVO,R.DETALLE_MOTIVO, R.ID_USUARIOS"
             + "    FROM reservaciones R INNER JOIN USUARIOS U ON R.ID_USUARIOS = U.ID_USUARIOS WHERE FECHA_RESERVACION BETWEEN ? AND ? ORDER BY FECHA_RESERVACION";
     private final String DELETE_RESERVACION = "DELETE FROM RESERVACIONES WHERE ID_RESERVACIONES = ?";
 
@@ -65,8 +65,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
     }
 
     @Override
-    public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin
-    ) {
+    public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin, boolean flag) {
         Connection con = Conexion.conectar();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -88,7 +87,11 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
                 res.setParticipantes(rs.getInt(4));
                 res.setMotivo(rs.getString(5));
                 res.setDetalleMotivo(rs.getString(6));
+                if (flag) {
+                   res.setId_usuario(rs.getInt(7)); 
+                }
                 listaReservacion.add(res);
+
             }
             ps.close();
 
@@ -179,23 +182,25 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String query = "SELECT fecha_reservacion FROM "
-                + "(select fecha_reservacion from reservaciones  WHERE fecha_reservacion > sysdate order by fecha_reservacion asc) WHERE rownum<=1";
+                + "(select fecha_reservacion from reservaciones  WHERE fecha_reservacion > sysdate"
+                + " and id_usuarios = ? order by fecha_reservacion asc) WHERE rownum<=1";
 
-        Date fechaReciente=null;
+        Date fechaReciente = null;
         try {
+            
             ps = con.prepareCall(query);
+            ps.setInt(1, Login_control.getUser().getId());
             rs = ps.executeQuery();
             if (rs.next()) {
-                
+
                 fechaReciente = rs.getDate(1);
             }
             ps.close();
         } catch (Exception ex) {
             System.out.println("Falla en getProximo Reservaciones  " + ex.getMessage());
-        }finally{
+        } finally {
             return fechaReciente;
         }
-        
 
     }
 
@@ -300,7 +305,5 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
         return existe;
     }
-    
-
 
 }

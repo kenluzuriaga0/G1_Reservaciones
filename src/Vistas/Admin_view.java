@@ -3,7 +3,7 @@ package Vistas;
 import Controlador.Reservaciones;
 import Dao.Mesas_dao;
 import Modelo.Mesa;
-import Vistas_aux.MotionPanel;
+import zComponentes.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JLabel;

@@ -1,13 +1,12 @@
 package Controlador;
 
-import Dao.Dao;
 import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
 import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Reserva_view;
-import Vistas_aux.PlaceHolder;
+import zComponentes.PlaceHolder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -15,6 +14,7 @@ import java.awt.event.FocusListener;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import zComponentes.Alarma;
 
 /**
  *
@@ -26,6 +26,7 @@ public class Reservacion_control extends Login_control {
 
     Mesas_dao daoDisponibles;
     Reservaciones_dao daoReservaciones;
+    Alarma alarma;
 
     public Reserva_view getReserva() {
         return reserva;
@@ -37,6 +38,7 @@ public class Reservacion_control extends Login_control {
         initListener();
         daoDisponibles = new Mesas_dao();
         daoReservaciones = new Reservaciones_dao();
+        alarma = new Alarma();
 
     }
 
@@ -51,6 +53,10 @@ public class Reservacion_control extends Login_control {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            if (reserva.getCuadroFechaReservacion().getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             //Obtencion de datos de los campos en la vista
             java.util.Date fecha = reserva.getCuadroFechaReservacion().getDate();
 
@@ -96,6 +102,11 @@ public class Reservacion_control extends Login_control {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La fecha debe ser posterior a HOY", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if (e.getSource() == reserva.getBtn_Reservar()) {
+                //   alarma.llenarReservaciones();
+
             }
 
         }

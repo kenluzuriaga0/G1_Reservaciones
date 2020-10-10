@@ -18,16 +18,15 @@ public class Home_control extends Login_control {
     private Profile_view profile;
     private Profile_control profile_con;
 
-    
-    
-    
     public Home_control(Usuario user, Usuario_dao userDao, Home_view home) {
 
         super(user, userDao);
         this.home = home;
         this.home.getLbl_PerfilName().setText(getUser().getUsername());
         initListener();
-        
+
+//        profile = new Profile_view();
+//        profile_con = new Profile_control(getUser(), getUserDao(), profile);
 
     }
 
@@ -38,8 +37,9 @@ public class Home_control extends Login_control {
     }
 
     class Flujo extends MouseAdapter {
+
         CardLayout vista;
-        
+
         @Override
         public void mousePressed(MouseEvent e) {
 
@@ -53,10 +53,8 @@ public class Home_control extends Login_control {
 
             }
 
-            }
-
         }
 
     }
 
-
+}

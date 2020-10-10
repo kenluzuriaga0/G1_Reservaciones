@@ -5,7 +5,7 @@
  */
 package Vistas;
 
-import Vistas_aux.LaminaComentarios;
+import zComponentes.LaminaComentarios;
 import java.awt.FlowLayout;
 
 /**

@@ -68,7 +68,7 @@ public class Reporte_control extends Login_control {
         desde = new java.sql.Date(reserve.setearTiempo(reporte.getTxt_desde().getDate(), 0, 0));
         hasta = new java.sql.Date(reserve.setearTiempo(reporte.getTxt_hasta().getDate(), 0, 0));
 
-        lista = dao.listar(desde, hasta);
+        lista = dao.listar(desde, hasta, false);
         Object[] rows = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             rows[0] = lista.get(i).getId();

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas_aux;
+package zComponentes;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import Vistas_aux.ListaComida.CeldasLamina;
+import zComponentes.ListaComida.CeldasLamina;
 
 /**
  *
