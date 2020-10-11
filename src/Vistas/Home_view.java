@@ -276,7 +276,7 @@ public class Home_view extends javax.swing.JFrame {
 
     private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
 
-        this.setExtendedState(ICONIFIED);
+       this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
     private void btn_consultaViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultaViewActionPerformed
@@ -311,8 +311,8 @@ public class Home_view extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_logoutMousePressed
 
     private void btn_resenaViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resenaViewActionPerformed
-        contenedor_main.add(panel3, "resena");
-        vista.show(contenedor_main, "resena");
+        contenedor_main.add(panel3, "comentarios");
+        vista.show(contenedor_main, "comentarios");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
 

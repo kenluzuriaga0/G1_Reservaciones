@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import XComponentes.Alarma;
+import XComponentes.Correo;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Reservacion_control extends Login_control {
 
     Mesas_dao daoDisponibles;
     Reservaciones_dao daoReservaciones;
+    Correo correito;
     //Alarma alarma;
 
     public Reserva_view getReserva() {
@@ -51,6 +53,13 @@ public class Reservacion_control extends Login_control {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == reserva.getBtn_Reservar()) {
+                hacerReservacion();
+            }
+
+        }
+
+        private void hacerReservacion() {
 
             if (reserva.getCuadroFechaReservacion().getDate() == null) {
                 JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -89,8 +98,16 @@ public class Reservacion_control extends Login_control {
 
                         Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
                         daoReservaciones.insertar(r);
-
+                        //enviar correo
+                        correito = new Correo();
+                        correito.enviarCorreo(getUser().getEmail(), fecha_ingreso.toString(), String.valueOf(hora) + ":"
+                                + String.valueOf(minutos) + ":00");
+                        //confirmar
                         JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        //lanzar alarma
+                        getAlarma().llenarReservaciones();
+                        getAlarma().sonarAlarma();
 
                     } else {
                         JOptionPane.showMessageDialog(null, "YA NO HAY MESAS DISPONIBLES PARA ESTA FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -101,13 +118,6 @@ public class Reservacion_control extends Login_control {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La fecha debe ser posterior a HOY", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-
-            if (e.getSource() == reserva.getBtn_Reservar()) {
-
-                getAlarma().llenarReservaciones();
-                getAlarma().sonarAlarma();
-
             }
 
         }

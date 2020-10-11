@@ -76,6 +76,7 @@ public class Profile_view extends javax.swing.JFrame {
 
         btn_cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar_1.png"))); // NOI18N
         btn_cerrar.setText("jLabel4");
+        btn_cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_cerrarMouseClicked(evt);
@@ -125,7 +126,7 @@ public class Profile_view extends javax.swing.JFrame {
 
         lbl_nombre.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_nombre.setText("Ken Luzuriaga");
+        lbl_nombre.setText("Nombre");
 
         jLabel2.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,8 +274,10 @@ public class Profile_view extends javax.swing.JFrame {
 
         lbl_resActual.setBackground(new java.awt.Color(255, 255, 255));
         lbl_resActual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbl_resActual.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_resActual.setForeground(new java.awt.Color(0, 0, 153));
+        lbl_resActual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alert.png"))); // NOI18N
         lbl_resActual.setText("00/00/0000 - 00:00");
+        lbl_resActual.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         lbl_resActual.setOpaque(true);
         contenedor_main.add(lbl_resActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 230, 60));
 

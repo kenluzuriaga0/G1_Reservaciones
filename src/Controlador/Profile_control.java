@@ -56,7 +56,7 @@ public class Profile_control extends Login_control {
         Reservaciones_dao dao = new Reservaciones_dao();
         profile.getLbl_resPendientes().setText(String.valueOf(dao.getPendientes_x_user()));
         profile.getLbl_resHechas().setText(String.valueOf(dao.getHechas_x_user()));
-        profile.getLbl_resActual().setText(f.formatear(dao.getProximo(), "dd/MM/yyyy - HH:mm:ss"));
+        profile.getLbl_resActual().setText(f.formatear(dao.getProximo(), "dd/MM/yyyy - HH:mm"));
 
     }
 
@@ -75,7 +75,7 @@ public class Profile_control extends Login_control {
         Object[] rows = new Object[6];
         for (int i = 0; i < lista.size(); i++) {  //OJO
             rows[0] = lista.get(i).getId();
-            rows[1] = f.formatear(lista.get(i).getFecha_emision(), "dd/MM/yyyy - HH:mm:ss");
+            rows[1] = f.formatear(lista.get(i).getFecha_emision(), "dd/MM/yyyy - HH:mm");
             rows[2] = f.formatear(lista.get(i).getFecha_emision(), "EEEE").toUpperCase();
             rows[3] = lista.get(i).getParticipantes() + " Participantes";
             rows[4] = lista.get(i).getMotivo();
@@ -102,7 +102,7 @@ public class Profile_control extends Login_control {
         long dia = 60000 * 60 * 24;
         Calendar hoy = Calendar.getInstance();
         try {
-            date = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").parse(fecha);
+            date = new SimpleDateFormat("dd/MM/yyyy - HH:mm").parse(fecha);
             diaMil = date.getTime();
             milHoy = hoy.getTimeInMillis();
             if (Math.abs(milHoy - diaMil) > dia) { //tiene 24 horas de diferencia?

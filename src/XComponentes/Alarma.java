@@ -49,7 +49,7 @@ public class Alarma extends TimerTask {
                 Date fecha = new Date(r.getFecha_emision().getTime());
                 r.setNotificado(true);
                 reservaciones.set(i, r);
-                this.sonarMusica(); //NUEVO                
+                this.notificacion.sonarAlarma();
                 this.notificacion.getEtiqueta_fecha().setText("Su Reservación del " + this.formatearFecha(fecha) + " a las " + this.formatearHora(fecha));
                 this.notificacion.setVisible(true); //NUEVO
             }
@@ -73,6 +73,7 @@ public class Alarma extends TimerTask {
     }
 
     public void llenarReservaciones() {
+        this.reservaciones.clear();
         ArrayList<java.sql.Date> fechas = mesas_dao.obtenerComienzoFinal();
         ArrayList<Reservacion> reservaciones = reservaciones_dao.listar(fechas.get(0), fechas.get(1), true); //aqui va la llamada a listar
 
@@ -93,12 +94,6 @@ public class Alarma extends TimerTask {
     private String formatearHora(Date fecha) {  //NUEVO
         SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm:ss");
         return dateformat.format(fecha);
-    }
-
-    private void sonarMusica() {  //NUEVO
-        AudioClip beat = java.applet.Applet.newAudioClip(getClass().getResource("/img/dingdong.wav")); //REFERENCIAR PAQUETE
-        //DONDE SE GUARDA
-        beat.play();
     }
 
 }
