@@ -99,9 +99,9 @@ public class Reservacion_control extends Login_control {
                         Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
                         daoReservaciones.insertar(r);
                         //enviar correo
-                        correito = new Correo();
-                        correito.enviarCorreo(getUser().getEmail(), fecha_ingreso.toString(), String.valueOf(hora) + ":"
-                                + String.valueOf(minutos) + ":00");
+                       // correito = new Correo();
+                        //correito.enviarCorreo(getUser().getEmail(), fecha_ingreso.toString(), String.valueOf(hora) + ":"
+                        //        + String.valueOf(minutos) + ":00");
                         //confirmar
                         JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
                         

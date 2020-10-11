@@ -8,6 +8,7 @@ import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Home_view;
 import Vistas.Profile_view;
+import XComponentes.EditarPerfil;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
@@ -30,6 +31,7 @@ public class Profile_control extends Login_control {
     private Profile_view profile;
 
     DefaultTableModel model;
+    EditarPerfil editarPerfil;
 
     public Profile_control(Usuario user, Usuario_dao userDao, Profile_view profile) {
         super(user, userDao);
@@ -41,14 +43,15 @@ public class Profile_control extends Login_control {
 
         model = new DefaultTableModel();
         consultarHistorico();
+        editarPerfil = new EditarPerfil(null, true);
 
     }
 
     private void initListener() {
         profile.getLbl_home().addMouseListener(new Flujo());
-
         profile.getBtn_cancelarRes().addMouseListener(new Flujo());
-
+        profile.getLbl_actualizar().addMouseListener(new Flujo());
+        profile.getLbl_actualizarWord().addMouseListener(new Flujo());
     }
 
     private void setearStats() {
@@ -61,9 +64,6 @@ public class Profile_control extends Login_control {
     }
 
     private void consultarHistorico() {
-
-       
-        
 
         Ireservaciones dao = new Reservaciones_dao();
         Mesa f = new Mesa();
@@ -125,23 +125,23 @@ public class Profile_control extends Login_control {
             int codigoSeleccinado = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
             String fechita = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 1));
 //            if (veriEliminacion(fechita)) {
-                int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
-                if (opcion == 0) {
-                    Ireservaciones dao = new Reservaciones_dao();
-                    Reservacion e = new Reservacion();
-                    DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
+            if (opcion == 0) {
+                Ireservaciones dao = new Reservaciones_dao();
+                Reservacion e = new Reservacion();
+                DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 
-                    e.setId(codigoSeleccinado);
+                e.setId(codigoSeleccinado);
 
-                    if (dao.eliminar(e)) {
+                if (dao.eliminar(e)) {
 
-                        modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
-                        tabla.setModel(model);
+                    modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
+                    tabla.setModel(model);
 
-                        JOptionPane.showMessageDialog(null, "Borrado con exito");
-                    }
-
+                    JOptionPane.showMessageDialog(null, "Borrado con exito");
                 }
+
+            }
 //            } else {
 //                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
 //
@@ -168,6 +168,8 @@ public class Profile_control extends Login_control {
             } else if (fuente.equals(profile.getBtn_cancelarRes())) {
                 eliminar(profile.getTabla_historico());
                 setearStats();
+            } else if (fuente.equals(profile.getLbl_actualizar()) || fuente.equals(profile.getLbl_actualizarWord())) {
+                editarPerfil.setVisible(true);
             }
 
         }
