@@ -43,7 +43,6 @@ public class Profile_control extends Login_control {
 
         model = new DefaultTableModel();
         consultarHistorico();
-        editarPerfil = new EditarPerfil(null, true);
 
     }
 
@@ -169,6 +168,8 @@ public class Profile_control extends Login_control {
                 eliminar(profile.getTabla_historico());
                 setearStats();
             } else if (fuente.equals(profile.getLbl_actualizar()) || fuente.equals(profile.getLbl_actualizarWord())) {
+                editarPerfil = new EditarPerfil(null, true);
+                EditarPerfil_control editControl = new EditarPerfil_control(getUser(), getUserDao(), editarPerfil);
                 editarPerfil.setVisible(true);
             }
 
