@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package zComponentes;
+package XComponentes;
 
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -110,15 +101,9 @@ public class ListaComida extends JList{
             return etiqueta_nombre;
         }
 
-       
-        
-        
     }
     //CLASE INTERNA CELDAS LAMINA
-    
-    
-    
-    
+
      //CLASE INTERNA RENDERER
      class MyCellRenderer implements ListCellRenderer<Object>{
          private boolean seleccionable;
@@ -141,11 +126,8 @@ public class ListaComida extends JList{
               }
                return e2;
         
-              }
-             
+              }    
     }
-     //CLASE INTERNA RENDERER
-    
-     
+     //CLASE INTERNA RENDERER 
      
 }

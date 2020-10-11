@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package zComponentes;
+package XComponentes;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import zComponentes.ListaComida.CeldasLamina;
+import XComponentes.ListaComida.CeldasLamina;
 
 /**
  *

@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controlador.Login_control;
-import zComponentes.MotionPanel;
+import XComponentes.MotionPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import zComponentes.PlaceHolder;
+import XComponentes.PlaceHolder;
 import java.awt.Desktop;
 import java.awt.font.TextAttribute;
 import java.net.URI;
@@ -25,8 +25,8 @@ public class Login_view extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         initListener();
-        txt_campoUser.setText("nvera");
-        txt_campoPassword.setText("nvera");
+      //  txt_campoUser.setText("nvera");
+      //  txt_campoPassword.setText("nvera");
      //  txt_campoUser.setText("admin");
      //  txt_campoPassword.setText("admin1");
         

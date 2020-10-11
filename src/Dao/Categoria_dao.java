@@ -6,6 +6,7 @@
 package Dao;
 
 import Config.Conexion;
+import IDao.ICategoria_dao;
 import Modelo.CategoriaPlato;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,20 +17,20 @@ import java.util.ArrayList;
  *
  * @author luisMenol
  */
-public class Categoria_dao extends Conexion {
-   private final String query_listar="select * from categoria_plato";
+public class Categoria_dao extends Conexion implements ICategoria_dao {
+
+    private final String query_listar = "select * from categoria_plato";
 
     public Categoria_dao() {
         super.cerrar();
     }
-    
-    
-   public ArrayList<CategoriaPlato> listar(){
-       
-       
+
+    @Override
+    public ArrayList<CategoriaPlato> listar() {
+
         ArrayList<CategoriaPlato> categorias = new ArrayList<CategoriaPlato>();
         Conexion cn = new Conexion();
-     //   System.out.print("listar");
+        //   System.out.print("listar");
         PreparedStatement ps;
         ResultSet rs;
         try {
@@ -46,14 +47,12 @@ public class Categoria_dao extends Conexion {
 
         return categorias;
     }
-   
-   private CategoriaPlato crearObjeto(ResultSet rs) throws SQLException{
-       int id=rs.getInt(1);
-       String nombre=rs.getString(2);
-       CategoriaPlato categoria=new CategoriaPlato(id,nombre);
-       return categoria;
-   }
-   
-   
-    
+
+    private CategoriaPlato crearObjeto(ResultSet rs) throws SQLException {
+        int id = rs.getInt(1);
+        String nombre = rs.getString(2);
+        CategoriaPlato categoria = new CategoriaPlato(id, nombre);
+        return categoria;
+    }
+
 }

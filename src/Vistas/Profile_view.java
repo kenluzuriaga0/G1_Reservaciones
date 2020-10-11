@@ -1,6 +1,6 @@
 package Vistas;
 
-import zComponentes.MotionPanel;
+import XComponentes.MotionPanel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;

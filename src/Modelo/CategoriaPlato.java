@@ -7,7 +7,7 @@ package Modelo;
 
 /**
  *
- * @author angela
+ * @author luisMenol
  */
 public class CategoriaPlato {
     private int id_categoria_plato;

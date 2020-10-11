@@ -21,6 +21,7 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
         super.cerrar();
     }
 
+    
     @Override
     public boolean registrar(Usuario user) {
 
@@ -109,7 +110,7 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
         //String[] datos = new String[3];
         List<String> datos = new ArrayList<>();
         Conexion cn = new Conexion();
-        System.out.print("contraseñaCorreo");
+   //     System.out.print("contraseñaCorreo");
         PreparedStatement ps;
         ResultSet rs;
         String sql = "SELECT NOMBRE, APELLIDO, PASSWORD,USERNAME FROM USUARIOS WHERE EMAIL = ?";

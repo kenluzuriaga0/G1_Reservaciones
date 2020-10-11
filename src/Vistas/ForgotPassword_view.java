@@ -1,8 +1,8 @@
 package Vistas;
 
-import zComponentes.PlaceHolder;
+import XComponentes.PlaceHolder;
 import Controlador.Login_control;
-import zComponentes.MotionPanel;
+import XComponentes.MotionPanel;
 import java.awt.Desktop;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;

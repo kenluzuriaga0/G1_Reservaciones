@@ -62,7 +62,8 @@ public class Profile_control extends Login_control {
 
     private void consultarHistorico() {
 
-        limpiarTabla();
+       
+        
 
         Ireservaciones dao = new Reservaciones_dao();
         Mesa f = new Mesa();
@@ -123,7 +124,7 @@ public class Profile_control extends Login_control {
             //obtengo el codigo del producto
             int codigoSeleccinado = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
             String fechita = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 1));
-            if (veriEliminacion(fechita)) {
+//            if (veriEliminacion(fechita)) {
                 int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
                 if (opcion == 0) {
                     Ireservaciones dao = new Reservaciones_dao();
@@ -141,10 +142,10 @@ public class Profile_control extends Login_control {
                     }
 
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
-
-            }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
+//
+//            }
 
         } else {
             JOptionPane.showMessageDialog(null, "No Selecciono Ninguna Fila", "Aviso", JOptionPane.ERROR_MESSAGE);

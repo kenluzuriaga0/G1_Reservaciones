@@ -14,7 +14,7 @@ import Vistas.Login_view;
 import Vistas.SignUp_view;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import zComponentes.Alarma;
+import XComponentes.Alarma;
 
 public class Login_control {
 
@@ -31,7 +31,7 @@ public class Login_control {
 
     private static Usuario user;
     private Usuario_dao userDao;
-    Alarma alarma;
+    private static Alarma alarma;
 
     public Login_control(Login_view login, Usuario user, Usuario_dao userDao) {
 
@@ -100,7 +100,7 @@ public class Login_control {
                 home_con = new Home_control(user, userDao, home);
                 home.setVisible(true);
 
-                // alarma = new Alarma();
+                 alarma = new Alarma();
             }
 
         } else {
@@ -171,5 +171,10 @@ public class Login_control {
     public Usuario_dao getUserDao() {
         return userDao;
     }
+
+    public Alarma getAlarma() {
+        return alarma;
+    }
+    
 
 }

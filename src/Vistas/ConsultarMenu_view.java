@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
 import Dao.Categoria_dao;
 import Dao.Plato_dao;
 import Modelo.CategoriaPlato;
 import Modelo.Plato;
-import zComponentes.CuadroBuscador;
-import zComponentes.I;
-import zComponentes.ListaComida;
-import zComponentes.PlaceHolder;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import XComponentes.CuadroBuscador;
+import XComponentes.I;
+import XComponentes.ListaComida;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -54,7 +46,6 @@ public class ConsultarMenu_view extends javax.swing.JPanel implements ListSelect
         iconos.add(I.getI("salad"));
         this.lista_categoria.actualizar(iconos, nombres, JLabel.CENTER, 20);
         this.prepararListaPlato(1);
-        cuadro_b.addFocusListener(new PlaceHolder_Login());
     }
     
       private void prepararListaPlato(int categoria) {
@@ -211,33 +202,6 @@ public class ConsultarMenu_view extends javax.swing.JPanel implements ListSelect
         fondo.setText("Consulta nuestro Menú Aqui");
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 440));
     }// </editor-fold>//GEN-END:initComponents
- private class PlaceHolder_Login implements FocusListener {
-
-        Object foco;
-
-        @Override
-        public void focusGained(FocusEvent e) {
-
-            foco = e.getSource();
-
-            if (foco == cuadro_b) {
-
-                PlaceHolder.quitar_PlaceHolder("Buscar..", cuadro_b);
-
-            }
-            
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-                       foco = e.getSource();
-            if (foco == cuadro_b) {
-
-                PlaceHolder.poner_PlaceHolder("Buscar..", cuadro_b);
-
-            }
-        }
- }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cuadro_b;

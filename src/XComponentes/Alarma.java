@@ -1,15 +1,16 @@
-package zComponentes;
+package XComponentes;
 
 import Controlador.Login_control;
 import Dao.Mesas_dao;
 import Dao.Reservaciones_dao;
 import Modelo.Reservacion;
+import java.applet.AudioClip;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,17 +21,18 @@ public class Alarma extends TimerTask {
     private Reservaciones_dao reservaciones_dao;
     private Mesas_dao mesas_dao;
     private int cont;
-    private ArrayList<Reservacion> reservaciones;
+    private static ArrayList<Reservacion> reservaciones;
+    private Notificacion notificacion; //NUEVO
 
     public Alarma() {
         this.reservaciones_dao = new Reservaciones_dao();
         this.mesas_dao = new Mesas_dao();
+        this.notificacion = new Notificacion(null, true); //NUEVO
         cont = 0;
         reservaciones = new ArrayList<Reservacion>();
         Timer temporizador = new Timer();
         temporizador.schedule(this, 0, 1000);
-        
-        llenarReservaciones();
+        this.llenarReservaciones();
     }
 
     @Override
@@ -44,9 +46,12 @@ public class Alarma extends TimerTask {
             boolean activar_alarma = this.determinarReservacionCerca(reservaciones.get(i));
             if (activar_alarma == true) {
                 Reservacion r = reservaciones.get(i);
+                Date fecha = new Date(r.getFecha_emision().getTime());
                 r.setNotificado(true);
                 reservaciones.set(i, r);
-                JOptionPane.showMessageDialog(null, "AHHHHHHHHHHHHHHH", "AHHHHHHHHHHHHHH", JOptionPane.ERROR_MESSAGE);
+                this.sonarMusica(); //NUEVO                
+                this.notificacion.getEtiqueta_fecha().setText("Su Reservación del " + this.formatearFecha(fecha) + " a las " + this.formatearHora(fecha));
+                this.notificacion.setVisible(true); //NUEVO
             }
         }
     }
@@ -78,6 +83,22 @@ public class Alarma extends TimerTask {
             }
         }
         cont = 70;
+    }
+
+    private String formatearFecha(Date fecha) {  //NUEVO
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateformat.format(fecha);
+    }
+
+    private String formatearHora(Date fecha) {  //NUEVO
+        SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm:ss");
+        return dateformat.format(fecha);
+    }
+
+    private void sonarMusica() {  //NUEVO
+        AudioClip beat = java.applet.Applet.newAudioClip(getClass().getResource("/img/dingdong.wav")); //REFERENCIAR PAQUETE
+        //DONDE SE GUARDA
+        beat.play();
     }
 
 }

@@ -13,6 +13,9 @@ import java.util.ArrayList;
  * @author Nicole
  */
 public interface Ireservaciones {
+    
+    
+    
     public void insertar(Reservacion e);
     public boolean eliminar(Reservacion e);
     public boolean actualizar(Reservacion e);

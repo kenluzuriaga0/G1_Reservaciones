@@ -16,7 +16,7 @@ public class Conexion {
         con = null;
         try {
 
-            String url = "jdbc:oracle:thin:@KEN-PC:1521:XE";
+            String url = "jdbc:oracle:thin:@localhost:1521:XE";
             Class.forName("oracle.jdbc.driver.OracleDriver");
             con = DriverManager.getConnection(url, "ken", "123");
 
@@ -40,7 +40,7 @@ public class Conexion {
 
                 con.close();
                 //   Thread.sleep(500);
-                System.out.print(" se cerró\n");
+                System.out.print(" X\n");
             } catch (SQLException ex) {
                 System.out.println("No se realizó la desconexión: " + ex.getMessage());
             }

@@ -5,10 +5,13 @@
  */
 package IDao;
 
+import Modelo.CategoriaPlato;
+import java.util.ArrayList;
+
 /**
  *
  * @author kenlu
  */
 public interface ICategoria_dao {
-    
+     public ArrayList<CategoriaPlato> listar();
 }

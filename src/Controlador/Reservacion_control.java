@@ -6,7 +6,7 @@ import Dao.Usuario_dao;
 import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Reserva_view;
-import zComponentes.PlaceHolder;
+import XComponentes.PlaceHolder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -14,7 +14,7 @@ import java.awt.event.FocusListener;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import zComponentes.Alarma;
+import XComponentes.Alarma;
 
 /**
  *
@@ -26,7 +26,7 @@ public class Reservacion_control extends Login_control {
 
     Mesas_dao daoDisponibles;
     Reservaciones_dao daoReservaciones;
-    Alarma alarma;
+    //Alarma alarma;
 
     public Reserva_view getReserva() {
         return reserva;
@@ -38,7 +38,6 @@ public class Reservacion_control extends Login_control {
         initListener();
         daoDisponibles = new Mesas_dao();
         daoReservaciones = new Reservaciones_dao();
-        alarma = new Alarma();
 
     }
 
@@ -105,7 +104,9 @@ public class Reservacion_control extends Login_control {
             }
 
             if (e.getSource() == reserva.getBtn_Reservar()) {
-                //   alarma.llenarReservaciones();
+
+                getAlarma().llenarReservaciones();
+                getAlarma().sonarAlarma();
 
             }
 

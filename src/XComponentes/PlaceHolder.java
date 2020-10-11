@@ -1,4 +1,4 @@
-package zComponentes;
+package XComponentes;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;

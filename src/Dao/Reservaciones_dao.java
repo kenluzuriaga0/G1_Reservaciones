@@ -67,11 +67,7 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
     }
 
-    @Override
-    public boolean actualizar(Reservacion e
-    ) {
-        return false;
-    }
+
 
     @Override
     public ArrayList<Reservacion> listar(java.sql.Date inicio, java.sql.Date fin, boolean flag) {
@@ -328,5 +324,12 @@ public class Reservaciones_dao extends Conexion implements Ireservaciones {
 
         return existe;
     }
+
+    @Override
+    public boolean actualizar(Reservacion e) {
+return false;
+    }
+
+
 
 }
