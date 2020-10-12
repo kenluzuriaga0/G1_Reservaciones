@@ -15,8 +15,22 @@ public class Usuario {
     private char estado;
     private char sexo;
     private int id_rol;
-    
 
+    public Usuario(){
+        
+    }
+    public Usuario(int id, String username, String password, String nombre, String apellido, String email, char estado, char sexo, int id_rol) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.estado = estado;
+        this.sexo = sexo;
+        this.id_rol = id_rol;
+    }
+    
     public int getId() {
         return id;
     }

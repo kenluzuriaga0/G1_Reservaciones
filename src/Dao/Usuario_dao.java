@@ -3,7 +3,6 @@ package Dao;
 import Modelo.*;
 import Config.Conexion;
 import IDao.IUsuario_dao;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,18 +16,20 @@ import javax.swing.JOptionPane;
  */
 public class Usuario_dao extends Conexion implements IUsuario_dao {
 
+    private static final String INSERT_USUARIO = "INSERT INTO USUARIOS VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String SELECT_USUARIO = "SELECT id_usuarios,username, password, id_roles,nombre,apellido,email,estado, sexo FROM USUARIOS WHERE username = ?";
+    private static final String UPDATE_USUARIO = "UPDATE usuarios SET username = ?, password = ?, nombre = ?, apellido = ?, email = ? where id_usuarios = ?";
+
     public Usuario_dao() {
         super.cerrar();
     }
 
-    
     @Override
     public boolean registrar(Usuario user) {
 
         Conexion cn = new Conexion();
-      //  System.out.print("registrarUSer");
         PreparedStatement ps = null;
-        String sql = "INSERT INTO USUARIOS VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = INSERT_USUARIO;
 
         try {
 
@@ -60,9 +61,8 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
     @Override
     public boolean ingresar(Usuario user) {
         Conexion cn = new Conexion();
-      //  System.out.print("ingresarUser");
         PreparedStatement ps = null;
-        String sql = "SELECT id_usuarios,username, password, id_roles,nombre,apellido,email,estado, sexo FROM USUARIOS WHERE username = ?";
+        String sql = SELECT_USUARIO;
         ResultSet rs = null;
         try {
             ps = cn.getCon().prepareStatement(sql);
@@ -88,16 +88,12 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
                     cn.cerrar();
                     return true;
 
-                } else {
-                    ps.close();
-                    cn.cerrar();
-                    return false;
                 }
-            } else {
-                ps.close();
-                cn.cerrar();
-                return false;
             }
+            ps.close();
+            cn.cerrar();
+            return false;
+
         } catch (SQLException ex) {
             System.out.println("Ohtia chaval, fallo de SELECT");
             return false;
@@ -106,11 +102,36 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
     }
 
     @Override
+    public boolean actualizar(Usuario user) {
+        Conexion cn = new Conexion();
+        PreparedStatement ps = null;
+        String sql = UPDATE_USUARIO;
+        try {
+            ps = cn.getCon().prepareStatement(sql);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getNombre());
+            ps.setString(4, user.getApellido());
+            ps.setString(5, user.getEmail());
+            ps.setInt(6, user.getId());
+
+            ps.executeUpdate();
+            
+            ps.close();
+            cn.cerrar();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error en actualizar " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en la actualizacion "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+
+        }
+    }
+
+    @Override
     public List<String> contrasenaPorCorreo(String email) {
-        //String[] datos = new String[3];
         List<String> datos = new ArrayList<>();
         Conexion cn = new Conexion();
-   //     System.out.print("contraseñaCorreo");
         PreparedStatement ps;
         ResultSet rs;
         String sql = "SELECT NOMBRE, APELLIDO, PASSWORD,USERNAME FROM USUARIOS WHERE EMAIL = ?";

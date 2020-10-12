@@ -278,48 +278,26 @@ public class SignUp_view extends javax.swing.JFrame {
         return txt_apellidos;
     }
 
-    public void setTxt_apellidos(JTextField txt_apellidos) {
-        this.txt_apellidos = txt_apellidos;
-    }
 
     public JTextField getTxt_email() {
         return txt_email;
-    }
-
-    public void setTxt_email(JTextField txt_email) {
-        this.txt_email = txt_email;
     }
 
     public JTextField getTxt_nombres() {
         return txt_nombres;
     }
 
-    public void setTxt_nombres(JTextField txt_nombres) {
-        this.txt_nombres = txt_nombres;
-    }
-
     public JPasswordField getTxt_password() {
         return txt_password;
-    }
-
-    public void setTxt_password(JPasswordField txt_password) {
-        this.txt_password = txt_password;
     }
 
     public JPasswordField getTxt_passwordConfirm() {
         return txt_passwordConfirm;
     }
 
-    public void setTxt_passwordConfirm(JPasswordField txt_passwordConfirm) {
-        this.txt_passwordConfirm = txt_passwordConfirm;
-    }
 
     public JRadioButton getRadio_f() {
         return radio_f;
-    }
-
-    public void setRadio_f(JRadioButton radio_f) {
-        this.radio_f = radio_f;
     }
 
     public JRadioButton getRadio_m() {

@@ -36,8 +36,6 @@ public class Profile_control extends Login_control {
     public Profile_control(Usuario user, Usuario_dao userDao, Profile_view profile) {
         super(user, userDao);
         this.profile = profile;
-        String usuario_logueado = getUser().getNombre() + " " + getUser().getApellido();
-        this.profile.getLbl_nombre().setText(usuario_logueado.toUpperCase());
         setearStats();
         initListener();
 
@@ -56,6 +54,8 @@ public class Profile_control extends Login_control {
     private void setearStats() {
         Mesa f = new Mesa();
         Reservaciones_dao dao = new Reservaciones_dao();
+        String usuario_logueado = getUser().getNombre() + " " + getUser().getApellido();
+        this.profile.getLbl_nombre().setText(usuario_logueado.toUpperCase());
         profile.getLbl_resPendientes().setText(String.valueOf(dao.getPendientes_x_user()));
         profile.getLbl_resHechas().setText(String.valueOf(dao.getHechas_x_user()));
         profile.getLbl_resActual().setText(f.formatear(dao.getProximo(), "dd/MM/yyyy - HH:mm"));
@@ -171,6 +171,8 @@ public class Profile_control extends Login_control {
                 editarPerfil = new EditarPerfil(null, true);
                 EditarPerfil_control editControl = new EditarPerfil_control(getUser(), getUserDao(), editarPerfil);
                 editarPerfil.setVisible(true);
+                 setearStats();
+
             }
 
         }
