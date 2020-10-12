@@ -113,6 +113,7 @@ public class EditarPerfil extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         cmb_dominio = new ComboBoxCorreo();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,11 +150,11 @@ public class EditarPerfil extends javax.swing.JDialog {
         txt_apellidosNew.setText("Apellidos");
         txt_apellidosNew.setBorder(null);
         txt_apellidosNew.setOpaque(false);
-        jPanel1.add(txt_apellidosNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 153, 140, -1));
+        jPanel1.add(txt_apellidosNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 140, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 180, 130, 8));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 130, 8));
 
         txt_usernameNew.setBackground(new java.awt.Color(227, 226, 226));
         txt_usernameNew.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -173,11 +174,11 @@ public class EditarPerfil extends javax.swing.JDialog {
         txt_campoPasswordNew.setBorder(null);
         txt_campoPasswordNew.setEchoChar((char) 0);
         txt_campoPasswordNew.setOpaque(false);
-        jPanel1.add(txt_campoPasswordNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 246, 128, 19));
+        jPanel1.add(txt_campoPasswordNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 128, 19));
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 271, 128, 14));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 128, 14));
 
         txt_emailNew.setBackground(new java.awt.Color(227, 226, 226));
         txt_emailNew.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -185,7 +186,7 @@ public class EditarPerfil extends javax.swing.JDialog {
         txt_emailNew.setText("Email");
         txt_emailNew.setBorder(null);
         txt_emailNew.setOpaque(false);
-        jPanel1.add(txt_emailNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 80, -1));
+        jPanel1.add(txt_emailNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 110, -1));
 
         jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
@@ -195,12 +196,12 @@ public class EditarPerfil extends javax.swing.JDialog {
         btn_confirmarCambios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_confirmarCambios.setForeground(new java.awt.Color(0, 0, 0));
         btn_confirmarCambios.setText("Confirmar Cambios");
-        jPanel1.add(btn_confirmarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 401, 181, 48));
+        jPanel1.add(btn_confirmarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 181, 48));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("*");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 338, 32, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 10, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/perfilEdit.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 49, -1, 71));
@@ -219,7 +220,7 @@ public class EditarPerfil extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Apellido");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 132, 70, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 70, -1));
 
         jLabel6.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -229,7 +230,7 @@ public class EditarPerfil extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 225, 94, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 94, -1));
 
         jLabel8.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -240,7 +241,11 @@ public class EditarPerfil extends javax.swing.JDialog {
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Actualice los datos que desea");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 18, 293, -1));
-        jPanel1.add(cmb_dominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 140, -1));
+        jPanel1.add(cmb_dominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 140, -1));
+
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("Obligatorio para actualizar");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,6 +266,7 @@ public class EditarPerfil extends javax.swing.JDialog {
     private javax.swing.JButton btn_confirmarCambios;
     private javax.swing.JComboBox<String> cmb_dominio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

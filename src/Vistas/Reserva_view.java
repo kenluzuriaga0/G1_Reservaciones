@@ -1,18 +1,13 @@
 package Vistas;
 
-import Controlador.Login_control;
 import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
-import Modelo.Reservacion;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -70,6 +65,10 @@ public class Reserva_view extends javax.swing.JPanel {
         return txt_detalleMotivo;
     }
 
+    public JCheckBox getChck_enviarCorreo() {
+        return chck_enviarCorreo;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -92,6 +91,7 @@ public class Reserva_view extends javax.swing.JPanel {
         btn_Reservar = new javax.swing.JButton();
         cmb_NumPersonas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        chck_enviarCorreo = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
@@ -232,6 +232,12 @@ public class Reserva_view extends javax.swing.JPanel {
         jLabel2.setOpaque(true);
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, 20));
 
+        chck_enviarCorreo.setBackground(new java.awt.Color(29, 53, 87));
+        chck_enviarCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        chck_enviarCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        chck_enviarCorreo.setText("Recibir Correo");
+        add(chck_enviarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 130, -1));
+
         jLabel9.setBackground(new java.awt.Color(29, 53, 87));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -288,6 +294,7 @@ public class Reserva_view extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox amigos;
     private javax.swing.JButton btn_Reservar;
+    private javax.swing.JCheckBox chck_enviarCorreo;
     private javax.swing.JComboBox<String> cmb_NumPersonas;
     private com.toedter.calendar.JDateChooser cuadroFechaReservacion;
     private javax.swing.JCheckBox familiar;

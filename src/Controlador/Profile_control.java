@@ -53,6 +53,7 @@ public class Profile_control extends Login_control {
         profile.getLbl_actualizarWord().addMouseListener(new Flujo());
         profile.getLbl_atras().addMouseListener(new Flujo());
         profile.getBtn_buscar().addMouseListener(new Flujo());
+        profile.getBtn_borrarFiltro().addMouseListener(new Flujo());
     }
 
     private void setearStats() {
@@ -184,8 +185,10 @@ public class Profile_control extends Login_control {
 
             } else if (fuente.equals(profile.getBtn_buscar())) {
                 Mesa f = new Mesa();
-                System.out.println(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy - HH:mm"));
-                filtro(profile.getTxt_fecha().getDateFormatString(), profile.getTabla_historico(), 2);
+                System.out.println(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy"));
+                filtro(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy"), profile.getTabla_historico(),1);
+            }else if(fuente.equals(profile.getBtn_borrarFiltro())){
+                filtro("",  profile.getTabla_historico(), 0);
             }
 
         }

@@ -66,6 +66,7 @@ public class Profile_view extends javax.swing.JFrame {
         lbl_resActual = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btn_cancelarRes = new javax.swing.JButton();
+        btn_borrarFiltro = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -324,6 +325,13 @@ public class Profile_view extends javax.swing.JFrame {
         btn_cancelarRes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         contenedor_main.add(btn_cancelarRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 170, 40));
 
+        btn_borrarFiltro.setBackground(new java.awt.Color(32, 177, 151));
+        btn_borrarFiltro.setFont(new java.awt.Font("MS UI Gothic", 1, 13)); // NOI18N
+        btn_borrarFiltro.setForeground(new java.awt.Color(0, 0, 204));
+        btn_borrarFiltro.setText("X filtro");
+        btn_borrarFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contenedor_main.add(btn_borrarFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 90, -1));
+
         fondo.setBackground(new java.awt.Color(171, 171, 171));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/animation_food TRANS.png"))); // NOI18N
         fondo.setText("Consulta nuestro Menú Aqui");
@@ -389,9 +397,14 @@ public class Profile_view extends javax.swing.JFrame {
         return btn_buscar;
     }
 
+    public JButton getBtn_borrarFiltro() {
+        return btn_borrarFiltro;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
+    private javax.swing.JButton btn_borrarFiltro;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelarRes;
     private javax.swing.JLabel btn_cerrar;

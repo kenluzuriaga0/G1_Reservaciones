@@ -97,16 +97,18 @@ public class Reservacion_control extends Login_control {
             Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
             if (fechaEsFuturo(fecha_ingreso)) {
 
-                if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha, Login_control.getUser().getId()) == false) {
+                if (daoDisponibles.verificarFecha(sqlfecha) == true && daoReservaciones.verificarFechaYaReservada(sqlfecha,getUser().getId()) == false) {
                     if (daoDisponibles.getMesasExistentes(sqlfecha) - daoReservaciones.getMesasOcupadas(sqlfecha) > 0) {
 
-                        Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
+                        Reservacion r = new Reservacion(getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
                         daoReservaciones.insertar(r);
                         //enviar correo
-                        System.out.println(f.formatear(fecha, "dd/MM/yyyy"));
+                        if(reserva.getChck_enviarCorreo().isSelected()){
                         correito = new Correo();
                         correito.enviarCorreo(getUser().getEmail(),f.formatear(fecha, "dd/MM/yyyy"), String.valueOf(hora) + ":"
-                                + String.valueOf(minutos) + ":00");
+                                + String.valueOf(minutos) + ":00");                           
+                        }
+
                         //confirmar
                         JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
                         
