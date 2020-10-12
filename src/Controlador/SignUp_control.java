@@ -8,25 +8,24 @@ import Dao.Usuario_dao;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
-public class SignUp_control extends Login_control{
+public class SignUp_control extends Login_control {
 
     private SignUp_view register;
     private Login_view login;
     private Login_control login_con;
-    
 
     public SignUp_control(Usuario user, Usuario_dao userDao, SignUp_view register) {
-        super(user,userDao);
+        super(user, userDao);
 //        this.login = login;
 //        this.user = user;
 //        this.userDao = userDao;
-        
+
         this.register = register;
         initListener();
     }
 
     private void initListener() {
-        
+
         //FLUJO DE VENTANAS
         register.getBtn_backToLogin().addMouseListener(new Flujo());
         register.getBtn_info().addMouseListener(new Flujo());
@@ -39,19 +38,20 @@ public class SignUp_control extends Login_control{
 
         Usuario user = new Usuario();
         Dao dao = new Dao();
-        
-        char sexo='x';
+
+        char sexo = 'x';
         int id = dao.autoId("USUARIOS", "ID_USUARIOS");
         String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
         String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
         String email = register.getTxt_email().getText().toLowerCase().trim();
-        
+        String dominio = (String) register.getCmb_dominio().getSelectedItem();
+        email = email + dominio;
         if (register.getRadio_m().isSelected()) {
-           
+
             sexo = 'M';
         } else if (register.getRadio_f().isSelected()) {
-            
-            sexo =  'F';
+
+            sexo = 'F';
         }
 
         String pass = String.valueOf(register.getTxt_password().getPassword());
@@ -91,11 +91,11 @@ public class SignUp_control extends Login_control{
 
                 login = new Login_view();
 
-                login_con = new Login_control(login,getUser(),getUserDao());
+                login_con = new Login_control(login, getUser(), getUserDao());
                 login.setVisible(true);
 
             } else if (fuente == register.getBtn_info()) {  //BOTON INFO
-               login_con = new Login_control();
+                login_con = new Login_control();
                 login_con.printInfo();
 
             } else if (fuente == register.getBtn_ingresar()) {

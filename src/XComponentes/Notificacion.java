@@ -22,6 +22,7 @@ public class Notificacion extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("ALERTA");
         this.setIconImage(I.get("advertencia_frame"));
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
@@ -77,22 +78,23 @@ public class Notificacion extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1)
+                            .addGap(99, 99, 99)
+                            .addComponent(jLabel2)
+                            .addGap(0, 219, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(etiqueta_lista_pronto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiqueta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(etiqueta_lista_pronto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(39, 39, 39))
+                        .addComponent(etiqueta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +106,10 @@ public class Notificacion extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etiqueta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(etiqueta_lista_pronto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_lista_pronto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,22 +126,20 @@ public class Notificacion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-        
-     public void sonarAlarma(){
-         beat.loop();
-         
-     }
+    public void sonarAlarma() {
+        beat.loop();
 
-     private void pararAlarma(){
-         beat.stop();
-     }
-    
-    
+    }
+
+    private void pararAlarma() {
+        beat.stop();
+    }
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         this.pararAlarma();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -151,8 +147,16 @@ public class Notificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosed
 
     public void cambiarAcorreoInvalido() {
-        this.etiqueta_fecha.setText("Ups, parece que su correo registrado no existe");
-        this.etiqueta_lista_pronto.setText("Porfavor, actualize su correo.");
+        this.jLabel2.setText("Correo Enviado!");
+        this.etiqueta_fecha.setText("Si no ha llegado ninguna notificacion a su correo");
+        this.etiqueta_lista_pronto.setText("Es posible que este no exista. Porfavor, actualize su correo.");
+        this.etiqueta_lista_pronto.setFont(new Font("Tahoma", Font.BOLD, 13));
+        this.etiqueta_fecha.setFont(new Font("Tahoma", Font.BOLD, 13));
+    }
+
+    public void cambiarErrorConexion() {
+        this.etiqueta_fecha.setText("Ups, parece que no hay conexión a internet");
+        this.etiqueta_lista_pronto.setText("Su aviso de reserva no llegará a su correo.");
         this.etiqueta_lista_pronto.setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 

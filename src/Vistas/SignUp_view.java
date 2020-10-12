@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import XComponentes.*;
+import javax.swing.JComboBox;
 
 public class SignUp_view extends javax.swing.JFrame {
 
@@ -43,7 +45,7 @@ public class SignUp_view extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btn_registrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txt_email = new javax.swing.JTextField();
+        txt_email = new ValidaCorreo();
         jSeparator3 = new javax.swing.JSeparator();
         radio_f = new javax.swing.JRadioButton();
         radio_m = new javax.swing.JRadioButton();
@@ -54,6 +56,7 @@ public class SignUp_view extends javax.swing.JFrame {
         txt_password = new javax.swing.JPasswordField();
         txt_passwordConfirm = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
+        cmb_dominio = new ComboBoxCorreo();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -83,7 +86,7 @@ public class SignUp_view extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(227, 226, 226));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, 20));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 20));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 210, 20));
 
         btn_registrar.setBackground(new java.awt.Color(148, 176, 218));
         btn_registrar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -107,7 +110,7 @@ public class SignUp_view extends javax.swing.JFrame {
         txt_email.setForeground(new java.awt.Color(102, 102, 102));
         txt_email.setText("Email");
         txt_email.setBorder(null);
-        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 220, 30));
+        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 110, 30));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 20));
 
         radio_f.setBackground(new java.awt.Color(227, 226, 226));
@@ -154,6 +157,7 @@ public class SignUp_view extends javax.swing.JFrame {
         txt_passwordConfirm.setEchoChar((char)0);
         jPanel2.add(txt_passwordConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 222, 160, 20));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 0, 10));
+        jPanel2.add(cmb_dominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 130, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 380, 410));
 
@@ -182,12 +186,17 @@ public class SignUp_view extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    public JComboBox<String> getCmb_dominio() {
+        return cmb_dominio;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_backToLogin;
     private javax.swing.JLabel btn_info;
     private javax.swing.JButton btn_registrar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmb_dominio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

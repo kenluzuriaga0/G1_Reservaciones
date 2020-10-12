@@ -3,6 +3,7 @@ package Controlador;
 import Dao.Reservaciones_dao;
 import Dao.Mesas_dao;
 import Dao.Usuario_dao;
+import Modelo.Mesa;
 import Modelo.Reservacion;
 import Modelo.Usuario;
 import Vistas.Reserva_view;
@@ -16,6 +17,9 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 import XComponentes.Alarma;
 import XComponentes.Correo;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -88,7 +92,7 @@ public class Reservacion_control extends Login_control {
             if (detalleMotivo.equals("Motivo") || detalleMotivo == null) {
                 detalleMotivo = "";
             }
-
+            Mesa f = new Mesa();
             // Comienza VALIDACIONES de fechas
             Timestamp fecha_ingreso = new Timestamp(this.setearTiempo(fecha, hora, minutos));
             if (fechaEsFuturo(fecha_ingreso)) {
@@ -99,9 +103,10 @@ public class Reservacion_control extends Login_control {
                         Reservacion r = new Reservacion(Login_control.getUser().getId(), fecha_ingreso, personas, motivo, detalleMotivo);
                         daoReservaciones.insertar(r);
                         //enviar correo
-                       // correito = new Correo();
-                        //correito.enviarCorreo(getUser().getEmail(), fecha_ingreso.toString(), String.valueOf(hora) + ":"
-                        //        + String.valueOf(minutos) + ":00");
+                        System.out.println(f.formatear(fecha, "dd/MM/yyyy"));
+                        correito = new Correo();
+                        correito.enviarCorreo(getUser().getEmail(),f.formatear(fecha, "dd/MM/yyyy"), String.valueOf(hora) + ":"
+                                + String.valueOf(minutos) + ":00");
                         //confirmar
                         JOptionPane.showMessageDialog(null, "Reservacion Realizada con Exito", "Mensaje Exito", JOptionPane.INFORMATION_MESSAGE);
                         

@@ -232,6 +232,7 @@ public class Home_view extends javax.swing.JFrame {
 
         lbl_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
         lbl_logout.setText("jLabel6");
+        lbl_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbl_logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbl_logoutMousePressed(evt);

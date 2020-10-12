@@ -45,6 +45,7 @@ public class Profile_view extends javax.swing.JFrame {
         btn_cerrar = new javax.swing.JLabel();
         btn_minimizar = new javax.swing.JLabel();
         lbl_home = new javax.swing.JLabel();
+        lbl_atras = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lbl_nombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -61,7 +62,7 @@ public class Profile_view extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         contenedor_main = new javax.swing.JPanel();
         txt_fechaFiltro = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
         lbl_resActual = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btn_cancelarRes = new javax.swing.JButton();
@@ -98,14 +99,19 @@ public class Profile_view extends javax.swing.JFrame {
         lbl_home.setText("Sistema Reservaciones");
         lbl_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        lbl_atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        lbl_atras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(lbl_home, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 549, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lbl_atras, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_home, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 625, Short.MAX_VALUE)
                 .addComponent(btn_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,9 +126,10 @@ public class Profile_view extends javax.swing.JFrame {
                     .addComponent(btn_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_home, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(lbl_atras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 50));
 
         jPanel2.setBackground(new java.awt.Color(29, 53, 87));
 
@@ -286,12 +293,12 @@ public class Profile_view extends javax.swing.JFrame {
         txt_fechaFiltro.setIcon(new ImageIcon(getClass().getResource("/img/calendar.png")));
         contenedor_main.add(txt_fechaFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 170, 40));
 
-        jButton1.setBackground(new java.awt.Color(32, 177, 151));
-        jButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Buscar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        contenedor_main.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 140, 40));
+        btn_buscar.setBackground(new java.awt.Color(32, 177, 151));
+        btn_buscar.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        btn_buscar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_buscar.setText("Buscar");
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        contenedor_main.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 140, 40));
 
         lbl_resActual.setBackground(new java.awt.Color(255, 255, 255));
         lbl_resActual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -374,15 +381,23 @@ public class Profile_view extends javax.swing.JFrame {
         return lbl_actualizarWord;
     }
 
+    public JLabel getLbl_atras() {
+        return lbl_atras;
+    }
+
+    public JButton getBtn_buscar() {
+        return btn_buscar;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup boton_grupo;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelarRes;
     private javax.swing.JLabel btn_cerrar;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel contenedor_main;
     private javax.swing.JLabel fondo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
@@ -395,6 +410,7 @@ public class Profile_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_actualizar;
     private javax.swing.JLabel lbl_actualizarWord;
+    private javax.swing.JLabel lbl_atras;
     private javax.swing.JLabel lbl_home;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_resActual;

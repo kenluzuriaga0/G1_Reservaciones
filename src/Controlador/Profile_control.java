@@ -18,7 +18,9 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -49,6 +51,8 @@ public class Profile_control extends Login_control {
         profile.getBtn_cancelarRes().addMouseListener(new Flujo());
         profile.getLbl_actualizar().addMouseListener(new Flujo());
         profile.getLbl_actualizarWord().addMouseListener(new Flujo());
+        profile.getLbl_atras().addMouseListener(new Flujo());
+        profile.getBtn_buscar().addMouseListener(new Flujo());
     }
 
     private void setearStats() {
@@ -104,9 +108,10 @@ public class Profile_control extends Login_control {
             date = new SimpleDateFormat("dd/MM/yyyy - HH:mm").parse(fecha);
             diaMil = date.getTime();
             milHoy = hoy.getTimeInMillis();
-            if (Math.abs(milHoy - diaMil) > dia) { //tiene 24 horas de diferencia?
+            if (Math.abs(milHoy - diaMil) > dia && diaMil > milHoy) { //tiene 24 horas de diferencia?
 
                 return true;
+
             } else {
                 return false;
             }
@@ -123,33 +128,37 @@ public class Profile_control extends Login_control {
             //obtengo el codigo del producto
             int codigoSeleccinado = Integer.parseInt(String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 0)));
             String fechita = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), 1));
-//            if (veriEliminacion(fechita)) {
-            int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
-            if (opcion == 0) {
-                Ireservaciones dao = new Reservaciones_dao();
-                Reservacion e = new Reservacion();
-                DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            if (veriEliminacion(fechita)) {
+                int opcion = JOptionPane.showConfirmDialog(null, "Desea eliminar esta reservacion?\n" + fechita, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.NO_OPTION);
+                if (opcion == 0) {
+                    Ireservaciones dao = new Reservaciones_dao();
+                    Reservacion e = new Reservacion();
+                    DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 
-                e.setId(codigoSeleccinado);
+                    e.setId(codigoSeleccinado);
 
-                if (dao.eliminar(e)) {
+                    if (dao.eliminar(e)) {
 
-                    modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
-                    tabla.setModel(model);
+                        modelo.removeRow(profile.getTabla_historico().getSelectedRow());   //elimino de la tabla
+                        tabla.setModel(model);
 
-                    JOptionPane.showMessageDialog(null, "Borrado con exito");
+                        JOptionPane.showMessageDialog(null, "Borrado con exito");
+                    }
                 }
-
+            } else {
+                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
             }
-//            } else {
-//                JOptionPane.showMessageDialog(null, "La reservacion a borrar solo puede ser cancelado 24 horas antes de la fecha acordada"); //OJO
-//
-//            }
-
         } else {
             JOptionPane.showMessageDialog(null, "No Selecciono Ninguna Fila", "Aviso", JOptionPane.ERROR_MESSAGE);
-
         }
+    }
+
+    protected void filtro(String busqueda, JTable tabla, int columna) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) tabla.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modelo);
+        tabla.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(busqueda, columna));
 
     }
 
@@ -159,7 +168,7 @@ public class Profile_control extends Login_control {
         public void mousePressed(MouseEvent ev) {
             Object fuente = ev.getSource();
 
-            if (fuente.equals(profile.getLbl_home())) {
+            if (fuente.equals(profile.getLbl_home()) || fuente.equals(profile.getLbl_atras())) {
                 profile.dispose();
                 home = new Home_view();
                 home_con = new Home_control(getUser(), getUserDao(), home);
@@ -171,8 +180,12 @@ public class Profile_control extends Login_control {
                 editarPerfil = new EditarPerfil(null, true);
                 EditarPerfil_control editControl = new EditarPerfil_control(getUser(), getUserDao(), editarPerfil);
                 editarPerfil.setVisible(true);
-                 setearStats();
+                setearStats();
 
+            } else if (fuente.equals(profile.getBtn_buscar())) {
+                Mesa f = new Mesa();
+                System.out.println(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy - HH:mm"));
+                filtro(profile.getTxt_fecha().getDateFormatString(), profile.getTabla_historico(), 2);
             }
 
         }

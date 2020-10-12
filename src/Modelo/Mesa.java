@@ -30,7 +30,7 @@ public class Mesa {
             return dateformat.format(fecha);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Coloque una Fecha correcta Porfavor", "Error", JOptionPane.ERROR_MESSAGE);
+           
             return null;
         }
     }

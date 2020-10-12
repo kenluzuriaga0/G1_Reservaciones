@@ -59,7 +59,8 @@ public class EditarPerfil_control extends Login_control {
         String newUsername = edit.getTxt_usernameNew().getText().trim();
         String newNombre = edit.getTxt_nombresNew().getText().trim();
         String newApellido = edit.getTxt_apellidosNew().getText().trim();
-        String newEmail = edit.getTxt_emailNew().getText().trim();
+        String newEmail = edit.getTxt_emailNew().getText().trim()+edit.getCmb_dominio().getSelectedItem();
+        System.out.println(newEmail);
         String newPassword = String.valueOf(edit.getTxt_campoPasswordNew().getPassword());
         String password = String.valueOf(edit.getTxt_campoPassword().getPassword());
         if (getUser().getPassword().equals(password)) {
