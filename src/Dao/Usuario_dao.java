@@ -52,6 +52,7 @@ public class Usuario_dao extends Conexion implements IUsuario_dao {
 
         } catch (SQLException ex) {
             System.out.println("Error en ejecucion de query REGISTRAR USUARIO: " + ex.getMessage());
+            
 
             return false;
         }

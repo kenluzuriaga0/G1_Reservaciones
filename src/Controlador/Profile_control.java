@@ -155,12 +155,16 @@ public class Profile_control extends Login_control {
     }
 
     protected void filtro(String busqueda, JTable tabla, int columna) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo = (DefaultTableModel) tabla.getModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modelo);
-        tabla.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(busqueda, columna));
+        try {
 
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel) tabla.getModel();
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modelo);
+            tabla.setRowSorter(tr);
+            tr.setRowFilter(RowFilter.regexFilter(busqueda, columna));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al filtrar fecha en tabla " + ex.getMessage());
+        }
     }
 
     class Flujo extends MouseAdapter {
@@ -186,9 +190,9 @@ public class Profile_control extends Login_control {
             } else if (fuente.equals(profile.getBtn_buscar())) {
                 Mesa f = new Mesa();
                 System.out.println(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy"));
-                filtro(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy"), profile.getTabla_historico(),1);
-            }else if(fuente.equals(profile.getBtn_borrarFiltro())){
-                filtro("",  profile.getTabla_historico(), 0);
+                filtro(f.formatear(profile.getTxt_fecha().getDate(), "dd/MM/yyyy"), profile.getTabla_historico(), 1);
+            } else if (fuente.equals(profile.getBtn_borrarFiltro())) {
+                filtro("", profile.getTabla_historico(), 0);
             }
 
         }

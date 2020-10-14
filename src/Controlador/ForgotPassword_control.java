@@ -45,7 +45,7 @@ public class ForgotPassword_control extends Login_control {
         List<String> datos;
         datos = getUserDao().contrasenaPorCorreo(forgot.getTxt_campoEmail().getText().trim());
 
-        if (!datos.equals(null)) {
+        if (!(datos.equals(null))&& datos.size()>0) {
 
             //Envio por correo          
             Properties props = new Properties();
@@ -89,6 +89,8 @@ public class ForgotPassword_control extends Login_control {
                 System.out.println("Fallo de correo mi loco  " + ex.getMessage());
                 JOptionPane.showMessageDialog(null, "Correo no enviado " + ex.getMessage());
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Correo no enviado ");
         }
 
     }

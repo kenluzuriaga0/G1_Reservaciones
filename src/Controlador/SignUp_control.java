@@ -34,48 +34,62 @@ public class SignUp_control extends Login_control {
 
     }
 
+    private void limpiarCampos() {
+        register.getTxt_apellidos().setText("");
+        register.getTxt_nombres().setText("");
+        register.getTxt_email().setText("");
+        register.getTxt_password().setText("");
+        register.getTxt_passwordConfirm().setText("");
+    }
+
     private void registrarUsuario() {
 
         Usuario user = new Usuario();
         Dao dao = new Dao();
 
-        char sexo = 'x';
-        int id = dao.autoId("USUARIOS", "ID_USUARIOS");
-        String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
-        String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
-        String email = register.getTxt_email().getText().toLowerCase().trim();
-        String dominio = (String) register.getCmb_dominio().getSelectedItem();
-        email = email + dominio;
-        if (register.getRadio_m().isSelected()) {
+        if (!(register.getTxt_apellidos().getText().equals("Nombres") || register.getTxt_apellidos().getText().equals("Email") ||register.getTxt_apellidos().getText().equals("Apellidos"))) {
 
-            sexo = 'M';
-        } else if (register.getRadio_f().isSelected()) {
+            char sexo = 'x';
+            int id = dao.autoId("USUARIOS", "ID_USUARIOS");
+            String nombre = register.getTxt_nombres().getText().toLowerCase().trim();
+            String apellido = register.getTxt_apellidos().getText().toLowerCase().trim();
+            String email = register.getTxt_email().getText().toLowerCase().trim();
+            String dominio = (String) register.getCmb_dominio().getSelectedItem();
+            email = email + dominio;
+            if (register.getRadio_m().isSelected()) {
 
-            sexo = 'F';
-        }
+                sexo = 'M';
+            } else if (register.getRadio_f().isSelected()) {
 
-        String pass = String.valueOf(register.getTxt_password().getPassword());
-        String passConf = String.valueOf(register.getTxt_passwordConfirm().getPassword());
+                sexo = 'F';
+            }
 
-        if (pass.equals(passConf)) {
-            user.setId(id);
-            user.setPassword(pass);
-            user.setNombre(nombre);
-            user.setApellido(apellido);
-            user.setEmail(email);
-            user.setId_rol(2);
-            user.setEstado('A');
-            user.setSexo(sexo);
-            user.setUsername(user.getNombre().charAt(0) + user.getApellido());
+            String pass = String.valueOf(register.getTxt_password().getPassword());
+            String passConf = String.valueOf(register.getTxt_passwordConfirm().getPassword());
+
+            if (pass.equals(passConf)) {
+                user.setId(id);
+                user.setPassword(pass);
+                user.setNombre(nombre);
+                user.setApellido(apellido);
+                user.setEmail(email);
+                user.setId_rol(2);
+                user.setEstado('A');
+                user.setSexo(sexo);
+                user.setUsername(user.getNombre().charAt(0) + user.getApellido());
+
+                if (getUserDao().registrar(user)) {
+
+                    JOptionPane.showMessageDialog(null, "USER NAME: " + user.getNombre().charAt(0) + user.getApellido());
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al registrar");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña no coincide");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "La contraseña no coincide");
-        }
-        if (getUserDao().registrar(user)) {
-
-            JOptionPane.showMessageDialog(null, "USER NAME: " + user.getNombre().charAt(0) + user.getApellido());
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al registrar");
+            JOptionPane.showMessageDialog(null, "Porfavor llene los campos");
         }
     }
 
